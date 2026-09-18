@@ -12,7 +12,7 @@
     
     <!-- Link to separate CSS file -->
     <!-- Di Laravel, gunakan {{ asset('css/landin.css') }} -->
-    <link rel="stylesheet" href={{ asset('css/landing.css') }}>
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
 </head>
 <body>
 
