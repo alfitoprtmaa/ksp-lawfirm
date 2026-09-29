@@ -39,7 +39,11 @@
               <label>Password</label>
             </div>
 
-            <button class="login-button" name="login">Login</button>
+            <!-- <button onclick="oneclick()" class="login-button" name="login">Login</button> -->
+
+            <a href="{{ route('admin.dashboard') }}" class="login-button">
+                Login
+            </a>
           </form>
 
         </div>
@@ -47,12 +51,20 @@
     </main>
 
     <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
+        type="module"
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js">
+    </script>
+
     <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
+        nomodule
+        src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js">
+    </script>
+
+    <!-- <script>
+        function oneclick(event) {
+            event.preventDefault();
+            window.location.href = "{{ route('admin.dashboard') }}";
+        }
+    </script> -->
   </body>
 </html>
