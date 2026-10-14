@@ -6,6 +6,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Customer Routes
+Route::get('/customer/index', function () {
+    return view('customer.index');
+})->name('customer.index');
+
+Route::get('/customer/tracking/index', function () {
+    return view('customer.tracking.index');
+})->name('customer.tracking.index');
+
+// Admin Routes
 Route::get('/admin/login', function () {
     return view('admin.login');
 });

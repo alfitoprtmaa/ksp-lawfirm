@@ -27,7 +27,7 @@
     </nav>
     <div class="nav-actions">
         <a href="#" class="btn btn-blue">Booking ↗</a>
-        <a href="#" class="btn btn-green">Konsultasi Sekarang ↗</a>
+        <a href="/customer/index" class="btn btn-green">Konsultasi Sekarang ↗</a>
     </div>
 </header>
 
