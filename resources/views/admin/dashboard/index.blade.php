@@ -27,18 +27,12 @@
         <!-- Logo -->
         <div class="brand">
             <div class="brand-mark">
-                <svg viewBox="0 0 32 32">
-                    <path d="M16 4 27 9v7c0 7.1-4.6 11.5-11 13C9.6 27.5 5 23.1 5 16V9l11-5Z"/>
-                    <path
-                        d="M11 16.2 14.2 19 21 12"
-                        class="brand-check"
-                    />
-                </svg>
+                <img src="{{ asset('images/logo.png') }}" alt="Ketut Surya & Partners">
             </div>
 
             <div class="brand-text">
                 <strong>
-                    Legal<span>Space</span>
+                    Dash<span>board</span>
                 </strong>
 
                 <small>Admin Panel</small>
@@ -169,7 +163,7 @@
             </a>
 
             {{-- Artikel --}}
-            <a href="#" class="nav-item">
+            <a href="{{ route('admin.artikel.index') }}" class="nav-item">
                 <span class="nav-icon">
                     <svg viewBox="0 0 24 24">
                         <path d="M5 4h14v16H5z"/>
@@ -313,7 +307,7 @@
                     </svg>
                 </button>
 
-                {{-- Notification --}}
+                <!-- {{-- Notification --}}
                 <button
                     class="icon-button notification-button"
                     title="Notifikasi"
@@ -324,7 +318,7 @@
                     </svg>
 
                     <span></span>
-                </button>
+                </button> -->
 
                 {{-- Profile --}}
                 <div class="profile">

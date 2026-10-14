@@ -41,7 +41,7 @@
 
             <!-- <button onclick="oneclick()" class="login-button" name="login">Login</button> -->
 
-            <a href="{{ route('admin.dashboard') }}" class="login-button">
+            <a href="{{ route('admin.dashboard.index') }}" class="login-button">
                 Login
             </a>
           </form>
@@ -60,11 +60,5 @@
         src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js">
     </script>
 
-    <!-- <script>
-        function oneclick(event) {
-            event.preventDefault();
-            window.location.href = "{{ route('admin.dashboard') }}";
-        }
-    </script> -->
   </body>
 </html>
