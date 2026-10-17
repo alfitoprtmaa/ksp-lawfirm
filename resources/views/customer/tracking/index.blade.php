@@ -36,7 +36,7 @@
                 <ul>
                     <li><a href="{{ route('customer.index') }}"><i class='bx bx-grid-alt'></i> Overview</a></li>
                     <li><a href="#"><i class='bx bx-message-square-detail'></i> My Consultations</a></li>
-                    <li><a href="#"><i class='bx bx-file-blank'></i> New Consultation</a></li>
+                    <li><a href="{{ route('customer.buatkonsultasi.index') }}"><i class='bx bx-file-blank'></i> New Consultation</a></li>
                     <!-- Menu ini sekarang Active -->
                     <li class="active"><a href="#"><i class='bx bx-search-alt-2'></i> Track Your Case</a></li>
                     <li><a href="#"><i class='bx bx-user-pin'></i> My Lawyer</a></li>

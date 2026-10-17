@@ -15,6 +15,10 @@ Route::get('/customer/tracking/index', function () {
     return view('customer.tracking.index');
 })->name('customer.tracking.index');
 
+Route::get('/customer/buatkonsultasi/index', function () {
+    return view('customer.buatkonsultasi.index');
+})->name('customer.buatkonsultasi.index');
+
 // Admin Routes
 Route::get('/admin/login', function () {
     return view('admin.login');
