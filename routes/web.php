@@ -7,6 +7,14 @@ Route::get('/', function () {
 });
 
 // Customer Routes
+Route::get('/customer/login/signin', function () {
+    return view('customer.login.signin');
+})->name('customer.login.signin');
+
+Route::get('/customer/login/signup', function () {
+    return view('customer.login.signup');
+})->name('customer.login.signup');
+
 Route::get('/customer/index', function () {
     return view('customer.index');
 })->name('customer.index');

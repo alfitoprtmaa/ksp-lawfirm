@@ -95,6 +95,43 @@
                 <div class="grid-layout">
                     <!-- LEFT COLUMN (Form Area) -->
                     <div class="form-content-area">
+
+                        <!-- PROGRESS STEPPER -->
+                        <div class="wizard-container">
+                            <div class="wizard-header">
+                                <h4>Tahapan Perkara</h4>
+                                <span class="wizard-counter">Tahap 1 dari 4</span>
+                            </div>
+
+                            <div class="wizard-progress">
+                                <div class="wizard-line">
+                                    <div class="wizard-line-active"></div>
+                                </div>
+
+                                <div class="wizard-step">
+                                    <div class="wizard-circle active-completed">
+                                        <i class='bx bx-check'></i>
+                                    </div>
+                                    <span class="wizard-label">Informasi Dasar</span>
+                                </div>
+
+                                <div class="wizard-step">
+                                    <div class="wizard-circle">2</div>
+                                    <span class="wizard-label">Detail Permasalahan</span>
+                                </div>
+
+                                <div class="wizard-step">
+                                    <div class="wizard-circle">3</div>
+                                    <span class="wizard-label">Dokumen Pendukung</span>
+                                </div>
+
+                                <div class="wizard-step">
+                                    <div class="wizard-circle">4</div>
+                                    <span class="wizard-label">Review &amp; Kirim</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <form action="#" id="consultationForm">
                             <!-- ==========================================
                                 TAHAP 1: INFORMASI DASAR
@@ -375,7 +412,6 @@
         </main>
     </div>
 
-    <!-- Script untuk Toggle Mobile Sidebar -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -395,72 +431,89 @@
             }
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const steps = document.querySelectorAll('.step-content');
+            const wizardSteps = document.querySelectorAll('.wizard-step');
             const wizardCircles = document.querySelectorAll('.wizard-circle');
-            const wizardLine = document.querySelector('.wizard-line');
-            
-            // Fungsi untuk mengubah tahapan
+            const wizardLineActive = document.querySelector('.wizard-line-active');
+            const wizardCounter = document.querySelector('.wizard-counter');
+
+            const totalSteps = wizardSteps.length;
+            let currentStep = 1;
+
             function goToStep(targetStepNum) {
-                // 1. Sembunyikan semua konten form
-                steps.forEach(step => step.style.display = 'none');
-                
-                // 2. Tampilkan form yang dituju
-                document.getElementById('step-' + targetStepNum).style.display = 'block';
-                
-                // 3. Update Stepper UI (Bulatan dan Garis)
-                wizardCircles.forEach((circle, index) => {
-                    const stepIndex = index + 1;
-                    circle.innerHTML = ''; // bersihkan isi circle
-                    circle.className = 'wizard-circle'; // reset class
-                    
-                    if (stepIndex < targetStepNum) {
-                        // Tahap yang sudah dilewati (Centang Hijau)
+                const targetStep = Number(targetStepNum);
+
+                if (targetStep < 1 || targetStep > totalSteps) return;
+
+                currentStep = targetStep;
+
+                // Tampilkan form sesuai tahap yang dipilih
+                steps.forEach(step => {
+                    step.style.display =
+                        Number(step.id.replace('step-', '')) === currentStep
+                            ? 'block'
+                            : 'none';
+                });
+
+                // Perbarui lingkaran dan label setiap tahap
+                wizardSteps.forEach((step, index) => {
+                    const stepNumber = index + 1;
+                    const circle = step.querySelector('.wizard-circle');
+
+                    step.classList.remove('active', 'completed');
+                    circle.classList.remove('active-completed');
+
+                    if (stepNumber < currentStep) {
+                        step.classList.add('completed');
                         circle.classList.add('active-completed');
                         circle.innerHTML = "<i class='bx bx-check'></i>";
-                    } else if (stepIndex === parseInt(targetStepNum)) {
-                        // Tahap saat ini (Garis Hijau tapi belum centang)
+                    } else if (stepNumber === currentStep) {
+                        step.classList.add('active', 'completed');
                         circle.classList.add('active-completed');
-                        // Khusus tahap ini, kita memanipulasi CSS atau menganggapnya aktif
-                        // Sesuai desain Anda (konsultasi 2), bulatan yang aktif berwarna hijau dengan check
                         circle.innerHTML = "<i class='bx bx-check'></i>";
+                    } else {
+                        circle.textContent = stepNumber;
                     }
                 });
 
-                // 4. Ubah teks header ("Tahap X dari 4")
-                const headerText = document.querySelector('.card-header-between .text-muted');
-                if(headerText) headerText.innerText = 'Tahap ' + targetStepNum + ' dari 4';
+                // Perbarui panjang garis progres
+                const progressPercentage =
+                    ((currentStep - 1) / (totalSteps - 1)) * 100;
+
+                wizardLineActive.style.width = progressPercentage + '%';
+
+                // Perbarui teks tahapan
+                wizardCounter.textContent =
+                    `Tahap ${currentStep} dari ${totalSteps}`;
             }
 
-            // Event Listener untuk tombol "Lanjut ke..."
-            const btnNext = document.querySelectorAll('.btn-next');
-            btnNext.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const nextStep = this.getAttribute('data-next');
-                    goToStep(nextStep);
-                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll ke atas saat pindah
-                });
-            });
-
-            // Event Listener untuk tombol "Kembali"
-            const btnPrev = document.querySelectorAll('.btn-prev');
-            btnPrev.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const prevStep = this.getAttribute('data-prev');
-                    goToStep(prevStep);
+            // Tombol lanjut
+            document.querySelectorAll('.btn-next').forEach(button => {
+                button.addEventListener('click', function () {
+                    goToStep(this.dataset.next);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
 
-            // Event Listener untuk tombol "Edit" di halaman Review
-            const btnJump = document.querySelectorAll('.btn-jump');
-            btnJump.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const targetStep = this.getAttribute('data-target');
-                    goToStep(targetStep);
+            // Tombol kembali
+            document.querySelectorAll('.btn-prev').forEach(button => {
+                button.addEventListener('click', function () {
+                    goToStep(this.dataset.prev);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
+
+            // Tombol edit pada bagian review
+            document.querySelectorAll('.btn-jump').forEach(button => {
+                button.addEventListener('click', function () {
+                    goToStep(this.dataset.target);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // Tampilkan tahap pertama saat halaman dibuka
+            goToStep(1);
         });
     </script>
 </body>
