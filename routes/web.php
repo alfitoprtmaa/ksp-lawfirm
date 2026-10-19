@@ -36,6 +36,10 @@ Route::get('/admin/dashboard/index', function () {
     return view('admin.dashboard.index');
 })->name('admin.dashboard.index');
 
+Route::get('/admin/lawyer/index', function () {
+    return view('admin.lawyer.index');
+})->name('admin.lawyer.index');
+
 Route::get('/admin/artikel/index', function () {
     return view('admin.artikel.index');
 })->name('admin.artikel.index');
