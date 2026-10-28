@@ -29,13 +29,13 @@
           <form>
             <div class="input-email">
               <span class="Icon"><ion-icon name="mail"></ion-icon></span>
-              <input type="email" name="email" required />
+              <input type="email" name="email" required placeholder=" " />
               <label>Email</label>
             </div>
 
             <div class="input-password">
               <span class="Icon"><ion-icon name="lock-closed"></ion-icon></span>
-              <input type="password" name="password" required />
+              <input type="password" name="password" required placeholder=" " />
               <label>Password</label>
             </div>
 

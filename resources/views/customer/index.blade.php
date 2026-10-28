@@ -37,8 +37,6 @@
                     <li><a href="#"><i class='bx bx-message-square-detail'></i> My Consultations</a></li>
                     <li><a href="{{ route('customer.buatkonsultasi.index') }}"><i class='bx bx-file-blank'></i> New Consultation</a></li>
                     <li><a href="{{ route('customer.tracking.index') }}"><i class='bx bx-search-alt-2'></i> Track Your Case</a></li>
-                    <li><a href="#"><i class='bx bx-user-pin'></i> My Lawyer</a></li>
-                    <li><a href="#"><i class='bx bx-folder'></i> Documents</a></li>
                     <li><a href="#"><i class='bx bx-user'></i> My Profile</a></li>
                 </ul>
             </div>

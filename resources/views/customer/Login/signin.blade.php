@@ -21,8 +21,12 @@
                 <div class="form-main-content">
                     <!-- Logo -->
                     <div class="logo">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2L12 6M12 18L12 22M4.9282 4.9282L7.75664 7.75664M16.2434 16.2434L19.0718 19.0718M2 12L6 12M18 12L22 12M4.9282 19.0718L7.75664 16.2434M16.2434 7.75664L19.0718 4.9282M12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                            <path d="M2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                            <path d="M7 21h10"/>
+                            <path d="M12 3v18"/>
+                            <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>
                         </svg>
                     </div>
 
@@ -37,10 +41,6 @@
                         <a href="#" class="social-btn">
                             <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
                             Continue with Google
-                        </a>
-                        <a href="#" class="social-btn">
-                            <i class="fa-brands fa-apple"></i>
-                            Continue with Apple
                         </a>
                     </div>
 
@@ -77,9 +77,9 @@
                 </div>
 
                 <!-- Syarat & Ketentuan di bagian bawah -->
-                <div class="terms-text">
+                <!-- <div class="terms-text">
                     By continuing you agree to our <a href="#">Terms & Conditions</a> and acknowledge our <a href="#">Privacy Policy.</a>
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -104,5 +104,29 @@
 
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mengambil elemen tombol dan input password
+            const togglePassword = document.querySelector('.eye-icon');
+            const passwordInput = document.getElementById('password');
+            const icon = togglePassword.querySelector('i');
+
+            // Menambahkan event saat tombol ikon diklik
+            togglePassword.addEventListener('click', function (e) {
+                // Toggle tipe input antara 'password' dan 'text'
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                
+                // Toggle ikon (mata terbuka / tertutup)
+                if (type === 'text') {
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye'); // Ikon mata terbuka
+                } else {
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash'); // Ikon mata tertutup
+                }
+            });
+        });
+    </script>
 </body>
 </html>
