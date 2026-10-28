@@ -120,7 +120,7 @@
             </div>
 
             {{-- Customer --}}
-            <a href="#" class="nav-item">
+            <a href="{{ route('admin.customer.index') }}" class="nav-item">
                 <span class="nav-icon">
                     <svg viewBox="0 0 24 24">
                         <circle cx="9" cy="8" r="3"/>
