@@ -40,8 +40,6 @@
                     <!-- Menu Active -->
                     <li class="active"><a href="#"><i class='bx bx-file-blank'></i> New Consultation</a></li>
                     <li><a href="{{ route('customer.tracking.index') }}"><i class='bx bx-search-alt-2'></i> Track Your Case</a></li>
-                    <li><a href="#"><i class='bx bx-user-pin'></i> My Lawyer</a></li>
-                    <li><a href="#"><i class='bx bx-folder'></i> Documents</a></li>
                     <li><a href="#"><i class='bx bx-user'></i> My Profile</a></li>
                 </ul>
             </div>
@@ -478,10 +476,19 @@
                 });
 
                 // Perbarui panjang garis progres
-                const progressPercentage =
-                    ((currentStep - 1) / (totalSteps - 1)) * 100;
-
-                wizardLineActive.style.width = progressPercentage + '%';
+                if (currentStep === totalSteps) {
+                    // Jika di tahap terakhir, penuhi garis 100% sampai ujung kanan
+                    wizardLineActive.style.width = '100%';
+                } else {
+                    // Ambil elemen step yang sedang aktif
+                    const activeStepElement = wizardSteps[currentStep - 1];
+                    
+                    // Hitung jarak dari ujung kiri ke titik tengah bulatan aktif
+                    const targetWidth = activeStepElement.offsetLeft + (activeStepElement.offsetWidth / 2);
+                    
+                    // Set lebar garis menggunakan pixel (px)
+                    wizardLineActive.style.width = targetWidth + 'px';
+                }
 
                 // Perbarui teks tahapan
                 wizardCounter.textContent =

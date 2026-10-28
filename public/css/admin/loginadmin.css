@@ -81,7 +81,8 @@ main {
 }
 
 .input-email input:focus ~ label,
-.input-email input:valid ~ label {
+.input-email input:valid ~ label,
+.input-email input:not(:placeholder-shown) ~ label {
   top: -5px;
 }
 

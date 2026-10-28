@@ -19,8 +19,7 @@
 body, html {
     font-family: 'Inter', sans-serif;
     background-color: #ffffff;
-    height: 100vh;
-    overflow: hidden; 
+    min-height: 100vh;
 }
 
 .split-layout {
@@ -33,7 +32,7 @@ body, html {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; 
     padding: 2rem;
     position: relative;
     /* Tambahan agar form yang panjang bisa di-scroll di layar yang pendek */
@@ -49,6 +48,7 @@ body, html {
     flex-direction: column;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    margin: auto;
 }
 
 .form-main-content {
@@ -248,4 +248,36 @@ input:focus, textarea:focus {
     line-height: 1.6;
     color: #e5e7eb;
     max-width: 420px;
+}
+
+@media (max-height: 800px) {
+    .left-panel {
+        padding: 1rem;
+    }
+    
+    .form-wrapper {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .header-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .input-group {
+        margin-bottom: 0.75rem;
+    }
+    
+    input, textarea {
+        padding: 0.6rem 1rem;
+    }
+    
+    .logo {
+        margin-bottom: 0.75rem;
+    }
+    
+    .logo svg {
+        width: 40px;
+        height: 40px;
+    }
 }
