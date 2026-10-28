@@ -79,7 +79,7 @@
 
                     <!-- Link Login -->
                     <p class="signup-text">
-                        Already have an account? <a href="{{ route('customer.login.signin') }}">Log in</a>
+                        Already have an account? <a href="{{ route('customer.login.signin') }}">Sign in</a>
                     </p>
                 </div>
 

@@ -151,19 +151,6 @@
                 WEBSITE
             </div>
 
-            {{-- Layanan --}}
-            <a href="#" class="nav-item">
-                <span class="nav-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M4 6.5h16"/>
-                        <path d="M4 12h16"/>
-                        <path d="M4 17.5h10"/>
-                        <circle cx="18" cy="17.5" r="2"/>
-                    </svg>
-                </span>
-                <span>Layanan</span>
-            </a>
-
             {{-- Artikel --}}
             <a href="{{ route('admin.artikel.index') }}" class="nav-item">
                 <span class="nav-icon">
@@ -173,27 +160,6 @@
                     </svg>
                 </span>
                 <span>Artikel</span>
-            </a>
-
-            {{-- Testimoni --}}
-            <a href="#" class="nav-item">
-                <span class="nav-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="m12 4 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L12 4Z"/>
-                    </svg>
-                </span>
-                <span>Testimoni</span>
-            </a>
-
-            {{-- Konten Website --}}
-            <a href="#" class="nav-item">
-                <span class="nav-icon">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="4" y="4" width="16" height="16" rx="2"/>
-                        <path d="M8 9h8M8 13h8M8 17h5"/>
-                    </svg>
-                </span>
-                <span>Konten Website</span>
             </a>
 
             {{-- LAINNYA --}}
