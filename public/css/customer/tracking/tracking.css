@@ -1,30 +1,68 @@
 /* Utility Classes Tambahan */
-.mb-0 { margin-bottom: 0 !important; }
+.p-0 { padding: 0 !important; }
+.p-4 { padding: 24px !important; }
+.px-4 { padding-left: 24px; padding-right: 24px; }
+.pb-0 { padding-bottom: 0 !important; }
+.m-0 { margin: 0 !important; }
+.mb-1 { margin-bottom: 4px !important; }
 .mb-2 { margin-bottom: 8px !important; }
 .mb-3 { margin-bottom: 12px !important; }
-.mb-4 { margin-bottom: 20px !important; }
-.text-sm { font-size: 13px !important; }
-.text-xs { font-size: 11px !important; }
-.font-medium { font-weight: 500 !important; }
-.text-blue { color: var(--primary-blue, #0d6efd) !important; }
-.text-green { color: #059669 !important; }
-.text-red { color: #dc2626 !important; }
-.bg-light-green { background-color: #d1fae5 !important; }
-.line-height-15 { line-height: 1.5; }
-.border-green { border: 1px solid #d1fae5; }
+.mb-4 { margin-bottom: 24px !important; }
 
-/* Page Header Flex */
+.d-flex { display: flex; }
+.align-center { align-items: center; }
+.align-start { align-items: flex-start; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.gap-3 { gap: 16px; }
+.gap-4 { gap: 24px; }
+
+.text-xs { font-size: 11px; }
+.text-sm { font-size: 13px; }
+.text-md { font-size: 14px; }
+.text-lg { font-size: 16px; }
+.text-xl { font-size: 20px; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }
+
+.text-dark { color: #111827; }
+.text-muted { color: #6b7280; }
+.text-gray { color: #4b5563; }
+.text-blue { color: #3b82f6; }
+.text-white { color: #ffffff !important; }
+.bg-blue { background-color: #3b82f6 !important; }
+.bg-light-blue { background-color: #eff6ff; }
+.bg-light-gray { background-color: #f3f4f6; }
+.bg-gray-50 { background-color: #f9fafb; }
+.bg-white { background-color: #ffffff; }
+
+.rounded-lg { border-radius: 12px; }
+.rounded-md { border-radius: 8px; }
+.rounded-circle { border-radius: 50%; }
+.border { border: 1px solid #e5e7eb; }
+.border-bottom { border-bottom: 1px solid #e5e7eb; }
+.border-none { border: none !important; }
+.line-height-15 { line-height: 1.5; }
+.line-height-16 { line-height: 1.6; }
+.min-h-200 { min-height: 200px; }
+
+/* Page Header */
+.page-title {
+    font-size: 28px;
+    color: #111827;
+    margin-bottom: 4px;
+}
+.page-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+}
 .page-header-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 30px;
-}
-
-.btn-outline {
-    background-color: var(--white, #ffffff);
-    border: 1px solid #e5e7eb;
-    color: var(--text-main, #1f2937);
 }
 .case-selector {
     display: flex;
@@ -34,10 +72,9 @@
     border-radius: 8px;
     font-weight: 600;
 }
-.case-selector i { color: var(--text-muted, #6b7280); font-size: 18px; }
 
 /* Case Overview Card */
-.case-overview {
+.case-overview-card {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -50,23 +87,23 @@
 .case-icon-box {
     width: 60px;
     height: 60px;
-    background-color: var(--bg-color, #f4f7fa);
+    background-color: var(--bg-white);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 28px;
-    color: var(--text-main, #1f2937);
+    color: var(--text-main);
 }
 .case-details h3 {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 8px;
 }
 .case-meta {
     display: flex;
     gap: 16px;
     font-size: 13px;
-    color: var(--text-muted, #6b7280);
+    color: var(--text-muted);
 }
 .case-meta span {
     display: flex;
@@ -82,11 +119,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 6px;
-}
-.status-label {
-    font-size: 11px;
-    color: var(--text-muted, #6b7280);
+    gap: 4px;
 }
 .status-badge {
     display: inline-flex;
@@ -97,380 +130,317 @@
     font-size: 12px;
     font-weight: 500;
 }
-.status-badge i { font-size: 8px; }
-.badge-blue {
-    background-color: var(--light-blue-bg, #eff5ff);
-    color: var(--primary-blue, #0d6efd);
-}
-.btn-icon-outline {
-    background: transparent;
-    border: 1px solid #e5e7eb;
-    border-radius: 6px;
-    padding: 8px;
-    cursor: pointer;
-    color: var(--text-muted, #6b7280);
-    font-size: 18px;
-}
+.badge-blue { background-color: #eff5ff; color: #3b82f6; }
 
-/* Tracking Grid Layout Adjustment */
-.tracking-grid {
-    grid-template-columns: 2fr 1fr;
-}
-
-/* Card Header Between */
+/* Horizontal Stepper UI */
+.tracking-main-card { overflow: hidden; }
 .card-header-between {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
 }
+.card-header-between h4 { font-size: 16px; margin: 0; }
 
-/* Horizontal Timeline */
-.timeline-horizontal {
+.wizard-stepper {
     display: flex;
     justify-content: space-between;
     position: relative;
-    margin-bottom: 40px;
-    padding: 0 10px;
+    padding-bottom: 10px;
 }
-.timeline-line {
+.wizard-line {
     position: absolute;
-    top: 15px; /* center of 30px circle */
-    left: 20px;
-    right: 20px;
+    top: 13px; /* Center circle (26px / 2) */
+    left: 0;
+    right: 0;
     height: 3px;
-    background: #e5e7eb;
+    background-color: #e5e7eb;
     z-index: 1;
 }
-.timeline-progress {
+.wizard-line-active {
     position: absolute;
-    top: 15px;
-    left: 20px;
+    top: 13px; 
+    left: 0;
     height: 3px;
-    background: #059669; /* Green completed color */
+    background-color: #059669; /* Garis progres warna hijau */
     z-index: 2;
-    transition: width 0.3s ease;
+    transition: width 0.4s ease;
 }
-.step {
+.wizard-step {
     position: relative;
     z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    width: 80px;
+    width: 140px;
+    background: transparent;
+    cursor: pointer; /* Bisa diklik untuk pindah tab */
 }
-.step-circle {
-    width: 30px;
-    height: 30px;
+.wizard-circle {
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
+    background-color: #e5e7eb;
+    color: #6b7280;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
-    font-size: 16px;
-    background-color: #e5e7eb;
-}
-.step-circle.completed {
-    background-color: #059669;
-    color: white;
-}
-.step-circle.active {
-    background-color: var(--primary-blue, #0d6efd);
-    color: white;
-    box-shadow: 0 0 0 4px var(--light-blue-bg, #eff5ff);
-}
-.step-text {
-    font-size: 12px;
+    margin-bottom: 10px;
+    font-size: 14px;
     font-weight: 500;
-    line-height: 1.3;
-    color: var(--text-main, #1f2937);
-    margin-bottom: 4px;
+    transition: 0.3s;
+    border: 2px solid white; /* Supaya garis di belakangnya tidak menembus */
 }
-.step-date {
-    font-size: 10px;
-    color: var(--text-muted, #6b7280);
+.wizard-circle.active-completed {
+    background-color: #059669; /* Centang hijau untuk yg sudah dilewati */
+    color: white;
+    border-color: #059669;
 }
-.step-badge {
-    font-size: 10px;
-    background-color: var(--light-blue-bg, #eff5ff);
-    color: var(--primary-blue, #0d6efd);
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-top: 4px;
+.wizard-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.4;
+    transition: 0.3s;
 }
 
-/* Current Stage Box */
-.current-stage-box {
-    background-color: #f8fafc;
-    border-radius: 12px;
-    padding: 24px;
-}
-.stage-header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-}
-.stage-icon {
+/* Tab Content Areas */
+.icon-box-md {
     width: 40px;
     height: 40px;
-    background-color: var(--light-blue-bg, #eff5ff);
-    color: var(--primary-blue, #0d6efd);
-    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 20px;
 }
-.stage-desc {
-    font-size: 13px;
-    color: var(--text-muted, #6b7280);
-    line-height: 1.5;
-}
-.divider {
-    height: 1px;
-    background-color: #e5e7eb;
-    margin: 20px 0;
-}
 
-/* Document Timeline */
-.doc-timeline {
-    margin-top: 20px;
-}
-.doc-item {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 24px;
-}
-.doc-icon-left {
-    width: 40px;
-    height: 40px;
-    background-color: var(--bg-color, #f4f7fa);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted, #6b7280);
-    font-size: 20px;
+/* Lawyer Profile Box */
+.lawyer-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
     flex-shrink: 0;
 }
-.doc-content {
-    flex: 1;
-}
-.doc-content h6 {
-    font-size: 14px;
-    margin-bottom: 4px;
-}
-.doc-date {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    color: var(--text-muted, #6b7280);
-    margin-bottom: 8px;
-}
-.doc-content p {
-    font-size: 13px;
-    color: var(--text-muted, #6b7280);
-    margin-bottom: 12px;
-}
 
-/* File Attachment Box */
-.file-attachment {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--white, #ffffff);
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
+/* Vertical Timeline */
+.vertical-timeline {
+    position: relative;
 }
-.file-info {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+.vertical-timeline::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    bottom: 20px;
+    left: 21px; /* Posisi garis vertikal */
+    width: 2px;
+    background-color: #bfdbfe; /* Biru muda */
+    z-index: 1;
 }
-.file-info i {
-    font-size: 24px;
+.timeline-item {
+    position: relative;
+    padding-left: 50px; /* Ruang untuk bulatan */
+    margin-bottom: 24px;
 }
-.file-name {
-    display: block;
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+.timeline-marker {
+    position: absolute;
+    left: 14px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    z-index: 2;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #bfdbfe;
+}
+.timeline-content {
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e5e7eb;
+}
+.btn-outline-sm {
+    background: transparent;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    padding: 6px 16px;
+    border-radius: 6px;
     font-size: 13px;
     font-weight: 500;
-}
-.file-size {
-    display: block;
-    font-size: 11px;
-    color: var(--text-muted, #6b7280);
-}
-.btn-download {
-    background: transparent;
-    border: none;
-    color: var(--text-muted, #6b7280);
-    font-size: 20px;
     cursor: pointer;
 }
-.btn-download:hover {
-    color: var(--text-main, #1f2937);
+.btn-outline-sm:hover {
+    background: #f9fafb;
 }
 
-/* Info Table (Right Column) */
-.icon-box-sm {
-    width: 32px;
-    height: 32px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
+.logo {
+    text-align: center;
+    color: var(--text-dark);
 }
-.info-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-.info-table td {
-    padding: 12px 0;
-    border-bottom: 1px solid #f3f4f6;
-    font-size: 13px;
-}
-.info-table tr:last-child td {
-    border-bottom: none;
-}
-.lawyer-profile {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.avatar-sm {
-    width: 32px;
-    height: 32px;
-    background-color: #f3f4f6;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted, #6b7280);
+
+.logo svg {
+    width: 48px;
+    height: 48px;
 }
 
 /* ==========================================================================
-   RESPONSIVE LAYOUT (MEDIA QUERIES)
+   STYLE KHUSUS TAB 1 (Overview Permasalahan - Data Detail)
    ========================================================================== */
-
-/* Sembunyikan tombol toggle mobile di desktop */
-.mobile-toggle-btn {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 26px;
-    color: var(--text-main);
-    cursor: pointer;
+.overview-details-container {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
 }
 
-/* -------------------------------------------
-   TABLET (max-width: 1024px)
-   ------------------------------------------- */
-@media (max-width: 1024px) {
-    /* Ubah Grid 2 kolom menjadi 1 kolom (atas-bawah) */
-    .tracking-grid {
-        grid-template-columns: 1fr;
-    }
+.overview-table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-/* -------------------------------------------
-   MOBILE (max-width: 768px)
-   ------------------------------------------- */
+.overview-table td {
+    padding: 8px 0;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* Lebar kolom label di sebelah kiri */
+.overview-table .label-col {
+    width: 220px;
+}
+
+.overview-table .align-top {
+    vertical-align: top;
+}
+
+.overview-table .pt-4 {
+    padding-top: 24px; /* Memberikan jarak ekstra di atas "Ringkasan Permasalahan" */
+}
+
+/* Kotak abu-abu untuk teks ringkasan */
+.summary-box {
+    background-color: #f9fafb; /* Warna abu-abu sangat muda */
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: #111827;
+}
+
+/* ==========================================================================
+   STYLE KHUSUS TAB 3 (List Perkembangan Perkara Horizontal)
+   ========================================================================== */
+.development-timeline {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-left: 4px; /* Penyesuaian agar bulatan sejajar */
+}
+
+/* Garis vertikal biru muda yang menyambungkan semua titik */
+.development-timeline::before {
+    content: '';
+    position: absolute;
+    top: 30px;     /* Mulai dari tengah item pertama */
+    bottom: 30px;  /* Berhenti di tengah item terakhir */
+    left: 12px;    /* Posisi garis tepat di tengah bulatan (lebar bulatan 18px) */
+    width: 2px;
+    background-color: #bfdbfe; /* Warna biru muda */
+    z-index: 1;
+}
+
+/* Container untuk setiap baris */
+.dev-item {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center; /* Menengahkan semua elemen secara vertikal */
+    gap: 24px;
+}
+
+/* Bulatan biru dengan titik putih di tengah */
+.dev-marker {
+    width: 18px;
+    height: 18px;
+    background-color: #3b82f6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.dev-marker::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: #ffffff;
+    border-radius: 50%;
+}
+
+/* Kolom Tanggal dan Jam */
+.dev-datetime {
+    width: 100px;
+    flex-shrink: 0;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+/* Kotak abu-abu panjang berisi teks */
+.dev-content {
+    flex: 1;
+    padding: 16px 20px;
+    border-radius: 8px;
+    color: #4b5563;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Kolom Nama Staff / Lawyer di sebelah kanan */
+.dev-person {
+    width: 140px;
+    flex-shrink: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* Responsive agar tidak rusak di layar HP */
 @media (max-width: 768px) {
-    /* --- SIDEBAR BEHAVIOR --- */
-    .mobile-toggle-btn {
-        display: block; /* Munculkan tombol hamburger */
-    }
-
-    .sidebar {
-        position: fixed;
-        left: -260px; /* Sembunyikan sidebar di kiri */
-        top: 0;
-        bottom: 0;
-        z-index: 999;
-        transition: left 0.3s ease;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    }
-
-    .sidebar.active {
-        left: 0; /* Munculkan sidebar saat aktif */
-    }
-
-    /* --- LAYOUT UTAMA --- */
-    .topbar {
-        padding: 0 20px;
-    }
-    
-    .content-area {
-        padding: 20px;
-    }
-
-    .page-header-flex {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    /* --- CASE OVERVIEW CARD --- */
-    .case-overview {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-
-    .case-overview-left {
+    .dev-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
+        padding-left: 36px; /* Jarak untuk garis jika dilipat ke bawah */
     }
-
-    .case-meta {
-        flex-direction: column;
-        gap: 8px;
+    .dev-marker {
+        position: absolute;
+        left: 0;
+        top: 2px;
     }
-
-    .case-overview-right {
+    .development-timeline::before {
+        left: 8px;
+        top: 20px;
+        bottom: 20px;
+    }
+    .dev-datetime, .dev-person {
         width: 100%;
-        justify-content: space-between; /* Pisahkan status & tombol titik tiga */
-        border-top: 1px solid #e5e7eb;
-        padding-top: 15px;
     }
-    
-    .status-box {
-        align-items: flex-start; /* Rata kiri di mobile */
-    }
+}
 
-    /* --- TIMELINE (HORIZONTAL SCROLL) --- */
-    /* Membuat timeline bisa digeser ke samping di layar kecil agar tidak bertumpuk */
-    .timeline-scroll-wrapper {
-        overflow-x: auto;
-        padding-bottom: 20px; /* Jarak untuk scrollbar */
-    }
-    
-    .timeline-scroll-wrapper::-webkit-scrollbar {
-        height: 6px;
-    }
-    .timeline-scroll-wrapper::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-    }
+/* Responsive Tablet & Mobile */
+@media (max-width: 1024px) {
+    .lawyer-profile-box { flex-direction: column; align-items: center; text-align: center; }
+    .social-links { justify-content: center; }
+}
 
-    .timeline-horizontal {
-        min-width: 600px; /* Paksa lebar minimal agar step tidak mengecil */
-    }
-
-    /* --- DOCUMENT ATTACHMENT --- */
-    .file-attachment {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
+@media (max-width: 768px) {
+    .page-header-flex { flex-direction: column; align-items: flex-start; gap: 15px; }
+    .case-overview-card { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .case-overview-right { width: 100%; justify-content: space-between; border-top: 1px solid #e5e7eb; padding-top: 15px; }
     
-    .btn-download {
-        align-self: flex-end; /* Tombol download di kanan bawah */
-    }
+    /* Stepper Scrollable on Mobile */
+    .wizard-stepper { overflow-x: auto; padding-bottom: 20px; }
+    .wizard-line, .wizard-line-active { min-width: 500px; }
+    .wizard-step { min-width: 120px; }
+    
+    .vertical-timeline::before { left: 16px; }
+    .timeline-item { padding-left: 40px; }
+    .timeline-marker { left: 9px; }
+    .timeline-content .d-flex { flex-direction: column; gap: 12px; align-items: flex-start; }
 }
