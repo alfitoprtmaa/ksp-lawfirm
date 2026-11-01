@@ -35,6 +35,19 @@ Route::get('/customer/akun/index', function () {
     return view('customer.akun.index');
 })->name('customer.akun.index');
 
+// Lawyer Routes
+Route::get('/lawyer/login', function () {
+    return view('lawyer.login');
+});
+
+Route::get('/lawyer/index', function () {
+    return view('lawyer.index');
+})->name('lawyer.index');
+
+Route::get('/lawyer/pusatreferensi/index', function () {
+    return view('lawyer.pusatreferensi.index');
+})->name('lawyer.pusatreferensi.index');
+
 // Admin Routes
 Route::get('/admin/login', function () {
     return view('admin.login');
