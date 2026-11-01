@@ -400,6 +400,28 @@
     font-size: 14px;
 }
 
+/* Tombol Detail Baru */
+.dev-action {
+    flex-shrink: 0;
+}
+.btn-detail-light {
+    background-color: #eff6ff;
+    color: #3b82f6;
+    border: 1px solid #eff6ff;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: 0.2s;
+}
+.btn-detail-light:hover {
+    background-color: #dbeafe;
+}
+
 /* Responsive agar tidak rusak di layar HP */
 @media (max-width: 768px) {
     .dev-item {

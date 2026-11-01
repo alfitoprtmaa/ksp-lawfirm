@@ -27,6 +27,10 @@ Route::get('/customer/buatkonsultasi/index', function () {
     return view('customer.buatkonsultasi.index');
 })->name('customer.buatkonsultasi.index');
 
+route::get('/customer/perkaralama/index', function () {
+    return view('customer.perkaralama.index');
+})->name('customer.perkaralama.index');
+
 // Admin Routes
 Route::get('/admin/login', function () {
     return view('admin.login');

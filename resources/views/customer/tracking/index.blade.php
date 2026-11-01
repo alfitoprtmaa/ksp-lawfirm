@@ -36,7 +36,7 @@
                 <p class="menu-label">RUANG KLIEN</p>
                 <ul>
                     <li><a href="{{ route('customer.index') }}"><i class='bx bx-grid-alt'></i> Overview</a></li>
-                    <li><a href="#"><i class='bx bx-hive'></i> Perkara Lama</a></li>
+                    <li><a href="{{ route('customer.perkaralama.index') }}"><i class='bx bx-hive'></i> Perkara Lama</a></li>
                     <li><a href="{{ route('customer.buatkonsultasi.index') }}"><i class='bx bx-file-blank'></i> Perkara Baru</a></li>
                     <!-- Menu Active -->
                     <li class="active"><a href="#"><i class='bx bx-message-square-detail'></i> Track Your Case</a></li>
@@ -275,6 +275,9 @@
                                         <div class="dev-person">
                                             Alfito Spea M/Kom
                                         </div>
+                                        <div class="dev-action">
+                                            <button type="button" class="btn-detail-light">Detail <i class='bx bx-chevron-right'></i></button>
+                                        </div>
                                     </div>
 
                                     <!-- Item 2 -->
@@ -290,6 +293,9 @@
                                         <div class="dev-person">
                                             Alfito Spea M/Kom
                                         </div>
+                                        <div class="dev-action">
+                                            <button type="button" class="btn-detail-light">Detail <i class='bx bx-chevron-right'></i></button>
+                                        </div>
                                     </div>
 
                                     <!-- Item 3 -->
@@ -304,6 +310,9 @@
                                         </div>
                                         <div class="dev-person">
                                             Alfito Spea M/Kom
+                                        </div>
+                                        <div class="dev-action">
+                                            <button type="button" class="btn-detail-light">Detail <i class='bx bx-chevron-right'></i></button>
                                         </div>
                                     </div>
 

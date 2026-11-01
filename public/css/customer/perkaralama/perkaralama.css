@@ -1,0 +1,192 @@
+/* ==========================================================================
+   STYLE UNTUK TABEL DAN PAGINASI
+   File: public/css/table.css
+   ========================================================================== */
+
+/* Update Active Sidebar Menu khusus halaman ini */
+.sidebar-menu li.active-blue a {
+    background-color: var(--primary-blue, #0d6efd);
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+/* Card General Utilities */
+.shadow-sm { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); }
+.border-top { border-top: 1px solid #e5e7eb; }
+.py-4 { padding-top: 24px; padding-bottom: 24px; }
+.py-3 { padding-top: 16px; padding-bottom: 16px; }
+.px-4 { padding-left: 24px; padding-right: 24px; }
+.text-decoration-none { text-decoration: none; }
+.hover-underline:hover { text-decoration: underline; }
+
+/* Memaksa Header Tabel sejajar menyamping */
+.card-header-table {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100%;
+}
+
+/* Memastikan ikon dan teks "Perkara Saya" sejajar */
+.card-header-table > div {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+}
+
+/* Memastikan tombol "Lihat Semua" dan panahnya sejajar */
+.card-header-table a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+}
+
+/* Table Responsiveness */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Data Table Styling */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #ffffff;
+    color: #111827;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.data-table td {
+    padding: 18px 24px;
+    font-size: 13px;
+    color: #4b5563;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+/* Menghilangkan border bawah pada baris terakhir agar tidak dobel dengan footer */
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+.status-badge i {
+    font-size: 8px; /* Ukuran titik (dot) */
+}
+
+/* Badge Dalam Proses (Biru) */
+.badge-blue {
+    background-color: #eff6ff;
+    color: #3b82f6;
+}
+
+/* Badge Selesai (Hijau) */
+.badge-green {
+    background-color: #d1fae5;
+    color: #10b981;
+}
+
+/* Pagination Controls */
+.pagination-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 0 0 12px 12px;
+    width: 100%;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Agar tidak terpotong di layar kecil */
+    gap: 4px;
+}
+
+.btn-page {
+    background: transparent;
+    border: 1px solid transparent;
+    color: #4b5563;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-page:hover:not(:disabled):not(.active) {
+    background-color: #f3f4f6;
+}
+
+.btn-page.active {
+    background-color: var(--primary-blue, #0d6efd);
+    color: #ffffff;
+}
+
+.btn-page-nav {
+    width: auto;
+    padding: 0 12px;
+    gap: 4px;
+    border: 1px solid #e5e7eb;
+}
+
+.btn-page-nav:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-page-nav i {
+    font-size: 16px;
+}
+
+.page-dots {
+    padding: 0 4px;
+    font-size: 13px;
+}
+
+/* Responsive Handling */
+@media (max-width: 768px) {
+    .card-header-table {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .pagination-footer {
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .pagination-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

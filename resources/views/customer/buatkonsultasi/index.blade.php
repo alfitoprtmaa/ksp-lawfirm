@@ -36,7 +36,7 @@
                 <p class="menu-label">RUANG KLIEN</p>
                 <ul>
                     <li><a href="{{ route('customer.index') }}"><i class='bx bx-grid-alt'></i> Overview</a></li>
-                    <li><a href="#"><i class='bx bx-git-pull-request'></i> Perkara Lama</a></li>
+                    <li><a href="{{ route('customer.perkaralama.index') }}"><i class='bx bx-git-pull-request'></i> Perkara Lama</a></li>
                     <!-- Menu Active -->
                     <li class="active"><a href="#"><i class='bx bx-copy'></i> Perkara Baru</a></li>
                     <li><a href="{{ route('customer.tracking.index') }}"><i class='bx bx-message'></i> Track Your Case</a></li>
