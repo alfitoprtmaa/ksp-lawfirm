@@ -1,0 +1,159 @@
+/* ==========================================================================
+   STYLE HALAMAN PENGATURAN AKUN
+   ========================================================================== */
+   
+/* Utility Classes Tambahan */
+.bg-page { background-color: #f8f9fa; min-height: calc(100vh - 70px); }
+.border { border: 1px solid #e5e7eb; }
+.p-4 { padding: 24px; }
+.pt-2 { padding-top: 12px; }
+.py-3 { padding-top: 12px; padding-bottom: 12px; }
+.w-100 { width: 100% !important; }
+.justify-center { justify-content: center !important; }
+.m-0 { margin: 0 !important; }
+.mb-1 { margin-bottom: 4px !important; }
+.mb-3 { margin-bottom: 16px !important; }
+.mb-4 { margin-bottom: 24px !important; }
+
+/* Warna Latar Khusus Ikon */
+.bg-light-gray { background-color: #f1f5f9; }
+.bg-light-green { background-color: #ecfdf5; }
+.bg-light-blue { background-color: #eff6ff; }
+
+/* Memaksa elemen berdampingan (kiri-kanan) */
+.d-flex {
+    display: flex !important;
+}
+
+.align-center {
+    align-items: center !important;
+}
+
+.gap-3 {
+    gap: 16px !important;
+}
+
+.gap-4 {
+    gap: 24px !important;
+}
+
+/* Fallback: Target langsung ke elemen spesifik jika class d-flex tetap gagal */
+.profile-header-card > div:first-child {
+    display: flex !important;
+    align-items: center !important;
+    gap: 24px !important;
+}
+
+.card-header-icon {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+}
+
+/* Sidebar Active State untuk Pengaturan */
+.active-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}
+
+/* Header Profil Card */
+.profile-header-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px;
+}
+
+.avatar-lg {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #0f172a;
+}
+
+/* Tombol Ubah Foto */
+.btn-light-outline {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #1e293b;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-light-outline:hover {
+    background-color: #e2e8f0;
+}
+
+/* Grid Layout Formulir (2 Kolom) */
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.icon-box-md {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+/* Style Input Formulir */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+.form-label {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #111827;
+}
+.form-control {
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #1f2937;
+    outline: none;
+    transition: border-color 0.2s;
+    background-color: #ffffff;
+}
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+.form-control::placeholder {
+    color: #9ca3af;
+}
+
+/* Tombol Disabled (Ubah Kata Sandi) */
+.btn-disabled {
+    background-color: #f1f5f9;
+    color: #475569;
+    border: none;
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+}
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
+    .settings-grid {
+        grid-template-columns: 1fr; /* Berubah menjadi 1 kolom (atas-bawah) */
+    }
+    
+    .profile-header-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}

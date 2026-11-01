@@ -47,7 +47,7 @@
                     <p>Tim kami siap membantu penggunaan portal Anda.</p>
                     <a href="#" class="help-link">Pusat bantuan <i class='bx bx-top-right-arrow'></i></a>
                 </div>
-                <a href="#" class="settings-link"><i class='bx bx-cog'></i> Pengaturan akun</a>
+                <a href="{{ route('customer.akun.index') }}" class="settings-link"><i class='bx bx-cog'></i> Pengaturan akun</a>
             </div>
         </aside>
 
