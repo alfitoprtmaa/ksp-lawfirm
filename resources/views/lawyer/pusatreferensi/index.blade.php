@@ -32,11 +32,11 @@
                         <i class='bx bx-grid-alt'></i>
                         <span>Overview</span>
                     </a>
-                    <a href="#" class="nav-item">
+                    <a href="{{ route('lawyer.kelolaperkara.index') }}" class="nav-item">
                         <i class='bx bx-briefcase'></i>
                         <span>Kelola Perkara</span>
                     </a>
-                    <a href="#" class="nav-item">
+                    <a href="{{ route('lawyer.jadwal.index') }}" class="nav-item">
                         <i class='bx bx-calendar-event'></i>
                         <span>Jadwal</span>
                     </a>
@@ -58,18 +58,27 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Header -->
-            <header class="top-header">
-                <div class="header-actions">
-                    <button class="btn-icon notif-btn">
-                        <i class='bx bx-bell'></i>
-                        <span class="notif-dot"></span>
+            <header class="topbar">
+                <div class="topbar-left" style="display: flex; align-items: center; gap: 15px;">
+                    <button class="mobile-toggle-btn" id="mobileMenuBtn">
+                        <i class='bx bx-menu'></i>
                     </button>
+                    <div class="breadcrumbs">
+                        <span>Portal Lawyer</span> / <span class="current">Overview</span>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <button class="icon-btn"><i class='bx bx-bell'></i></button>
                     <div class="user-profile">
-                        <img src="{{ asset('images/avatar-lawyer.jpg') }}" alt="Adv. Adi Pratama" class="avatar">
+                        <div class="avatar">
+                            <i class='bx bx-user'></i>
+                        </div>
                         <div class="user-info">
-                            <span class="user-name">Adv. Adi Pratama</span>
+                            <span class="user-name">Akun Anda</span>
                             <span class="user-role">Lawyer</span>
                         </div>
+                        <i class='bx bx-chevron-down'></i>
                     </div>
                 </div>
             </header>
@@ -262,5 +271,27 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const sidebar = document.querySelector('.sidebar');
+
+            // Toggle Sidebar saat tombol hamburger diklik
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Mencegah event klik menjalar ke dokumen
+                sidebar.classList.toggle('active');
+            });
+
+            // Otomatis menutup sidebar jika user mengklik area di luar sidebar
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        sidebar.classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

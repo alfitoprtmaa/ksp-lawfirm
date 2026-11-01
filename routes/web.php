@@ -44,9 +44,21 @@ Route::get('/lawyer/index', function () {
     return view('lawyer.index');
 })->name('lawyer.index');
 
+Route::get('/lawyer/kelolaperkara/index', function () {
+    return view('lawyer.kelolaperkara.index');
+})->name('lawyer.kelolaperkara.index');
+
+Route::get('/lawyer/jadwal/index', function () {
+    return view('lawyer.jadwal.index');
+})->name('lawyer.jadwal.index');
+
 Route::get('/lawyer/pusatreferensi/index', function () {
     return view('lawyer.pusatreferensi.index');
 })->name('lawyer.pusatreferensi.index');
+
+Route::get('/lawyer/akun/index', function () {
+    return view('lawyer.akun.index');
+})->name('lawyer.akun.index');
 
 // Admin Routes
 Route::get('/admin/login', function () {

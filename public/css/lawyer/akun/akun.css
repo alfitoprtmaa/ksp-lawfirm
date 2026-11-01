@@ -1,0 +1,374 @@
+:root {
+    --lawyer-sidebar-bg: #1C2628;
+    --lawyer-primary: #00956B;
+    --lawyer-primary-hover: #007A57;
+    --bg-light: #F4F7F8;
+    --text-dark: #111827;
+    --text-gray: #4B5563;
+    --text-light-gray: #9CA3AF;
+    --border-color: #E5E7EB;
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.layout-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ================== SIDEBAR ================== */
+.sidebar {
+    width: 260px;
+    background-color: var(--lawyer-sidebar-bg);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    position: fixed;
+    height: 100vh;
+}
+
+.sidebar-header {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 12px;
+}
+
+.logo-img {
+    background-color: none;
+    padding: 4px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.logo img {
+    display:block;
+    width:60px;
+    height:60px;
+    object-fit:contain
+}
+
+.brand-name {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.5px;
+}
+
+.brand-sub {
+    font-size: 11px;
+    color: var(--sidebar-text);
+    margin-top: 4px;
+}
+
+.menu-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #6B7280;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding: 0 8px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #D1D5DB;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.nav-item i {
+    font-size: 20px;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--white);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 16px;
+}
+
+.active-footer {
+    color: var(--white);
+    opacity: 0.8;
+}
+
+/* ================== MAIN CONTENT & HEADER ================== */
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-header {
+    height: 72px;
+    background: transparent;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.notif-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-gray);
+    cursor: pointer;
+    position: relative;
+}
+
+.notif-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 8px;
+    height: 8px;
+    background-color: #EF4444;
+    border-radius: 50%;
+    border: 2px solid var(--bg-light);
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.user-role {
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+/* ================== PAGE CONTENT (PENGATURAN AKUN) ================== */
+.page-content {
+    padding: 24px 64px 40px 64px;
+}
+
+.settings-container {
+    max-width: 850px;
+}
+
+/* Profile Photo */
+.profile-photo-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.profile-large {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.photo-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-primary-sm {
+    background-color: var(--lawyer-primary);
+    color: var(--white);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-primary-sm:hover {
+    background-color: var(--lawyer-primary-hover);
+}
+
+.btn-text {
+    background: transparent;
+    border: none;
+    color: var(--text-gray);
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-text:hover {
+    color: var(--text-dark);
+}
+
+.helper-text {
+    font-size: 13px;
+    color: var(--text-light-gray);
+    font-weight: 500;
+}
+
+/* Form Layout */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+/* For inputs that only take half width on their own row */
+.form-row .form-group:only-child {
+    grid-column: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1F2937;
+}
+
+.form-group input {
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+    background: var(--white);
+}
+
+.form-group input:focus {
+    border-color: var(--lawyer-primary);
+}
+
+.form-group input::placeholder {
+    color: #9CA3AF;
+}
+
+/* Typography masking for password dots */
+input[type="password"] {
+    letter-spacing: 2px;
+}
+
+/* Divider */
+.divider {
+    border: 0;
+    height: 1px;
+    background: #F3F4F6;
+    margin: 32px 0;
+}
+
+/* Section Title */
+.section-title {
+    margin-bottom: 24px;
+}
+
+.section-title h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.section-title p {
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.btn-outline {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    color: var(--text-dark);
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background: #F9FAFB;
+}
+
+.btn-primary {
+    background-color: var(--lawyer-primary);
+    color: var(--white);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: var(--lawyer-primary-hover);
+}
