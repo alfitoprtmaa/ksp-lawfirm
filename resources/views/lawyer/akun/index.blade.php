@@ -59,18 +59,27 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Header -->
-            <header class="top-header">
-                <div class="header-actions">
-                    <button class="btn-icon notif-btn">
-                        <i class='bx bx-bell'></i>
-                        <span class="notif-dot"></span>
+            <header class="topbar">
+                <div class="topbar-left" style="display: flex; align-items: center; gap: 15px;">
+                    <button class="mobile-toggle-btn" id="mobileMenuBtn">
+                        <i class='bx bx-menu'></i>
                     </button>
+                    <div class="breadcrumbs">
+                        <span>Portal Lawyer</span> / <span class="current">Pengaturan Akun</span>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <button class="icon-btn"><i class='bx bx-bell'></i></button>
                     <div class="user-profile">
-                        <img src="{{ asset('images/avatar-lawyer.jpg') }}" alt="Adv. Adi Pratama" class="avatar">
+                        <div class="avatar">
+                            <i class='bx bx-user'></i>
+                        </div>
                         <div class="user-info">
-                            <span class="user-name">Adv. Adi Pratama</span>
+                            <span class="user-name">Akun Anda</span>
                             <span class="user-role">Lawyer</span>
                         </div>
+                        <i class='bx bx-chevron-down'></i>
                     </div>
                 </div>
             </header>
@@ -93,40 +102,47 @@
                         </div>
 
                         <!-- Personal Info Section -->
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="namaLengkap">Nama Lengkap</label>
-                                <input type="text" id="namaLengkap" name="namaLengkap" value="Adv. Adi Pratama, S.H., M.H.">
+                        <div class="settings-grid-layout">
+                            
+                            <!-- Kolom Kiri: Informasi Umum -->
+                            <div class="settings-col">
+                                <div class="section-title">
+                                    <h3>Informasi Umum</h3>
+                                    <p>Perbarui data diri dan kontak Anda.</p>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="namaLengkap">Nama Lengkap</label>
+                                    <input type="text" id="namaLengkap" name="namaLengkap" value="Adv. Adi Pratama, S.H., M.H.">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" value="adi.pratama@ksp-law.com">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="telepon">Nomor Telepon</label>
+                                    <input type="text" id="telepon" name="telepon" value="+62 812-3456-7890">
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" value="adi.pratama@ksp-law.com">
-                            </div>
-                        </div>
 
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="telepon">Nomor Telepon</label>
-                                <input type="text" id="telepon" name="telepon" value="+62 812-3456-7890">
-                            </div>
-                        </div>
+                            <!-- Kolom Kanan: Keamanan Akun -->
+                            <div class="settings-col">
+                                <div class="section-title">
+                                    <h3>Keamanan Akun</h3>
+                                    <p>Pengaturan kata sandi dan proteksi autentikasi.</p>
+                                </div>
 
-                        <hr class="divider">
-
-                        <!-- Security Section -->
-                        <div class="section-title">
-                            <h3>Keamanan Akun</h3>
-                            <p>Pengaturan kata sandi dan proteksi autentikasi dua faktor.</p>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="sandiSaatIni">Sandi Saat Ini</label>
-                                <input type="password" id="sandiSaatIni" name="sandiSaatIni" value="password123">
-                            </div>
-                            <div class="form-group">
-                                <label for="sandiBaru">Sandi Baru</label>
-                                <input type="password" id="sandiBaru" name="sandiBaru" placeholder="Masukkan sandi baru">
+                                <div class="form-group">
+                                    <label for="sandiSaatIni">Sandi Saat Ini</label>
+                                    <input type="password" id="sandiSaatIni" name="sandiSaatIni" value="password123">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="sandiBaru">Sandi Baru</label>
+                                    <input type="password" id="sandiBaru" name="sandiBaru" placeholder="Masukkan sandi baru">
+                                </div>
                             </div>
                         </div>
 
@@ -141,5 +157,27 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const sidebar = document.querySelector('.sidebar');
+
+            // Toggle Sidebar saat tombol hamburger diklik
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation(); // Mencegah event klik menjalar ke dokumen
+                sidebar.classList.toggle('active');
+            });
+
+            // Otomatis menutup sidebar jika user mengklik area di luar sidebar
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                        sidebar.classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>

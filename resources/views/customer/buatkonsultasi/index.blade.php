@@ -36,7 +36,7 @@
                 <p class="menu-label">RUANG KLIEN</p>
                 <ul>
                     <li><a href="{{ route('customer.index') }}"><i class='bx bx-grid-alt'></i> Overview</a></li>
-                    <li><a href="{{ route('customer.perkaralama.index') }}"><i class='bx bx-git-pull-request'></i> Perkara Lama</a></li>
+                    <li><a href="{{ route('customer.perkaralama.index') }}"><i class='bx bx-git-pull-request'></i>  Perkara Lama</a></li>
                     <!-- Menu Active -->
                     <li class="active"><a href="#"><i class='bx bx-copy'></i> Perkara Baru</a></li>
                     <li><a href="{{ route('customer.tracking.index') }}"><i class='bx bx-message'></i> Track Your Case</a></li>
@@ -44,13 +44,7 @@
             </div>
 
             <div class="sidebar-footer">
-                <div class="help-box">
-                    <i class='bx bx-headphone'></i>
-                    <h4>Butuh bantuan?</h4>
-                    <p>Tim kami siap membantu penggunaan portal Anda.</p>
-                    <a href="#" class="help-link">Pusat bantuan <i class='bx bx-top-right-arrow'></i></a>
-                </div>
-                <a href="#" class="settings-link"><i class='bx bx-cog'></i> Pengaturan akun</a>
+                <a href="{{ route('customer.akun.index') }}" class="settings-link"><i class='bx bx-cog'></i> Pengaturan akun</a>
             </div>
         </aside>
 

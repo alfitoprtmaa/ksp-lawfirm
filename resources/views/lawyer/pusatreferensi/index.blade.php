@@ -48,7 +48,7 @@
             </div>
 
             <div class="sidebar-footer">
-                <a href="#" class="nav-item">
+                <a href="{{ route('lawyer.akun.index') }}" class="nav-item">
                     <i class='bx bx-cog'></i>
                     <span>Pengaturan akun</span>
                 </a>

@@ -20,7 +20,7 @@ main {
   position: relative;
   width: 400px;
   height: 440px;
-  background: transparent;
+  background: #1C2628;
   border: 2px solid rgba(225, 225, 225, 0.5);
   border-radius: 20px;
   backdrop-filter: blur(20px);
@@ -38,7 +38,7 @@ main {
 
 .box-login h2 {
   font-size: 25px;
-  color: #162938;
+  color: whitesmoke;
   text-align: center;
 }
 
@@ -56,7 +56,7 @@ main {
   position: relative;
   width: 100%;
   height: 50px;
-  border-bottom: 2px solid #162938;
+  border-bottom: 2px solid whitesmoke;
   margin: 30px 0;
 }
 
@@ -64,7 +64,7 @@ main {
   position: relative;
   width: 100%;
   height: 50px;
-  border-bottom: 2px solid #162938;
+  border-bottom: 2px solid whitesmoke;
   margin: 30px 0;
 }
 
@@ -74,7 +74,7 @@ main {
   left: 5px;
   transform: translateY(-50%);
   font-size: 1em;
-  color: #162938;
+  color: whitesmoke;
   font-weight: 500;
   pointer-events: none;
   transition: 0.5s;
@@ -92,7 +92,7 @@ main {
   left: 5px;
   transform: translateY(-50%);
   font-size: 1em;
-  color: #162938;
+  color: whitesmoke;
   font-weight: 500;
   pointer-events: none;
   transition: 0.5s;
@@ -110,7 +110,7 @@ main {
   border: none;
   outline: none;
   font-size: 1em;
-  color: #162938;
+  color: whitesmoke;
   font-weight: 600;
   padding: 0 35px 0 5px;
   text-decoration: none;
@@ -123,7 +123,7 @@ main {
   border: none;
   outline: none;
   font-size: 1em;
-  color: #162938;
+  color: whitesmoke;
   font-weight: 600;
   padding: 0 35px 0 5px;
 }
@@ -132,7 +132,7 @@ main {
   position: absolute;
   right: 8px;
   font-size: 1.2em;
-  color: #162938;
+  color: whitesmoke;
   line-height: 57px;
 }
 
@@ -140,7 +140,7 @@ main {
   position: absolute;
   right: 8px;
   font-size: 1.2em;
-  color: #162938;
+  color: whitesmoke;
   line-height: 57px;
 }
 
@@ -151,13 +151,13 @@ main {
 
   width: 100%;
   height: 45px;
-  background: #162938;
+  background: whitesmoke;
   border: none;
   outline: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1em;
-  color: white;
+  color: #1C2628;
   font-weight: 500;
 
   text-decoration: none;

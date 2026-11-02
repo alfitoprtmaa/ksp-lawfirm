@@ -6,6 +6,8 @@
     --text-dark: #111827;
     --text-gray: #4B5563;
     --text-light-gray: #9CA3AF;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
     --border-color: #E5E7EB;
     --white: #FFFFFF;
 }
@@ -116,7 +118,7 @@ body {
 
 .active-footer {
     color: var(--white);
-    opacity: 0.8;
+    font-weight: 500;
 }
 
 /* ================== MAIN CONTENT & HEADER ================== */
@@ -127,52 +129,58 @@ body {
     flex-direction: column;
 }
 
-.top-header {
-    height: 72px;
-    background: transparent;
+/* TOPBAR */
+.topbar {
+    height: 70px;
+    background-color: var(--white);
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 0 40px;
+    border-bottom: 1px solid #e5e7eb;
 }
 
-.header-actions {
+.breadcrumbs {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.breadcrumbs .current {
+    color: var(--text-main);
+    font-weight: 500;
+}
+
+.topbar-right {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
 }
 
-.notif-btn {
+.icon-btn {
     background: none;
     border: none;
-    font-size: 24px;
-    color: var(--text-gray);
+    font-size: 22px;
+    color: var(--text-muted);
     cursor: pointer;
-    position: relative;
-}
-
-.notif-dot {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    width: 8px;
-    height: 8px;
-    background-color: #EF4444;
-    border-radius: 50%;
-    border: 2px solid var(--bg-light);
 }
 
 .user-profile {
     display: flex;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
 }
 
 .avatar {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    object-fit: cover;
+    background-color: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: var(--text-muted);
 }
 
 .user-info {
@@ -183,12 +191,11 @@ body {
 .user-name {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-dark);
 }
 
 .user-role {
     font-size: 12px;
-    color: var(--text-gray);
+    color: var(--text-muted);
 }
 
 /* ================== PAGE CONTENT (PENGATURAN AKUN) ================== */
@@ -261,23 +268,44 @@ body {
     font-weight: 500;
 }
 
-/* Form Layout */
-.form-row {
+/* Layout 2 Kolom untuk Pengaturan Akun */
+.settings-grid-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-bottom: 24px;
+    gap: 48px; /* Jarak antara kolom kiri dan kanan */
+    margin-bottom: 32px;
 }
 
-/* For inputs that only take half width on their own row */
-.form-row .form-group:only-child {
-    grid-column: 1;
+.settings-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak vertikal antar input di dalam kolom yang sama */
 }
 
+/* Penyesuaian Section Title */
+.section-title {
+    margin-bottom: 4px;
+}
+
+.section-title h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 4px;
+}
+
+.section-title p {
+    font-size: 13px;
+    color: var(--text-gray);
+    margin-bottom: 16px;
+}
+
+/* Pastikan input mengambil lebar penuh dari kolomnya */
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 8px;
+    width: 100%;
 }
 
 .form-group label {
@@ -371,4 +399,14 @@ input[type="password"] {
 
 .btn-primary:hover {
     background-color: var(--lawyer-primary-hover);
+}
+
+/* Sembunyikan tombol toggle mobile di desktop */
+.mobile-toggle-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 26px;
+    color: var(--text-main);
+    cursor: pointer;
 }

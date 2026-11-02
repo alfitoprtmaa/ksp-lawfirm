@@ -41,12 +41,6 @@
             </div>
 
             <div class="sidebar-footer">
-                <div class="help-box">
-                    <i class='bx bx-headphone'></i>
-                    <h4>Butuh bantuan?</h4>
-                    <p>Tim kami siap membantu penggunaan portal Anda.</p>
-                    <a href="#" class="help-link">Pusat bantuan <i class='bx bx-top-right-arrow'></i></a>
-                </div>
                 <a href="{{ route('customer.akun.index') }}" class="settings-link"><i class='bx bx-cog'></i> Pengaturan akun</a>
             </div>
         </aside>

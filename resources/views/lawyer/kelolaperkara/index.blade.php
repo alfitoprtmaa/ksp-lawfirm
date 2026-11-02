@@ -45,8 +45,7 @@
             </div>
 
             <div class="sidebar-footer">
-                <!-- Aktif pada Pengaturan Akun -->
-                <a href="#" class="nav-item active-footer">
+                <a href="{{ route('lawyer.akun.index') }}" class="nav-item">
                     <i class='bx bx-cog'></i>
                     <span>Pengaturan akun</span>
                 </a>
