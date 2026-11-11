@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
@@ -27,7 +28,7 @@
             <a href="{{ route('welcome') }}">Beranda</a>
             <a href="{{ route('about') }}">About Us</a>
             <a href="{{ route('services') }}">Layanan</a>
-            <a href="#artikel">Artikel</a>
+            <a href="{{ route('articles') }}">Artikel</a>
             <a href="#" class="is-active">Kontak</a>
         </nav>
 

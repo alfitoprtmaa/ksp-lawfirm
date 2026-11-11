@@ -6,9 +6,12 @@
     <title>Layanan – Ketut Surya Putra &amp; Partners</title>
     <meta name="description" content="Layanan hukum Ketut Surya Putra & Partners: dispute resolution, litigation, kekayaan intelektual, korporasi, dan retainer.">
     <link rel="icon" href="{{ asset('images/logo.png') }}">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/about.css') }}">
     <link rel="stylesheet" href="{{ asset('css/services.css') }}">
@@ -24,7 +27,7 @@
             <a href="{{ route('welcome') }}">Beranda</a>
             <a href="{{ route('about') }}">About Us</a>
             <a href="#" class="is-active">Layanan</a>
-            <a href="#">Artikel</a>
+            <a href="{{ route('articles') }}">Artikel</a>
             <a href="{{ route('contact') }}">Kontak</a>
         </nav>
 

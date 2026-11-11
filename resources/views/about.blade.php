@@ -27,7 +27,7 @@
             <a href="{{ route('welcome') }}">Beranda</a>
             <a href="#about" class="is-active">About Us</a>
             <a href="{{ route('services') }}">Layanan</a>
-            <a href="#artikel">Artikel</a>
+            <a href="{{ route('articles') }}">Artikel</a>
             <a href="{{ route('contact') }}">Kontak</a>
         </nav>
 

@@ -1,0 +1,92 @@
+/* Halaman Artikel. Dipakai bersama landing.css dan about.css (hero + reveal) */
+
+body.page-inner { background: #01111c; }
+.page-hero--crumb { padding-top: 118px; background: #022339; }
+.crumb { display: flex; gap: 10px; margin-bottom: 38px; font-size: .72rem; color: #b8c7d1; }
+.crumb a:hover { color: #fff; text-decoration: underline; }
+.page-hero__row p span {display: block; }
+
+.arts { padding: 48px 0 120px; background: linear-gradient(#01111c, #000e18); }
+
+/* ---------- Featured ---------- */
+.feat { display: grid; grid-template-columns: minmax(0, .93fr) minmax(0, 1fr); border-radius: 16px; overflow: hidden; background: #03253d; border: 1px solid rgba(255,255,255,.08); }
+.feat__img { position: relative; min-height: 340px; background: #12303f; overflow: hidden; }
+.feat__img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+.feat:hover .feat__img img { transform: scale(1.04); }
+.feat__body { display: flex; flex-direction: column; padding: 34px 34px 40px; }
+.kicker { font-size: .62rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: #f0c13a; }
+.feat h2 { font-size: clamp(1.5rem, 2.6vw, 2.15rem); font-weight: 800; line-height: 1.2; letter-spacing: -.01em; margin: 20px 0 22px; }
+.feat p { font-size: .9rem; line-height: 1.8; color: #dce5ea; }
+.feat__btn { margin-top: auto; align-self: flex-start; padding: 15px 22px; border-radius: 8px; background: #0b6b46; font-size: .8rem; font-weight: 700; transition: background .2s, gap .2s; display: inline-flex; gap: 10px; }
+.feat__btn:hover { background: #108a5a; gap: 16px; }
+.feat__body p + .feat__btn { margin-top: 44px; }
+.caption { margin-top: 18px; font-size: .68rem; color: #b8c7d1; }
+
+/* ---------- Jelajahi ---------- */
+.explore { margin-top: 76px; scroll-margin-top: 90px; }
+.explore__top { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+.explore__top h2 { font-size: clamp(1.6rem, 2.8vw, 2.1rem); font-weight: 800; margin: 0 0 14px; letter-spacing: -.01em; }
+.explore__top p { font-size: .85rem; color: #dce5ea; }
+
+.search { display: flex; align-items: center; width: min(430px, 100%); padding: 4px; border: 1px solid rgba(255,255,255,.2); border-radius: 12px; background: #031b2b; transition: border-color .2s, box-shadow .2s; }
+.search:focus-within { border-color: #5fb3ff; box-shadow: 0 0 0 3px rgba(95,179,255,.2); }
+.search input { flex: 1; min-width: 0; padding: 12px 14px; background: none; border: 0; outline: 0; color: var(--text); font: inherit; font-size: .78rem; }
+.search input::placeholder { color: #8fa3b0; }
+.search button { padding: 12px 24px; border: 0; border-radius: 8px; background: #0b6b46; font-size: .78rem; font-weight: 700; transition: background .2s; }
+.search button:hover { background: #108a5a; }
+
+.filters { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin: 34px 0 32px; }
+.pills { display: flex; flex-wrap: wrap; gap: 12px; }
+.pill { padding: 12px 32px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; background: transparent; font-size: .78rem; transition: background .2s, border-color .2s, color .2s; }
+.pill:hover { border-color: rgba(255,255,255,.6); }
+.pill.is-on { background: #f0c13a; border-color: #f0c13a; color: #1a1400; font-weight: 700; }
+
+.sort { appearance: none; -webkit-appearance: none; width: 180px; padding: 12px 38px 12px 20px; border: 1px solid rgba(255,255,255,.22); border-radius: 10px; color: var(--text); font: inherit; font-size: .78rem; cursor: pointer;
+    background: #01111c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%23fff' stroke-width='1.6'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E") no-repeat right 16px center; }
+.sort option { background: #03253d; }
+
+/* ---------- Kartu artikel ---------- */
+.agrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.acard { display: flex; flex-direction: column; min-height: 298px; padding: 24px; border: 1px solid rgba(255,255,255,.12); border-radius: 14px; background: #03253d; transition: border-color .25s, box-shadow .25s, background .25s; }
+.acard[hidden] { display: none; }
+.acard:hover { border-color: rgba(240,193,58,.55); background: #042c48; box-shadow: 0 16px 34px rgba(0,0,0,.4); }
+.acard__meta { display: flex; justify-content: space-between; font-size: .62rem; color: #b8c7d1; }
+.acard__meta b { color: #f0c13a; text-transform: uppercase; letter-spacing: .02em; }
+.acard h3 { margin: 22px 0 18px; font-size: 1.35rem; font-weight: 800; line-height: 1.3; letter-spacing: -.01em; }
+.acard p { font-size: .78rem; line-height: 1.75; color: #aebdc7; }
+.acard__more { margin-top: auto; padding-top: 24px; display: inline-flex; align-self: flex-start; gap: 8px; font-size: .74rem; font-weight: 700; transition: gap .2s, color .2s; }
+.acard:hover .acard__more { gap: 14px; color: #f0c13a; }
+.pop { animation: pop .45s ease both; }
+@keyframes pop { from { opacity: 0; transform: translateY(14px); } }
+
+.art-empty { padding: 60px 0; text-align: center; color: #b8c7d1; }
+.art-empty[hidden] { display: none; }
+.art-empty button { margin-top: 16px; padding: 10px 22px; border: 1px solid rgba(255,255,255,.3); border-radius: 8px; background: none; font-size: .78rem; font-weight: 700; }
+.art-empty button:hover { background: rgba(255,255,255,.1); }
+
+/* ---------- Info + pagination ---------- */
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 36px; font-size: .72rem; color: #b8c7d1; }
+.pager { display: flex; gap: 8px; }
+.pager[hidden] { display: none; }
+.pg { width: 44px; height: 44px; border: 1px solid rgba(255,255,255,.2); border-radius: 10px; background: none; font-size: .78rem; font-weight: 700; transition: background .2s; }
+.pg:hover { background: rgba(255,255,255,.1); }
+.pg.is-on { background: #f0c13a; border-color: #f0c13a; color: #1a1400; }
+
+/* ---------- Kontak ---------- */
+.page-inner .contact { background: #03243b; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+    .agrid { grid-template-columns: repeat(2, 1fr); }
+    .feat { grid-template-columns: 1fr; }
+    .feat__img { min-height: 260px; }
+}
+@media (max-width: 640px) {
+    .arts { padding: 32px 0 80px; }
+    .agrid { grid-template-columns: 1fr; }
+    .feat__body { padding: 26px 22px 30px; }
+    .explore { margin-top: 56px; }
+    .pills { gap: 8px; }
+    .pill { padding: 10px 18px; }
+    .sort { width: 100%; }
+}
