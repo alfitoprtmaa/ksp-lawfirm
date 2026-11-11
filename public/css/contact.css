@@ -1,0 +1,114 @@
+/* Halaman Kontak. Dipakai bersama landing.css dan about.css (hero + reveal) */
+
+.cc-wrap { padding: 110px 0 150px; }
+.cc-wrap__inner { width: min(1312px, 100% - 48px); margin-inline: auto; }
+
+/* .cc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; align-items: stretch; }
+
+.cc { --cc-bg: #222; --cc-line: rgba(255,255,255,.14); --cc-icon: rgba(0,0,0,.3);
+    display: flex; flex-direction: column; padding: 34px; border-radius: 22px; background: var(--cc-bg); border: 1px solid var(--cc-line);
+    transition: box-shadow .3s, filter .3s; }
+.cc:hover { box-shadow: 0 22px 44px rgba(0,0,0,.5); filter: brightness(1.08); }
+.cc--green { --cc-bg: #005533; --cc-line: #137a4b; --cc-icon: #0f7a48; }
+.cc--rose  { --cc-bg: #7d2432; --cc-line: #a3394a; --cc-icon: #5a1824; }
+.cc--blue  { --cc-bg: #0a4890; --cc-line: #2a6cc0; --cc-icon: #333; }
+.cc--dark  { --cc-bg: #222222; --cc-line: rgba(255,255,255,.16); --cc-icon: #3a3a3a; }
+
+.cc__icon { width: 52px; height: 52px; border-radius: 8px; background: var(--cc-icon); display: grid; place-items: center; flex: none; margin-bottom: 22px; }
+.cc__icon img { width: 28px; height: 28px; object-fit: contain; }
+.cc h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -.01em; margin-bottom: 12px; }
+.cc p { font-size: .85rem; line-height: 1.7; color: rgba(255,255,255,.78); }
+
+.cc__btn { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; justify-content: space-between; gap: 22px;
+    min-width: 0; padding: 14px 22px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.06);
+    font-size: .8rem; font-weight: 700; text-transform: uppercase; transition: background .2s, gap .2s; }
+.cc__btn i { font-style: normal; color: #f0b823; }
+.cc__btn:hover { background: rgba(255,255,255,.16); gap: 30px; }
+.cc__btn--wide { align-self: stretch; }
+.cc p + .cc__btn { margin-top: 28px; }
+.cc__body { flex: 1; display: flex; flex-direction: column; } */
+
+.cc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; align-items: stretch; }
+
+.cc { 
+    --cc-bg: #222; 
+    --cc-line: rgba(255,255,255,.14); 
+    --cc-icon: rgba(0,0,0,.3);
+    display: flex; 
+    flex-direction: column; 
+    padding: 34px; 
+    border-radius: 22px; 
+    background: var(--cc-bg); 
+    border: 1px solid var(--cc-line);
+    transition: box-shadow .3s, transform .3s; /* Ubah filter jadi transform */
+}
+.cc:hover { 
+    box-shadow: 0 12px 24px rgba(0,0,0,.3); 
+    transform: translateY(-4px); /* Efek melayang sedikit */
+}
+.cc--green { --cc-bg: #005533; --cc-line: #137a4b; --cc-icon: #0f7a48; }
+.cc--rose  { --cc-bg: #7d2432; --cc-line: #a3394a; --cc-icon: #5a1824; }
+.cc--blue  { --cc-bg: #0a4890; --cc-line: #2a6cc0; --cc-icon: #333; }
+.cc--dark  { --cc-bg: #222222; --cc-line: rgba(255,255,255,.16); --cc-icon: #3a3a3a; }
+
+/* Mengubah .cc__icon untuk Font Awesome */
+.cc__icon { 
+    width: 52px; 
+    height: 52px; 
+    border-radius: 8px; 
+    background: rgba(255,255,255,0.15); /* Background ikon lebih terang */
+    display: flex; /* Ganti grid jadi flex untuk Font Awesome */
+    align-items: center; 
+    justify-content: center; 
+    flex: none; 
+    margin-bottom: 22px; 
+}
+.cc__icon i { 
+    font-size: 24px; 
+    color: #ffffff; 
+}
+
+.cc h3 { font-size: 1.3rem; font-weight: 700; letter-spacing: -.01em; margin-bottom: 12px; }
+.cc p { font-size: .85rem; line-height: 1.6; color: rgba(255,255,255,.8); flex-grow: 1; /* Agar tombol terdorong ke bawah */ }
+
+/* Mengubah gaya tombol menyerupai desain referensi (hanya teks dan panah) */
+.cc__btn { 
+    margin-top: 24px; 
+    align-self: flex-start; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 8px; /* Jarak teks dan panah */
+    padding: 0; /* Hapus padding */
+    border: none; /* Hapus border */
+    background: transparent; /* Hapus background */
+    font-size: .9rem; 
+    font-weight: 700; 
+    color: #ffffff; /* Warna teks */
+    text-transform: none; /* Jangan uppercase semua */
+    transition: color .2s, gap .2s; 
+    cursor: pointer;
+}
+.cc__btn i { font-style: normal; transition: transform 0.2s; }
+.cc__btn:hover { background: transparent; color: #f0b823; gap: 8px; } /* Warna saat hover */
+.cc__btn:hover i { transform: translateX(4px); } /* Panah bergerak saat hover */
+.cc__btn--wide { align-self: stretch; }
+
+/* Kartu Offline */
+.cc-offline { width: min(728px, 100%); margin: 50px auto 0; }
+.cc--row { flex-direction: row; gap: 34px; padding: 34px; }
+.cc--row .cc__icon { margin: 4px 0 0; }
+.cc--row h3 { margin-top: 0; }
+
+/* Kontak (navy di halaman ini) */
+.page-inner .contact { background: #03243b; }
+
+@media (max-width: 1000px) {
+    .cc-wrap { padding: 60px 0 80px; }
+    .cc-grid { grid-template-columns: 1fr; gap: 20px; }
+    .cc-offline { margin-top: 20px; }
+}
+@media (max-width: 560px) {
+    .cc { padding: 26px 22px; }
+    .cc--row { flex-direction: column; gap: 0; }
+    .cc--row .cc__icon { margin-bottom: 22px; }
+}

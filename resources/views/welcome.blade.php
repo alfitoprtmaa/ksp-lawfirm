@@ -1,220 +1,580 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ketut Surya & Partners | Law Firm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ketut Surya Putra &amp; Partners – Law Firm</title>
+    <meta name="description" content="Ketut Surya Putra & Partners adalah firma hukum yang menyediakan layanan hukum komprehensif bagi individu, perusahaan, dan institusi.">
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
 </head>
-<body>
-<header class="navbar">
-    <a class="logo">
-        <img src="{{ asset('images/logo.png') }}" alt="Ketut Surya & Partners">
-    </a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
-    <nav class="nav-links" id="navLinks">
-        <a href="#beranda">Beranda</a>
-        <a href="#tentang">About Us</a>
-        <a href="#layanan">Layanan</a>
-        <a href="#artikel">Artikel</a>
-        <a href="#kontak">Kontak</a>
-    </nav>
-    <div class="nav-actions">
-        <a href="#" class="btn btn-blue">Booking ↗</a>
-        <a href="/customer/login/signin" class="btn btn-green">Konsultasi Sekarang ↗</a>
+<body data-whatsapp="{{ $whatsapp }}">
+
+{{-- ================= NAVBAR ================= --}}
+<header class="nav" id="nav">
+    <div class="nav__inner">
+        <a href="#beranda" class="nav__logo"><img src="{{ asset('images/logo.png') }}" alt="KS&P"></a>
+
+        <nav class="nav__links" id="navLinks" aria-label="Menu utama">
+            <a href="#beranda" class="is-active">Beranda</a>
+            <a href="{{ route('about') }}">About Us</a>
+            <a href="{{ route('services') }}">Layanan</a>
+            <a href="#">Artikel</a>
+            <a href="{{ route('contact') }}">Kontak</a>
+        </nav>
+
+        <div class="nav__cta">
+            <button class="btn btn--blue btn--stack" data-open-booking>
+                <span>
+                    <b>Booking</b>
+                    <!-- <small>Login / Daftar</small> -->
+                </span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+            </button>
+            <a class="btn btn--green" href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener">
+                Konsultasi Sekarang
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            </a>
+        </div>
+
+        <button class="nav__toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </header>
 
 <main>
-    <section class="hero" id="beranda">
-        <div class="eyebrow"><span class="dot"></span> Ketut Surya & Partners</div>
+{{-- ================= HERO ================= --}}
+<section class="hero" id="beranda">
+    <div class="hero__content">
+        <span class="chip"><i class="dot"></i> Ketut Surya &amp; Partners</span>
         <h1>Hukum terkadang tidur,<br>namun tidak pernah mati</h1>
-        <p class="hero-subtitle">Dorm iunt Aliquando Leges Nunquam Moriuntur</p>
-        <div class="hero-actions">
-            <a href="#layanan" class="btn btn-green">Jelajahi Layanan ↗</a>
-            <a href="#" class="btn btn-blue">Booking ↗</a>
-            <a href="#tentang" class="btn btn-dark">Lihat Tentang Kami ↓</a>
+        <p class="hero__latin">Dormiunt Aliquando Leges Nunquam Moriuntur</p>
+        <div class="hero__actions">
+            <a class="btn btn--green" href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener">
+                Konsultasi Sekarang
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            </a>
+            <button class="btn btn--blue" data-open-booking>
+                Booking
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+            </button>
+            <a class="btn btn--ghost" href="#layanan">
+                Lihat Layanan
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="about section" id="tentang">
-        <div class="section-heading">
-            <span class="eyebrow"><span class="dot"></span> Tentang Kami</span>
-            <h2>About Ketut Surya & Partners</h2>
-            <p>Legal services shaped around your needs and priorities.</p>
+{{-- ================= ABOUT ================= --}}
+<section class="about" id="about">
+    <div class="container about__grid">
+        <div>
+            <span class="chip chip--sm"><i class="dot"></i> 01 | About Us</span>
+            <h2>About Ketut Surya &amp; Partners</h2>
+            <p class="muted small">Legal services shaped around our clients' interests and objectives.</p>
         </div>
-        <div class="about-content">
-            <p>Ketut Surya & Partners is a law firm providing comprehensive legal solutions for individuals, businesses, institutions, and various entities. We are committed to delivering strategic, responsible, and solution-oriented legal services, combining legal knowledge with a practical understanding of our clients' interests and objectives.</p>
-            <p>Our practice encompasses litigation, dispute resolution, corporate and commercial matters, regulatory compliance, and a wide range of specialized legal work. We approach every matter with integrity, professionalism, confidentiality, and meticulous attention to detail.</p>
-            <p>Our commitment is simple: to provide legal solutions that protect our clients' rights, interests, and business objectives.</p>
-        </div>
-    </section>
+        <p class="about__text">
+            <strong>KETUT SURYA PUTRA &amp; PARTNERS</strong> is a law firm providing comprehensive legal services to individuals, corporations,
+            institutions, and business entities. We are committed to delivering strategic, responsive, and solution-oriented
+            legal services, combining rigorous legal analysis with a practical understanding of our clients' interests and
+            objectives. Our practice encompasses litigation, dispute resolution, corporate and commercial matters, regulatory
+            compliance, and specialized areas of law. We approach every matter with integrity, professionalism, confidentiality,
+            and attention to detail. Our commitment is simple: to provide legal solutions that protect our clients' rights,
+            interests, and business objectives.
+        </p>
+    </div>
+</section>
 
-    <section class="services section" id="layanan">
-        <div class="section-heading">
-            <span class="eyebrow"><span class="dot"></span> Our Legal Services</span>
+{{-- ================= LEGAL SERVICES ================= --}}
+<section class="services" id="layanan">
+    <div class="container services__grid">
+        <div>
+            <span class="chip chip--sm"><i class="dot"></i> 02 | Legal Service</span>
             <h2>Legal Services</h2>
-            <p>Strategic legal counsel, practical solutions, and professional representation for every legal challenge.</p>
+            <p class="muted small">Strategic counsel across disputes, litigation, corporate matters, and specialized areas of law.</p>
+            <p class="quote">Your rights, interests, and objectives guide our work.</p>
         </div>
-        <div class="service-list">
-            <a href="#konsultasi" class="service-item blue">
-                <span class="service-icon">⚖</span><span>Dispute Resolution</span><span class="service-arrow">↗</span>
-            </a>
-            <a href="#konsultasi" class="service-item red">
-                <span class="service-icon">▤</span><span>Litigation</span><span class="service-arrow">↗</span>
-            </a>
-            <a href="#konsultasi" class="service-item green">
-                <span class="service-icon">◆</span><span>Intellectual Property</span><span class="service-arrow">↗</span>
-            </a>
-            <a href="#konsultasi" class="service-item gray">
-                <span class="service-icon">▣</span><span>Corporate, Commercial & Compliance</span><span class="service-arrow">↗</span>
-            </a>
-            <a href="#konsultasi" class="service-item gold">
-                <span class="service-icon">◆</span><span>Retainer & General Counsel Services</span><span class="service-arrow">↗</span>
-            </a>
-        </div>
-    </section>
 
-    <section class="practice section">
-        <span class="eyebrow"><span class="dot"></span> Our Practice Areas</span>
+        <div class="acc" id="serviceAcc">
+            @foreach ($services as $s)
+                <div class="acc__item acc__item--{{ $s['color'] }}">
+                    <button class="acc__head" aria-expanded="false">
+                        <span class="acc__icon"><i class="{{ $s['icon'] }}"></i></span>
+                        <span class="acc__title">{{ $s['title'] }}</span>
+                        <span class="acc__chev" aria-hidden="true"></span>
+                    </button>
+                    <div class="acc__body"><p>{{ $s['desc'] }}</p></div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+{{-- ================= PRACTICING AREA ================= --}}
+<section class="areas">
+    <div class="container">
+        <span class="chip chip--sm"><i class="dot"></i> 03 | Practicing Area</span>
         <h2>Practicing Area</h2>
-        <div class="practice-grid">
-            <div><span>01</span> Banking and restructuring</div>
-            <div><span>02</span> Corporate and commercial</div>
-            <div><span>03</span> Litigation</div>
-            <div><span>04</span> Civil litigation and dispute resolution</div>
-            <div><span>05</span> Contracts and legal affairs</div>
-            <div><span>06</span> Taxation</div>
-            <div><span>07</span> Criminal defense and litigation</div>
-            <div><span>08</span> Banking and finance</div>
-            <div><span>09</span> Licensing and compliance</div>
-            <div><span>10</span> Intellectual property</div>
-            <div><span>11</span> Employment and labor</div>
-            <div><span>12</span> Real estate and construction</div>
-            <div><span>13</span> Arbitration</div>
-            <div><span>14</span> Mergers and acquisitions</div>
-            <div><span>15</span> IT and technology law</div>
-        </div>
-    </section>
+        <ol class="areas__grid">
+            @foreach ($areas as $i => $a)
+                <li><span class="areas__no">{{ str_pad($i + 1, 2, '0', STR_PAD_LEFT) }}</span><span>{{ $a }}</span></li>
+            @endforeach
+        </ol>
+    </div>
+</section>
 
-    <section class="team section">
-        <div class="center-heading">
-            <span class="eyebrow"><span class="dot"></span> Our Legal Team</span>
-            <h2>The people behind the practice.</h2>
-        </div>
-        <div class="team-grid">
-            <article class="team-card">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=85" alt="Ketua tim hukum">
-                <div class="team-info"><h3>Surya Putra, S.H., M.H.</h3><p>Managing Partner</p><a href="#kontak">Lihat Profil ↗</a></div>
-            </article>
-            <article class="team-card">
-                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=85" alt="Pengacara perempuan">
-                <div class="team-info"><h3>Mycha de Savernaya, S.H.</h3><p>Senior Associate</p><a href="#kontak">Lihat Profil ↗</a></div>
-            </article>
-            <article class="team-card">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=85" alt="Pengacara senior">
-                <div class="team-info"><h3>Muhammad Yunus Latieno, S.H.</h3><p>Partner</p><a href="#kontak">Lihat Profil ↗</a></div>
-            </article>
-            <article class="team-card">
-                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=85" alt="Pengacara">
-                <div class="team-info"><h3>Bagus Adi Mahendra</h3><p>Legal Associate</p><a href="#kontak">Lihat Profil ↗</a></div>
-            </article>
-        </div>
-    </section>
+{{-- ================= TEAM ================= --}}
+<!-- <section class="team" id="team">
+    <div class="container team__head">
+        <span class="chip chip--sm"><i class="dot"></i> 04 | Our Team</span>
+        <h2>The people behind the practice.</h2>
+    </div>
 
-    <section class="consultation section" id="konsultasi">
-        <div class="consult-copy">
-            <span class="eyebrow"><span class="dot"></span> Get Legal Counsel</span>
-            <h2>Choose How We<br>Can Help You</h2>
-            <p>We understand that every legal matter is unique. Choose the consultation channel that works best for you and get connected with our legal team.</p>
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=85" alt="Konsultan hukum profesional">
+    <div class="team__wrap">
+        <button class="team__nav team__nav--prev" id="teamPrev" aria-label="Sebelumnya">‹</button>
+        <div class="team__track" id="teamTrack">
+            @foreach ($team as $m)
+                <article class="card">
+                    <img src="{{ asset('images/'.$m['photo']) }}" alt="{{ $m['name'] }}" draggable="false">
+                    <h3>{{ $m['name'] }}</h3>
+                    <a class="card__btn" href="{{ $m['url'] }}">Lihat Profil <span aria-hidden="true">↗</span></a>
+                </article>
+            @endforeach
         </div>
-        <div class="consult-options">
-            <a href="{{ url('/konsultasi') }}" class="consult-card whatsapp">
-                <span class="consult-icon">◈</span><h3>WhatsApp Consultation</h3>
-                <p>Connect directly with our team for quick questions, initial guidance, and consultation scheduling.</p><span class="consult-link">Buka WhatsApp ↗</span>
-            </a>
-            <a href="{{ url('/konsultasi') }}" class="consult-card email">
-                <span class="consult-icon">✉</span><h3>Via Email</h3>
-                <p>Send a detailed description of your legal matter. Our team will review your inquiry and respond accordingly.</p><span class="consult-link">Kirim Email ↗</span>
-            </a>
-            <a href="{{ url('/booking') }}" class="consult-card meeting">
-                <span class="consult-icon">▣</span><h3>Online Meeting</h3>
-                <p>Discuss your case in a scheduled online meeting with a lawyer who understands your legal needs.</p><span class="consult-link">Lihat Jadwal ↗</span>
-            </a>
-        </div>
-    </section>
+        <button class="team__nav team__nav--next" id="teamNext" aria-label="Berikutnya">›</button>
+    </div>
+</section> -->
 
-    <section class="articles section" id="artikel">
-        <div class="center-heading">
-            <span class="eyebrow"><span class="dot"></span> Our Insights</span>
+{{-- ================= TEAM ================= --}}
+<section class="team" id="team">
+    <div class="container team__head">
+        <span class="chip chip--sm"><i class="dot"></i> 04 | Our Team</span>
+        <h2>The people behind the practice.</h2>
+    </div>
+
+    <!-- Wrapper utama dengan overflow hidden -->
+    <div class="team__wrap">
+        <!-- Track yang akan dianimasikan ke kiri -->
+        <div class="team__track-auto">
+            
+            <!-- Render pertama -->
+            @foreach ($team as $m)
+                <article class="card">
+                    <img src="{{ asset('images/lawyers/'.$m['photo']) }}" alt="{{ $m['name'] }}" draggable="false">
+                    <h3>{{ $m['name'] }}</h3>
+                    <a class="card__btn" href="{{ $m['url'] }}">Lihat Profil <span aria-hidden="true">↗</span></a>
+                </article>
+            @endforeach
+
+            <!-- Render kedua (Duplikat untuk efek infinite scroll) -->
+            @foreach ($team as $m)
+                <article class="card" aria-hidden="true">
+                    <img src="{{ asset('images/lawyers/'.$m['photo']) }}" alt="{{ $m['name'] }}" draggable="false">
+                    <h3>{{ $m['name'] }}</h3>
+                    <a class="card__btn" href="{{ $m['url'] }}" tabindex="-1">Lihat Profil <span aria-hidden="true">↗</span></a>
+                </article>
+            @endforeach
+
+        </div>
+    </div>
+</section>
+
+{{-- ================= CHOOSE HOW WE CAN HELP ================= --}}
+<!-- <section class="help">
+    <div class="container help__grid">
+        <div>
+            <span class="chip chip--sm"><i class="dot"></i> 05 | Consultation</span>
+            <h2 class="h-xl">Choose How We Can Help</h2>
+            <p class="muted small">Whether you need legal advice, strategic guidance, or professional representation, our team is here to provide solutions tailored to your needs.</p>
+            <img class="help__photo" src="{{ asset('images/lawyers/team.jpeg') }}" alt="Tim Ketut Surya Putra & Partners">
+        </div>
+
+        <div class="help__cards">
+            <div class="hc hc--green">
+                <h3>WhatsApp Consultation</h3>
+                <p>Connect directly with our legal team for a quick and convenient consultation. Get professional guidance wherever you are.</p>
+                <a class="hc__btn" href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener">Selengkapnya ↗</a>
+            </div>
+            <div class="hc hc--rose">
+                <h3>Via Email</h3>
+                <p>Have a legal question or need further assistance? Send us an email and our team will get back to you with the information you need.</p>
+                <a class="hc__btn" href="mailto:ketutsuryaputraandpartners@gmail.com">Selengkapnya ↗</a>
+            </div>
+            <div class="hc hc--blue">
+                <h3>Online Meeting</h3>
+                <p>Discuss your legal concerns with our experienced legal team through a convenient online meeting. Get professional advice, explore your legal options.</p>
+                <button class="hc__btn" data-open-booking>Lihat Lokasi ↗</button>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+{{-- ================= CHOOSE HOW WE CAN HELP ================= --}}
+<section class="help">
+    <div class="container help__grid">
+        {{-- LEFT CONTENT --}}
+        <div class="help__content">
+            <span class="chip chip--sm">
+                <i class="dot"></i> 05 | Consultation
+            </span>
+
+            <h2 class="help__title">Choose How We Can Help</h2>
+
+            <p class="help__description">
+                Whether you need legal advice, strategic guidance, or professional
+                representation, our team is here to provide solutions tailored to your needs.
+            </p>
+
+            <img
+                class="help__photo"
+                src="{{ asset('images/lawyers/team.jpeg') }}"
+                alt="Tim Ketut Surya Putra & Partners"
+            >
+        </div>
+
+        {{-- RIGHT CARDS --}}
+        <div class="help__cards">
+
+            {{-- WHATSAPP --}}
+            <div class="hc hc--green">
+                <div class="hc__icon">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </div>
+
+                <h3>WhatsApp Consultation</h3>
+
+                <p>
+                    Connect directly with our legal team for a quick
+                    and convenient consultation. Get professional
+                    guidance wherever you are.
+                </p>
+
+                <a class="hc__btn"
+                   href="https://wa.me/{{ $whatsapp }}"
+                   target="_blank"
+                   rel="noopener">
+                    <span>SELENGKAPNYA</span>
+                    <span class="hc__arrow">↗</span>
+                </a>
+            </div>
+
+            {{-- EMAIL --}}
+            <div class="hc hc--rose">
+                <div class="hc__icon">
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+
+                <h3>Via Email</h3>
+
+                <p>
+                    Have a legal question or need further assistance?
+                    Send us an email and our team will get back to you
+                    with the information you need.
+                </p>
+
+                <a class="hc__btn"
+                   href="mailto:ketutsuryaputraandpartners@gmail.com">
+                    <span>SELENGKAPNYA</span>
+                    <span class="hc__arrow">↗</span>
+                </a>
+            </div>
+
+            {{-- ONLINE MEETING --}}
+            <div class="hc hc--blue">
+                <div class="hc__icon">
+                    <i class="fa-solid fa-users"></i>
+                </div>
+
+                <h3>Online Meeting</h3>
+
+                <p>
+                    Discuss your legal concerns with our experienced
+                    legal team through a convenient online meeting.
+                    Get professional advice and explore your legal options.
+                </p>
+
+                <button class="hc__btn" data-open-booking>
+                    <span>LIHAT LOKASI</span>
+                    <span class="hc__arrow">↗</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{{-- ================= NEWS ================= --}}
+<section class="news" id="artikel">
+    <div class="container">
+        <div class="center">
+            <span class="chip chip--sm"><i class="dot"></i> 06 | News</span>
             <h2>Stay Updated with the Latest Legal News</h2>
-            <p>Get the latest insights on legal developments, business regulations, and industry trends.</p>
+            <p class="muted small">Get the latest insights and updates on legal developments, regulations, and important issues shaping today's legal landscape.</p>
         </div>
-        <div class="article-grid">
-            <article class="article-card">
-                <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=700&q=85" alt="Dokumen hukum">
-                <div class="article-body"><span class="article-date">LEGAL INSIGHT · 12 SEP 2026</span><h3>Tantangan Penegakan Hak Kekayaan Intelektual di Era Digital</h3><p>Memahami perlindungan hukum terhadap karya dan inovasi dalam perkembangan teknologi.</p><a href="{{ url('/artikel') }}">Baca Selengkapnya ↗</a></div>
-            </article>
-            <article class="article-card">
-                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=700&q=85" alt="Dokumen kontrak">
-                <div class="article-body"><span class="article-date">BUSINESS LAW · 08 SEP 2026</span><h3>Memahami Kontrak Bisnis dan Risiko Hukumnya</h3><p>Hal-hal penting yang perlu diperhatikan sebelum menandatangani perjanjian bisnis.</p><a href="{{ url('/artikel') }}">Baca Selengkapnya ↗</a></div>
-            </article>
-            <article class="article-card">
-                <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=700&q=85" alt="Buku hukum">
-                <div class="article-body"><span class="article-date">LEGAL UPDATE · 02 SEP 2026</span><h3>Perkembangan Regulasi dan Kepatuhan Perusahaan</h3><p>Mengenal pentingnya kepatuhan hukum dalam menjalankan kegiatan usaha.</p><a href="{{ url('/artikel') }}">Baca Selengkapnya ↗</a></div>
-            </article>
-        </div>
-        <div class="center-button"><a href="{{ url('/artikel') }}" class="btn btn-dark">Lihat Semua Artikel ↓</a></div>
-    </section>
 
-    <section class="faq section">
-        <div class="center-heading">
-            <span class="eyebrow"><span class="dot"></span> FAQ</span>
+        <div class="news__grid">
+            @foreach ($news as $n)
+                <article class="ncard">
+                    <img src="{{ asset('images/'.$n['image']) }}" alt="">
+                    <div class="ncard__body">
+                        <span class="tag">{{ $n['category'] }}</span>
+                        <h3>{{ $n['title'] }}</h3>
+                        <p>{{ $n['excerpt'] }}</p>
+                        <a class="ncard__btn" href="{{ $n['url'] }}">Baca Selengkapnya</a>
+                    </div>
+                </article>
+            @endforeach
+        </div>
+        <div class="center"><a class="btn btn--ghost" href="#">Lihat Berita Lainnya ↗</a></div>
+    </div>
+</section>
+
+{{-- ================= FAQ ================= --}}
+<section class="faq">
+    <div class="container container--narrow">
+        <div class="center">
+            <span class="chip chip--sm"><i class="dot"></i> 07 | FAQ</span>
             <h2>Pertanyaan yang Sering Diajukan</h2>
         </div>
-        <div class="faq-list">
-            <details><summary>Bagaimana cara berkonsultasi dengan pengacara?</summary><p>Anda dapat menghubungi tim melalui halaman konsultasi atau membuat booking untuk menjadwalkan pertemuan.</p></details>
-            <details><summary>Layanan hukum apa saja yang tersedia?</summary><p>Kami menyediakan layanan litigasi, penyelesaian sengketa, hukum perusahaan, kekayaan intelektual, serta konsultasi hukum lainnya.</p></details>
-            <details><summary>Apakah saya harus membuat janji sebelum datang?</summary><p>Kami menyarankan klien melakukan booking terlebih dahulu agar jadwal konsultasi dapat disesuaikan dengan ketersediaan tim.</p></details>
-            <details><summary>Bagaimana kerahasiaan informasi klien dijaga?</summary><p>Informasi klien ditangani secara profesional dan rahasia sesuai dengan kewajiban hukum serta etika profesi yang berlaku.</p></details>
+        <div class="faq__list" id="faqList">
+            @foreach ($faqs as $f)
+                <div class="faq__item">
+                    <button class="faq__q" aria-expanded="false">{{ $f['q'] }}<span class="faq__plus" aria-hidden="true"></span></button>
+                    <div class="faq__a"><p>{{ $f['a'] }}</p></div>
+                </div>
+            @endforeach
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="contact section" id="kontak">
-        <div class="contact-intro">
-            <span class="eyebrow"><span class="dot"></span> Get in Touch</span>
+{{-- ================= CONTACT ================= --}}
+<section class="contact" id="kontak">
+    <div class="container contact__grid">
+        <div class="contact__info">
+            <span class="chip chip--sm"><i class="dot"></i> 08 | Contact</span>
             <h2>Discuss your legal needs with us.</h2>
-            <p>We are ready to assist you with professional legal services tailored to your needs.</p>
-            <a href="{{ url('/konsultasi') }}" class="btn btn-green">Konsultasi Sekarang ↗</a>
+            <p class="muted small">For enquiries about our legal services, please contact</p>
+            <p class="muted small">KETUT SURYA PUTRA &amp; PARTNERS.</p>
+            <a class="btn btn--green" href="https://wa.me/{{ $whatsapp }}" target="_blank" rel="noopener">
+                Konsultasi Sekarang
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+            </a>
         </div>
-        <div class="contact-details">
-            <div><span>TELEPON</span><a href="tel:081919044044">0819-1904-4044 ↗</a></div>
-            <div><span>EMAIL</span><a href="mailto:info@ketutsurya.com">info@ketutsurya.com ↗</a></div>
-            <div><span>ALAMAT</span><p>Indonesia · Silakan hubungi kami untuk informasi kantor.</p></div>
+        <div class="contact__links">
+            <a href="tel:+{{ $whatsapp }}"><small>Telephone</small><strong>0819-1904-4044</strong><span>↗</span></a>
+            <a href="mailto:ketutsuryaputraandpartners@gmail.com"><small>Email</small><strong>ketutsuryaputraandpartners@gmail.com</strong><span>↗</span></a>
         </div>
-    </section>
+    </div>
+</section>
 </main>
 
 <footer class="footer">
-    <a href="#beranda" class="logo">KS<span>│</span></a>
-    <p>© {{ date('Y') }} Ketut Surya & Partners. All rights reserved.</p>
-    <div><a href="#tentang">Tentang Kami</a><a href="#layanan">Layanan</a><a href="#kontak">Kontak</a></div>
+    <div class="container">© {{ date('Y') }} Ketut Surya Putra &amp; Partners. All rights reserved.</div>
 </footer>
 
+{{-- ================= BOOKING MODAL ================= --}}
+<div class="modal" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle" hidden>
+    <div class="modal__box">
+        <button class="modal__close" data-close-booking aria-label="Tutup">×</button>
+        <h3 id="bookingTitle">Booking Konsultasi</h3>
+        <p class="muted small">Isi data berikut, pesan akan dikirim ke WhatsApp tim kami.</p>
+        <div class="field"><label for="bkName">Nama</label><input id="bkName" type="text" placeholder="Nama lengkap"></div>
+        <div class="field">
+            <label for="bkTopic">Bidang hukum</label>
+            <select id="bkTopic">
+                @foreach ($areas as $a)<option>{{ $a }}</option>@endforeach
+            </select>
+        </div>
+        <div class="field"><label for="bkDate">Tanggal yang diinginkan</label><input id="bkDate" type="date"></div>
+        <div class="field"><label for="bkMsg">Ringkasan masalah</label><textarea id="bkMsg" rows="3" placeholder="Ceritakan singkat kebutuhan Anda"></textarea></div>
+        <p class="modal__err" id="bkErr" hidden>Nama wajib diisi.</p>
+        <button class="btn btn--green btn--block" id="bkSend">Kirim via WhatsApp</button>
+    </div>
+</div>
+
+<button class="totop" id="toTop" aria-label="Kembali ke atas">↑</button>
+
 <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-    menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => navLinks.classList.remove('active'));
-    });
+    (function () {
+        'use strict';
+
+        var $ = function (s, c) { return (c || document).querySelector(s); };
+        var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+        /* ---------- Navbar: efek scroll, menu mobile, link aktif ---------- */
+        var nav = $('#nav');
+        var toggle = $('#navToggle');
+        var toTop = $('#toTop');
+
+        function onScroll() {
+            if (nav) nav.classList.toggle('is-scrolled', window.scrollY > 40);
+            if (toTop) toTop.classList.toggle('is-show', window.scrollY > 600);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        if (toggle && nav) {
+            toggle.addEventListener('click', function () {
+                var open = nav.classList.toggle('is-open');
+                toggle.setAttribute('aria-expanded', open);
+            });
+        }
+
+        var navLinks = $$('#navLinks a');
+        if (navLinks.length > 0) {
+            navLinks.forEach(function (a) {
+                a.addEventListener('click', function () {
+                    if (nav) nav.classList.remove('is-open');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            if ('IntersectionObserver' in window) {
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) {
+                        if (!e.isIntersecting) return;
+                        navLinks.forEach(function (a) {
+                            a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id);
+                        });
+                    });
+                }, { rootMargin: '-45% 0px -50% 0px' });
+                
+                navLinks.forEach(function (a) {
+                    var targetId = a.getAttribute('href');
+                    // Pastikan href adalah anchor internal, BUKAN cuma "#" kosong
+                    if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+                        var t = $(targetId);
+                        if (t) io.observe(t);
+                    }
+                });
+            }
+        }
+
+        if (toTop) {
+            toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        }
+
+        /* ---------- Accordion (Layanan & FAQ) ---------- */
+        // Fungsi ini sudah aman karena ada if (!root) return;
+        function accordion(root, itemSel, headSel, bodySel, single) {
+            if (!root) return;
+            $$(itemSel, root).forEach(function (item) {
+                var head = $(headSel, item), body = $(bodySel, item);
+                head.addEventListener('click', function () {
+                    var willOpen = !item.classList.contains('is-open');
+                    if (single) {
+                        $$(itemSel, root).forEach(function (o) {
+                            o.classList.remove('is-open');
+                            $(headSel, o).setAttribute('aria-expanded', 'false');
+                            $(bodySel, o).style.maxHeight = null;
+                        });
+                    }
+                    item.classList.toggle('is-open', willOpen);
+                    head.setAttribute('aria-expanded', willOpen);
+                    body.style.maxHeight = willOpen ? body.scrollHeight + 'px' : null;
+                });
+            });
+        }
+        accordion($('#serviceAcc'), '.acc__item', '.acc__head', '.acc__body', true);
+        accordion($('#faqList'), '.faq__item', '.faq__q', '.faq__a', true);
+
+        /* ---------- Carousel tim: tombol + drag ---------- */
+        var track = $('#teamTrack');
+        if (track) { // Cek apakah elemen carousel ada di halaman ini
+            function step() { var c = $('.card', track); return c ? c.offsetWidth + 20 : 300; }
+            
+            var teamPrev = $('#teamPrev');
+            var teamNext = $('#teamNext');
+            
+            if (teamPrev) teamPrev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+            if (teamNext) teamNext.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+
+            var down = false, startX = 0, startLeft = 0, moved = false;
+            track.addEventListener('pointerdown', function (e) {
+                if (e.pointerType === 'touch') return; 
+                down = true; moved = false; startX = e.clientX; startLeft = track.scrollLeft;
+            });
+            window.addEventListener('pointermove', function (e) {
+                if (!down) return;
+                var dx = e.clientX - startX;
+                if (Math.abs(dx) > 5) { moved = true; track.classList.add('is-dragging'); }
+                track.scrollLeft = startLeft - dx;
+            });
+            window.addEventListener('pointerup', function () {
+                down = false; track.classList.remove('is-dragging');
+            });
+            track.addEventListener('click', function (e) {
+                if (moved) { e.preventDefault(); moved = false; }
+            }, true);
+        }
+
+        /* ---------- Modal booking -> WhatsApp ---------- */
+        var modal = $('#bookingModal');
+        if (modal) { // Cek apakah modal booking dipasang di halaman ini
+            var lastFocus = null;
+            function openModal() {
+                lastFocus = document.activeElement;
+                modal.hidden = false;
+                document.body.style.overflow = 'hidden';
+                var bkName = $('#bkName');
+                if (bkName) bkName.focus();
+            }
+            function closeModal() {
+                modal.hidden = true;
+                document.body.style.overflow = '';
+                if (lastFocus) lastFocus.focus();
+            }
+            
+            $$('[data-open-booking]').forEach(function (b) { b.addEventListener('click', openModal); });
+            $$('[data-close-booking]').forEach(function (b) { b.addEventListener('click', closeModal); });
+            modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+            var dateInput = $('#bkDate');
+            if (dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+
+            var bkSend = $('#bkSend');
+            if (bkSend) {
+                bkSend.addEventListener('click', function () {
+                    var nameInput = $('#bkName');
+                    var name = nameInput ? nameInput.value.trim() : '';
+                    var err = $('#bkErr');
+                    
+                    if (!name) { 
+                        if (err) err.hidden = false; 
+                        if (nameInput) nameInput.focus(); 
+                        return; 
+                    }
+                    if (err) err.hidden = true;
+
+                    var topicInput = $('#bkTopic');
+                    var topic = topicInput ? topicInput.value : '';
+                    var msgInput = $('#bkMsg');
+                    var msg = msgInput && msgInput.value.trim() ? msgInput.value.trim() : '';
+                    var dateVal = dateInput && dateInput.value ? dateInput.value : '';
+
+                    var text = 'Halo Ketut Surya Putra & Partners, saya ingin booking konsultasi.\n' +
+                        'Nama: ' + name + '\n' +
+                        'Bidang hukum: ' + topic + '\n' +
+                        (dateVal ? 'Tanggal: ' + dateVal + '\n' : '') +
+                        (msg ? 'Ringkasan: ' + msg : '');
+
+                    var waNumber = document.body.dataset.whatsapp || '';
+                    window.open('https://wa.me/' + waNumber + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
+                    closeModal();
+                });
+            }
+        }
+    })();
 </script>
 </body>
 </html>
