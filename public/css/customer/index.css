@@ -7,7 +7,6 @@
 }
 
 :root {
-    --sidebar-bg: #0b1f33;
     --sidebar-active: #153b61;
     --sidebar-text: #8b9bb4;
     --sidebar-text-hover: #ffffff;
@@ -20,9 +19,9 @@
     --white: #ffffff;
     --light-blue-bg: #eff5ff;
     --light-green-bg: #f0fbf5;
-    --sidebar-bg: #031525;         
-    --menu-inactive-bg: #112a42;   
-    --menu-active-bg: #145989;    
+    --sidebar-bg: #031525;
+    --menu-inactive-bg: #112a42;
+    --menu-active-bg: #145989;
     --menu-text-color: #e2e8f0;
 }
 
@@ -57,17 +56,16 @@ body {
 }
 
 .logo-img {
-    background-color: none;
     padding: 4px;
     border-radius: 4px;
     margin-bottom: 12px;
 }
 
 .logo img {
-    display:block;
-    width:60px;
-    height:60px;
-    object-fit:contain
+    display: block;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
 }
 
 .brand-name {
@@ -115,7 +113,7 @@ body {
 }
 
 .sidebar-menu a:hover {
-    background-color: #163554; 
+    background-color: #163554;
     color: #ffffff;
 }
 
@@ -131,41 +129,6 @@ body {
 
 .sidebar-footer {
     margin-top: auto;
-}
-
-.help-box {
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 16px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-.help-box i.bx-headphone {
-    font-size: 20px;
-    color: #e5e7eb;
-    margin-bottom: 10px;
-}
-
-.help-box h4 {
-    font-size: 13px;
-    margin-bottom: 6px;
-}
-
-.help-box p {
-    font-size: 12px;
-    color: var(--sidebar-text);
-    line-height: 1.4;
-    margin-bottom: 10px;
-}
-
-.help-link {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    color: var(--sidebar-text-hover);
-    text-decoration: none;
-    font-weight: 600;
 }
 
 .settings-link {
@@ -286,11 +249,16 @@ body {
     border-radius: 12px;
     padding: 24px;
     margin-bottom: 24px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.bg-light-blue { background-color: var(--light-blue-bg); }
-.bg-light-green { background-color: var(--light-green-bg); }
+.bg-light-blue {
+    background-color: var(--light-blue-bg);
+}
+
+.bg-light-green {
+    background-color: var(--light-green-bg);
+}
 
 /* HERO CARD */
 .hero-card {
@@ -315,14 +283,9 @@ body {
     max-width: 90%;
 }
 
-.hero-image {
-    bottom: 0;
-}
-
 .hero-image img {
     max-width: 263.66px;
     max-height: 178px;
-    bottom: 0;
 }
 
 /* BUTTONS */
@@ -336,6 +299,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
     transition: 0.2s;
 }
 
@@ -357,20 +321,158 @@ body {
     font-size: 15px;
 }
 
-/* EMPTY STATE CARD */
+/* PERKARA SAYA CARD & TABLE */
+.card-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
 .card-header {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 4px;
 }
 
 .card-header i {
-    font-size: 20px;
+    font-size: 22px;
     color: var(--primary-blue);
 }
 
-.empty-state-card .subtitle {
+.card-header h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--primary-blue);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.view-all-link:hover {
+    opacity: 0.8;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.cases-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.cases-table thead th {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+    padding: 12px 10px;
+}
+
+.cases-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.15s ease;
+}
+
+.cases-table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.cases-table tbody td {
+    padding: 16px 10px;
+    font-size: 13px;
+    color: #374151;
+    vertical-align: middle;
+}
+
+.col-no {
+    width: 45px;
+    color: #111827;
+}
+
+.col-case-id {
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.status-process {
+    background-color: #e0f2fe;
+    color: #0284c7;
+}
+
+.status-process .status-dot {
+    background-color: #0284c7;
+}
+
+.status-done {
+    background-color: #dcfce7;
+    color: #10b981;
+}
+
+.status-done .status-dot {
+    background-color: #10b981;
+}
+
+.status-pending {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.status-pending .status-dot {
+    background-color: #d97706;
+}
+
+.col-action {
+    text-align: right;
+    width: 40px;
+}
+
+.action-dots-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    color: #374151;
+    font-size: 18px;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.action-dots-btn:hover {
+    background-color: #e5e7eb;
+}
+
+/* EMPTY STATE */
+.cases-card .subtitle {
     font-size: 14px;
     color: var(--text-muted);
     margin-bottom: 40px;
@@ -400,10 +502,20 @@ body {
 }
 
 /* RIGHT COLUMN CARDS */
+.right-info-wrapper {
+    border: 1px solid #e5e7eb;
+    padding: 16px;
+}
+
+.right-info-wrapper .steps-card {
+    margin-bottom: 0;
+}
+
 .info-card {
     display: flex;
     gap: 16px;
     border: none;
+    margin-bottom: 16px;
 }
 
 .card-icon {
@@ -436,6 +548,10 @@ body {
 
 .step-item {
     margin-bottom: 16px;
+}
+
+.step-item:last-child {
+    margin-bottom: 0;
 }
 
 .step-item h5 {
@@ -482,8 +598,6 @@ body {
 /* ==========================================================================
    RESPONSIVE LAYOUT (MEDIA QUERIES) UNTUK DASHBOARD
    ========================================================================== */
-
-/* Sembunyikan tombol toggle mobile di desktop */
 .mobile-toggle-btn {
     display: none;
     background: none;
@@ -493,44 +607,35 @@ body {
     cursor: pointer;
 }
 
-/* -------------------------------------------
-   TABLET (max-width: 1024px)
-   ------------------------------------------- */
 @media (max-width: 1024px) {
-    /* Ubah Grid 2 kolom menjadi 1 kolom (atas-bawah) */
     .grid-layout {
         grid-template-columns: 1fr;
     }
 }
 
-/* -------------------------------------------
-   MOBILE (max-width: 768px)
-   ------------------------------------------- */
 @media (max-width: 768px) {
-    /* --- SIDEBAR BEHAVIOR --- */
     .mobile-toggle-btn {
-        display: block; /* Munculkan tombol hamburger */
+        display: block;
     }
 
     .sidebar {
         position: fixed;
-        left: -260px; /* Sembunyikan sidebar di kiri */
+        left: -260px;
         top: 0;
         bottom: 0;
         z-index: 999;
         transition: left 0.3s ease;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .sidebar.active {
-        left: 0; /* Munculkan sidebar saat aktif */
+        left: 0;
     }
 
-    /* --- LAYOUT UTAMA --- */
     .topbar {
         padding: 0 20px;
     }
-    
+
     .content-area {
         padding: 20px;
     }
@@ -539,9 +644,8 @@ body {
         font-size: 24px;
     }
 
-    /* --- HERO CARD (DASHBOARD) --- */
     .hero-card {
-        flex-direction: column-reverse; /* Gambar di atas, teks di bawah */
+        flex-direction: column-reverse;
         text-align: center;
         gap: 20px;
         padding: 30px 20px;
@@ -556,7 +660,6 @@ body {
         margin: 0 auto;
     }
 
-    /* --- INFO & CONTACT CARDS (DASHBOARD) --- */
     .info-card {
         flex-direction: column;
         align-items: center;

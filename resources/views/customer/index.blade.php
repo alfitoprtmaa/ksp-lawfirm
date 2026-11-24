@@ -22,10 +22,11 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
+                    {{-- Tempat asset logo milikmu --}}
                     <img src="{{ asset('images/logo.png') }}" alt="KSP Logo" class="logo-img">
                 </div>
                 <div class="brand-info">
-                    <h2 class="brand-name">KETUT SURYA PUTRA<br>& PARTNERS</h2>
+                    <h2 class="brand-name">KETUT SURYA PUTRA<br>&amp; PARTNERS</h2>
                     <p class="brand-sub">Legal Client Portal</p>
                 </div>
             </div>
@@ -34,7 +35,7 @@
                 <p class="menu-label">RUANG KLIEN</p>
                 <ul>
                     <li class="active"><a href="#"><i class='bx bx-grid-alt'></i> Overview</a></li>
-                    <li><a href="{{ route('customer.perkaralama.index') }}"><i class='bx bx-git-pull-request'></i>  Perkara Lama</a></li>
+                    <li><a href="{{ route('customer.perkaralama.index') }}"><i class='bx bx-git-pull-request'></i> Perkara Saya</a></li>
                     <li><a href="{{ route('customer.buatkonsultasi.index') }}"><i class='bx bx-copy'></i> Perkara Baru</a></li>
                     <li><a href="{{ route('customer.tracking.index') }}"><i class='bx bx-message'></i> Track Your Case</a></li>
                 </ul>
@@ -55,7 +56,7 @@
                         <i class='bx bx-menu'></i>
                     </button>
                     <div class="breadcrumbs">
-                        <span>Portal Klien</span> / <span class="current">New Consultation</span>
+                        <span>Portal Klien</span> / <span class="current">Overview</span>
                     </div>
                 </div>
 
@@ -66,7 +67,7 @@
                             <i class='bx bx-user'></i>
                         </div>
                         <div class="user-info">
-                            <span class="user-name">Akun Anda</span>
+                            <span class="user-name">{{ $customer['full_name'] ?? 'Akun Anda' }}</span>
                             <span class="user-role">Klien</span>
                         </div>
                         <i class='bx bx-chevron-down'></i>
@@ -77,7 +78,7 @@
             <!-- PAGE CONTENT -->
             <div class="content-area">
                 <div class="welcome-section">
-                    <h1>Selamat datang Alfitok!</h1>
+                    <h1>Selamat datang {{ explode(' ', $customer['full_name'] ?? 'Alfitok')[0] }}!</h1>
                     <p>Sampaikan permasalahan hukum Anda agar kami dapat membantu menemukan layanan dan lawyer yang sesuai.</p>
                 </div>
 
@@ -89,35 +90,90 @@
                             <div class="hero-content">
                                 <h2>Mulai pengajuan konsultasi sekarang!</h2>
                                 <p>Sampaikan permasalahan hukum anda, kami mencarikan Lawyer yang cocok dengan permasalahan hukum anda !</p>
-                                <button class="btn btn-primary">Buat Konsultasi Baru <i class='bx bx-right-arrow-alt'></i></button>
+                                <a href="{{ route('customer.buatkonsultasi.index') }}" class="btn btn-primary">
+                                    Buat Konsultasi Baru <i class='bx bx-right-arrow-alt'></i>
+                                </a>
                             </div>
                             <div class="hero-image">
-                                <!-- Placeholder untuk ilustrasi orang di depan laptop -->
                                 <img src="{{ asset('images/svg/morning_news.svg') }}" alt="Ilustrasi Konsultasi">
                             </div>
                         </div>
 
-                        <!-- Recent Consultation Empty State -->
-                        <div class="card empty-state-card">
-                            <div class="card-header">
-                                <i class='bx bx-spreadsheet'></i>
-                                <h3>Konsultasi Terbaru</h3>
+                        <!-- Card Perkara Saya (Otomatis menyesuaikan kondisi kosong / berisi data) -->
+                        <div class="card cases-card">
+                            <div class="card-header-row">
+                                <div class="card-header">
+                                    <i class='bx bx-spreadsheet'></i>
+                                    <h3>Perkara Saya</h3>
+                                </div>
+                                @if (count($bookings) > 0)
+                                    <a href="{{ route('customer.perkaralama.index') }}" class="view-all-link">
+                                        Lihat Semua <i class='bx bx-right-arrow-alt'></i>
+                                    </a>
+                                @endif
                             </div>
-                            <p class="subtitle">Daftar pengajuan konsultasi anda yang terbaru</p>
-                            
-                            <div class="empty-state-content">
-                                <!-- Placeholder Ilustrasi Dokumen -->
-                                <img src="{{ asset('images/svg/file_search.svg') }}" alt="Dokumen Kosong" class="empty-img">
-                                <p>Mulai pengajuan pertama anda untuk mendapatkan pendampingan hukum dari kami !</p>
-                                <button class="btn btn-primary">Buat Konsultasi Baru <i class='bx bx-right-arrow-alt'></i></button>
-                            </div>
+
+                            @if (count($bookings) > 0)
+                                <div class="table-responsive">
+                                    <table class="cases-table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Nomor Perkara</th>
+                                                <th>Jenis Perkara</th>
+                                                <th>Status</th>
+                                                <th>Tanggal Masuk</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($bookings as $index => $item)
+                                                <tr>
+                                                    <td class="col-no">{{ $index + 1 }}.</td>
+                                                    <td class="col-case-id">{{ $item['case_number'] }}</td>
+                                                    <td class="col-case-type">{{ $item['legal_field_name'] }}</td>
+                                                    <td>
+                                                        @if ($item['display_status'] === 'Dalam Proses')
+                                                            <span class="status-badge status-process">
+                                                                <span class="status-dot"></span> Dalam Proses
+                                                            </span>
+                                                        @elseif ($item['display_status'] === 'Selesai')
+                                                            <span class="status-badge status-done">
+                                                                <span class="status-dot"></span> Selesai
+                                                            </span>
+                                                        @else
+                                                            <span class="status-badge status-pending">
+                                                                <span class="status-dot"></span> {{ $item['display_status'] }}
+                                                            </span>
+                                                        @endif
+                                                    </td>
+                                                    <td class="col-date">{{ $item['formatted_date'] }}</td>
+                                                    <td class="col-action">
+                                                        <a href="{{ route('customer.tracking.index', ['booking_id' => $item['booking_id']]) }}" class="action-dots-btn" title="Detail Perkara">
+                                                            <i class='bx bx-dots-horizontal-rounded'></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            @else
+                                <p class="subtitle">Daftar pengajuan konsultasi anda yang terbaru</p>
+                                <div class="empty-state-content">
+                                    <img src="{{ asset('images/svg/file_search.svg') }}" alt="Dokumen Kosong" class="empty-img">
+                                    <p>Mulai pengajuan pertama anda untuk mendapatkan pendampingan hukum dari kami !</p>
+                                    <a href="{{ route('customer.buatkonsultasi.index') }}" class="btn btn-primary">
+                                        Buat Konsultasi Baru <i class='bx bx-right-arrow-alt'></i>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
 
                     <!-- RIGHT COLUMN -->
                     <div class="right-col">
-                        <div class="card contact-card">
-                            
+                        <div class="card right-info-wrapper">
                             <!-- Info Card -->
                             <div class="card info-card bg-light-blue">
                                 <div class="card-icon"><i class='bx bx-info-circle'></i></div>
@@ -174,13 +230,11 @@
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const sidebar = document.querySelector('.sidebar');
 
-            // Toggle Sidebar saat tombol hamburger diklik
             mobileMenuBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Mencegah event klik menjalar ke dokumen
+                e.stopPropagation();
                 sidebar.classList.toggle('active');
             });
 
-            // Otomatis menutup sidebar jika user mengklik area di luar sidebar
             document.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
                     if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {

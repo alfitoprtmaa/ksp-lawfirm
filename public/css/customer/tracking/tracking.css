@@ -1,13 +1,26 @@
-/* Utility Classes Tambahan */
+/* ==========================================================================
+   STYLE HALAMAN TRACK YOUR CASE & MODAL DETAIL PERKEMBANGAN PERKARA
+   File: public/css/customer/tracking/tracking.css
+   ========================================================================== */
+
+.sidebar-menu li.active-blue a {
+    background-color: var(--primary-blue, #0d6efd);
+    color: #ffffff;
+    border-radius: 8px;
+}
+
+/* Utilities */
 .p-0 { padding: 0 !important; }
 .p-4 { padding: 24px !important; }
-.px-4 { padding-left: 24px; padding-right: 24px; }
 .pb-0 { padding-bottom: 0 !important; }
 .m-0 { margin: 0 !important; }
+.mb-0 { margin-bottom: 0 !important; }
 .mb-1 { margin-bottom: 4px !important; }
 .mb-2 { margin-bottom: 8px !important; }
 .mb-3 { margin-bottom: 12px !important; }
 .mb-4 { margin-bottom: 24px !important; }
+.mt-3 { margin-top: 16px !important; }
+.mt-4 { margin-top: 22px !important; }
 
 .d-flex { display: flex; }
 .align-center { align-items: center; }
@@ -18,7 +31,7 @@
 .gap-3 { gap: 16px; }
 .gap-4 { gap: 24px; }
 
-.text-xs { font-size: 11px; }
+.text-xs { font-size: 11.5px; }
 .text-sm { font-size: 13px; }
 .text-md { font-size: 14px; }
 .text-lg { font-size: 16px; }
@@ -30,11 +43,11 @@
 .text-dark { color: #111827; }
 .text-muted { color: #6b7280; }
 .text-gray { color: #4b5563; }
-.text-blue { color: #3b82f6; }
+.text-blue { color: #2563eb; }
 .text-white { color: #ffffff !important; }
-.bg-blue { background-color: #3b82f6 !important; }
-.bg-light-blue { background-color: #eff6ff; }
-.bg-light-gray { background-color: #f3f4f6; }
+.bg-blue { background-color: #0d6efd !important; }
+.bg-light-blue { background-color: #f4f8ff; }
+.bg-icon-blue { background-color: #e0edff; }
 .bg-gray-50 { background-color: #f9fafb; }
 .bg-white { background-color: #ffffff; }
 
@@ -45,32 +58,49 @@
 .border-bottom { border-bottom: 1px solid #e5e7eb; }
 .border-none { border: none !important; }
 .line-height-15 { line-height: 1.5; }
-.line-height-16 { line-height: 1.6; }
-.min-h-200 { min-height: 200px; }
+.line-height-16 { line-height: 1.65; }
 
-/* Page Header */
+/* Page Header & Case Selector */
 .page-title {
     font-size: 28px;
-    color: #111827;
+    color: #0f172a;
     margin-bottom: 4px;
 }
+
 .page-subtitle {
     font-size: 14px;
     color: var(--text-muted);
 }
+
 .page-header-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
+    gap: 16px;
 }
-.case-selector {
-    display: flex;
+
+.select-case-wrap {
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
+    gap: 8px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
     border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: #1e293b;
+}
+
+.case-select-dropdown {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
     font-weight: 600;
+    color: #0f172a;
+    outline: none;
+    cursor: pointer;
 }
 
 /* Case Overview Card */
@@ -78,93 +108,154 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid #f1f5f9;
 }
+
 .case-overview-left {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 18px;
 }
+
 .case-icon-box {
-    width: 60px;
-    height: 60px;
-    background-color: var(--bg-white);
-    border-radius: 8px;
+    width: 56px;
+    height: 56px;
+    background-color: #f1f5f9;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
-    color: var(--text-main);
+    color: #1e293b;
+    flex-shrink: 0;
 }
+
+.case-icon-box svg {
+    width: 28px;
+    height: 28px;
+}
+
 .case-details h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
 }
+
 .case-meta {
     display: flex;
+    flex-wrap: wrap;
     gap: 16px;
-    font-size: 13px;
-    color: var(--text-muted);
+    font-size: 12.5px;
+    color: #64748b;
 }
+
 .case-meta span {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
 }
+
 .case-overview-right {
     display: flex;
     align-items: center;
     gap: 16px;
 }
+
 .status-box {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     gap: 4px;
 }
+
+.status-label {
+    font-size: 11px;
+    color: #64748b;
+}
+
 .status-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 6px 12px;
-    border-radius: 20px;
+    padding: 5px 12px;
+    border-radius: 999px;
     font-size: 12px;
     font-weight: 500;
 }
-.badge-blue { background-color: #eff5ff; color: #3b82f6; }
 
-/* Horizontal Stepper UI */
-.tracking-main-card { overflow: hidden; }
+.status-badge i {
+    font-size: 7px;
+}
+
+.badge-blue {
+    background-color: #eff6ff;
+    color: #2563eb;
+}
+
+.badge-green {
+    background-color: #dcfce7;
+    color: #10b981;
+}
+
+.btn-icon-outline {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* ==================== HORIZONTAL STEPPER UI ==================== */
+.tracking-main-card {
+    overflow: hidden;
+    border: 1px solid #f1f5f9;
+}
+
 .card-header-between {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.card-header-between h4 { font-size: 16px; margin: 0; }
+
+.card-header-between h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
 
 .wizard-stepper {
     display: flex;
     justify-content: space-between;
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 6px;
 }
+
 .wizard-line {
     position: absolute;
-    top: 13px; /* Center circle (26px / 2) */
+    top: 13px;
     left: 0;
     right: 0;
     height: 3px;
     background-color: #e5e7eb;
     z-index: 1;
 }
+
 .wizard-line-active {
     position: absolute;
-    top: 13px; 
+    top: 13px;
     left: 0;
     height: 3px;
-    background-color: #059669; /* Garis progres warna hijau */
+    background-color: #009875;
     z-index: 2;
-    transition: width 0.4s ease;
+    transition: width 0.35s ease;
 }
+
 .wizard-step {
     position: relative;
     z-index: 3;
@@ -173,8 +264,9 @@
     align-items: center;
     width: 140px;
     background: transparent;
-    cursor: pointer; /* Bisa diklik untuk pindah tab */
+    cursor: pointer;
 }
+
 .wizard-circle {
     width: 28px;
     height: 28px;
@@ -185,25 +277,31 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: 0.3s;
-    border: 2px solid white; /* Supaya garis di belakangnya tidak menembus */
-}
-.wizard-circle.active-completed {
-    background-color: #059669; /* Centang hijau untuk yg sudah dilewati */
-    color: white;
-    border-color: #059669;
-}
-.wizard-label {
-    font-size: 12px;
-    color: var(--text-muted);
-    text-align: center;
-    line-height: 1.4;
-    transition: 0.3s;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.25s;
+    border: 2px solid #ffffff;
 }
 
-/* Tab Content Areas */
+.wizard-circle.active-completed {
+    background-color: #009875;
+    color: #ffffff;
+    border-color: #009875;
+}
+
+.wizard-label {
+    font-size: 11.5px;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.4;
+    transition: 0.25s;
+}
+
+.wizard-label.text-blue-active {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
 .icon-box-md {
     width: 40px;
     height: 40px;
@@ -211,80 +309,10 @@
     align-items: center;
     justify-content: center;
     font-size: 20px;
-}
-
-/* Lawyer Profile Box */
-.lawyer-img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
     flex-shrink: 0;
 }
 
-/* Vertical Timeline */
-.vertical-timeline {
-    position: relative;
-}
-.vertical-timeline::before {
-    content: '';
-    position: absolute;
-    top: 15px;
-    bottom: 20px;
-    left: 21px; /* Posisi garis vertikal */
-    width: 2px;
-    background-color: #bfdbfe; /* Biru muda */
-    z-index: 1;
-}
-.timeline-item {
-    position: relative;
-    padding-left: 50px; /* Ruang untuk bulatan */
-    margin-bottom: 24px;
-}
-.timeline-item:last-child {
-    margin-bottom: 0;
-}
-.timeline-marker {
-    position: absolute;
-    left: 14px;
-    top: 4px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    z-index: 2;
-    border: 3px solid white;
-    box-shadow: 0 0 0 2px #bfdbfe;
-}
-.timeline-content {
-    padding-bottom: 24px;
-    border-bottom: 1px solid #e5e7eb;
-}
-.btn-outline-sm {
-    background: transparent;
-    border: 1px solid #d1d5db;
-    color: #374151;
-    padding: 6px 16px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-}
-.btn-outline-sm:hover {
-    background: #f9fafb;
-}
-
-.logo {
-    text-align: center;
-    color: var(--text-dark);
-}
-
-.logo svg {
-    width: 48px;
-    height: 48px;
-}
-
-/* ==========================================================================
-   STYLE KHUSUS TAB 1 (Overview Permasalahan - Data Detail)
-   ========================================================================== */
+/* ==================== TAB 1: OVERVIEW PERMASALAHAN ==================== */
 .overview-details-container {
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
@@ -296,12 +324,11 @@
 }
 
 .overview-table td {
-    padding: 8px 0;
-    font-size: 14px;
+    padding: 7px 0;
+    font-size: 13.5px;
     vertical-align: middle;
 }
 
-/* Lebar kolom label di sebelah kiri */
 .overview-table .label-col {
     width: 220px;
 }
@@ -311,158 +338,641 @@
 }
 
 .overview-table .pt-4 {
-    padding-top: 24px; /* Memberikan jarak ekstra di atas "Ringkasan Permasalahan" */
+    padding-top: 20px;
 }
 
-/* Kotak abu-abu untuk teks ringkasan */
 .summary-box {
-    background-color: #f9fafb; /* Warna abu-abu sangat muda */
+    background-color: #f8fafc;
     border-radius: 8px;
     padding: 16px 20px;
-    font-size: 14px;
+    font-size: 13.5px;
     color: #111827;
 }
 
-/* ==========================================================================
-   STYLE KHUSUS TAB 3 (List Perkembangan Perkara Horizontal)
-   ========================================================================== */
+/* ==================== TAB 2: LAWYER ASSIGNMENT ==================== */
+.lawyer-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background-color: #e2e8f0;
+}
+
+/* ==================== TAB 3: PERKEMBANGAN PERKARA (PROSES PERKARA) ==================== */
 .development-timeline {
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding-left: 4px; /* Penyesuaian agar bulatan sejajar */
+    gap: 18px;
+    padding: 20px 24px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
 }
 
-/* Garis vertikal biru muda yang menyambungkan semua titik */
 .development-timeline::before {
     content: '';
     position: absolute;
-    top: 30px;     /* Mulai dari tengah item pertama */
-    bottom: 30px;  /* Berhenti di tengah item terakhir */
-    left: 12px;    /* Posisi garis tepat di tengah bulatan (lebar bulatan 18px) */
+    top: 34px;
+    bottom: 34px;
+    left: 33px;
     width: 2px;
-    background-color: #bfdbfe; /* Warna biru muda */
+    background-color: #bfdbfe;
     z-index: 1;
 }
 
-/* Container untuk setiap baris */
 .dev-item {
     position: relative;
     z-index: 2;
     display: flex;
-    align-items: center; /* Menengahkan semua elemen secara vertikal */
-    gap: 24px;
+    align-items: center;
+    gap: 20px;
 }
 
-/* Bulatan biru dengan titik putih di tengah */
 .dev-marker {
-    width: 18px;
-    height: 18px;
-    background-color: #3b82f6;
+    width: 20px;
+    height: 20px;
+    background-color: #dbeafe;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
+
 .dev-marker::after {
     content: '';
-    width: 6px;
-    height: 6px;
-    background-color: #ffffff;
+    width: 10px;
+    height: 10px;
+    background-color: #2563eb;
     border-radius: 50%;
 }
 
-/* Kolom Tanggal dan Jam */
 .dev-datetime {
-    width: 100px;
+    width: 96px;
     flex-shrink: 0;
-    color: #6b7280;
     line-height: 1.4;
 }
 
-/* Kotak abu-abu panjang berisi teks */
+.dev-date-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.dev-time-text {
+    font-size: 11.5px;
+    color: #6b7280;
+}
+
 .dev-content {
     flex: 1;
-    padding: 16px 20px;
-    border-radius: 8px;
-    color: #4b5563;
-    font-size: 14px;
+    color: #374151;
+    font-size: 13px;
     line-height: 1.5;
 }
 
-/* Kolom Nama Staff / Lawyer di sebelah kanan */
 .dev-person {
-    width: 140px;
+    width: 155px;
     flex-shrink: 0;
-    color: #6b7280;
-    font-size: 14px;
+    color: #374151;
+    font-size: 12.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
-/* Tombol Detail Baru */
+.person-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #94a3b8;
+}
+
 .dev-action {
     flex-shrink: 0;
 }
+
 .btn-detail-light {
     background-color: #eff6ff;
-    color: #3b82f6;
-    border: 1px solid #eff6ff;
-    border-radius: 6px;
-    padding: 6px 12px;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 7px 14px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 4px;
     transition: 0.2s;
 }
+
 .btn-detail-light:hover {
     background-color: #dbeafe;
 }
 
-/* Responsive agar tidak rusak di layar HP */
+/* ==================== TAB 4: PERKARA SELESAI (VERTICAL TIMELINE) ==================== */
+.vertical-timeline {
+    position: relative;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.vertical-timeline::before {
+    content: '';
+    position: absolute;
+    top: 34px;
+    bottom: 48px;
+    left: 33px;
+    width: 2px;
+    background-color: #93c5fd;
+    z-index: 1;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 38px;
+    margin-bottom: 22px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-marker::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+
+.timeline-content {
+    padding-bottom: 22px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.btn-outline-sm {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #1e293b;
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.btn-outline-sm:hover {
+    background-color: #f8fafc;
+    border-color: #94a3b8;
+}
+
+/* ==========================================================================
+   POP-UP MODAL DETAIL PERKEMBANGAN PERKARA (TAHAP 3 & TAHAP 4)
+   ========================================================================== */
+.track-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 1300;
+    overflow-y: auto;
+}
+
+.track-modal-backdrop.show {
+    display: flex;
+}
+
+.track-modal-dialog {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 720px;
+    max-height: 90vh;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: trackModalIn 0.2s ease-out;
+}
+
+.track-modal-dialog.modal-narrow {
+    max-width: 560px;
+}
+
+@keyframes trackModalIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.99);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.track-modal-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.modal-badge-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background-color: #eff6ff;
+    color: #2563eb;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-heading {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.modal-heading-lg {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.modal-sub-meta {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.modal-x-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    color: #64748b;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.modal-x-btn:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+.track-modal-body {
+    padding: 22px 24px 26px;
+    overflow-y: auto;
+}
+
+/* Modal 1 (Tahap 3) Specific */
+.exec-meta-card {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr 1.3fr;
+    gap: 16px;
+    background-color: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 12px;
+    padding: 16px 18px;
+}
+
+.meta-cap {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #94a3b8;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+}
+
+.status-pill-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #ffffff;
+    border: 1px solid #93c5fd;
+    color: #2563eb;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 999px;
+}
+
+.dot-blue {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #2563eb;
+}
+
+.meta-main-val {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.meta-sub-val {
+    font-size: 11.5px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.lawyer-mini-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lawyer-initials {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #0f2942;
+    color: #ffffff;
+    font-size: 11.5px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.section-cap-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    letter-spacing: 0.04em;
+    margin-bottom: 10px;
+}
+
+.note-detail-box {
+    background-color: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #334155;
+    white-space: pre-line;
+}
+
+.exec-attachments-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.exec-doc-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.doc-card-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.doc-pdf-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background-color: #fef2f2;
+    color: #ef4444;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.doc-name-text {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #0f172a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.doc-meta-text {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.doc-dl-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    color: #2563eb;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.doc-dl-btn:hover {
+    background-color: #eff6ff;
+}
+
+.btn-tutup-gray {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-tutup-gray:hover {
+    background-color: #e2e8f0;
+}
+
+/* Modal 2 (Tahap 4) Specific */
+.final-field-group {
+    margin-bottom: 18px;
+}
+
+.final-label {
+    display: block;
+    font-size: 12px;
+    color: #64748b;
+    margin-bottom: 5px;
+}
+
+.final-title-val {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.final-date-val {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: #1e293b;
+}
+
+.final-desc-val {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: #334155;
+    white-space: pre-line;
+}
+
+.lampiran-badge {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background-color: #eff6ff;
+    color: #2563eb;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.final-lampiran-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.final-attachments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.final-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 22px;
+}
+
+.btn-tutup-navy {
+    background-color: #0f2942;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 26px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-tutup-navy:hover {
+    background-color: #1e3a5f;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1024px) {
+    .lawyer-profile-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 768px) {
+    .page-header-flex,
+    .case-overview-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .case-overview-right {
+        width: 100%;
+        justify-content: space-between;
+        border-top: 1px solid #e5e7eb;
+        padding-top: 14px;
+    }
+
     .dev-item {
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
-        padding-left: 36px; /* Jarak untuk garis jika dilipat ke bawah */
+        gap: 10px;
+        padding-left: 32px;
     }
+
     .dev-marker {
         position: absolute;
         left: 0;
         top: 2px;
     }
+
     .development-timeline::before {
-        left: 8px;
-        top: 20px;
-        bottom: 20px;
+        left: 9px;
     }
-    .dev-datetime, .dev-person {
+
+    .dev-datetime,
+    .dev-person {
         width: 100%;
     }
-}
 
-/* Responsive Tablet & Mobile */
-@media (max-width: 1024px) {
-    .lawyer-profile-box { flex-direction: column; align-items: center; text-align: center; }
-    .social-links { justify-content: center; }
-}
+    .exec-meta-card,
+    .exec-attachments-grid {
+        grid-template-columns: 1fr;
+    }
 
-@media (max-width: 768px) {
-    .page-header-flex { flex-direction: column; align-items: flex-start; gap: 15px; }
-    .case-overview-card { flex-direction: column; align-items: flex-start; gap: 20px; }
-    .case-overview-right { width: 100%; justify-content: space-between; border-top: 1px solid #e5e7eb; padding-top: 15px; }
-    
-    /* Stepper Scrollable on Mobile */
-    .wizard-stepper { overflow-x: auto; padding-bottom: 20px; }
-    .wizard-line, .wizard-line-active { min-width: 500px; }
-    .wizard-step { min-width: 120px; }
-    
-    .vertical-timeline::before { left: 16px; }
-    .timeline-item { padding-left: 40px; }
-    .timeline-marker { left: 9px; }
-    .timeline-content .d-flex { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .wizard-stepper {
+        overflow-x: auto;
+        padding-bottom: 16px;
+    }
+
+    .wizard-line,
+    .wizard-line-active {
+        min-width: 500px;
+    }
+
+    .wizard-step {
+        min-width: 120px;
+    }
 }

@@ -6,6 +6,12 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\CustomerAuthController;
+use App\Http\Controllers\CustomerDashboardController;
+use App\Http\Controllers\CustomerPerkaraController;
+use App\Http\Controllers\CustomerBuatKonsultasiController;
+use App\Http\Controllers\CustomerAkunController;
+use App\Http\Controllers\CustomerTrackingController;
 
 Route::get('/', [LandingController::class, 'index'])->name('welcome');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
@@ -14,6 +20,8 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/articles', [ArticlesController::class, 'index'])->name('articles');
 
 // Customer Routes
+
+// alternative route for customer login form
 Route::get('/customer/login/signin', function () {
     return view('customer.login.signin');
 })->name('customer.login.signin');
@@ -22,25 +30,29 @@ Route::get('/customer/login/signup', function () {
     return view('customer.login.signup');
 })->name('customer.login.signup');
 
-Route::get('/customer/index', function () {
-    return view('customer.index');
-})->name('customer.index');
+// route for customer login form
+Route::get('/customer/login', [CustomerAuthController::class, 'showLoginForm'])->name('customer.login');
+Route::post('/customer/login', [CustomerAuthController::class, 'login'])->name('customer.login.submit');
 
-Route::get('/customer/tracking/index', function () {
-    return view('customer.tracking.index');
-})->name('customer.tracking.index');
+// customer index route
+Route::get('/customer/index', [CustomerDashboardController::class, 'index'])->name('customer.index');
 
-Route::get('/customer/buatkonsultasi/index', function () {
-    return view('customer.buatkonsultasi.index');
-})->name('customer.buatkonsultasi.index');
+// csutomer tracking route
+Route::get('/customer/tracking/index', [CustomerTrackingController::class, 'index'])->name('customer.tracking.index');
 
-Route::get('/customer/perkaralama/index', function () {
-    return view('customer.perkaralama.index');
-})->name('customer.perkaralama.index');
+// customer create consultation route
+Route::get('/customer/buatkonsultasi/index', [CustomerBuatKonsultasiController::class, 'index'])->name('customer.buatkonsultasi.index');
+Route::post('/customer/perkara-baru', [CustomerBuatKonsultasiController::class, 'store'])->name('customer.buatkonsultasi.store');
 
-Route::get('/customer/akun/index', function () {
-    return view('customer.akun.index');
-})->name('customer.akun.index');
+// customer case history route
+Route::get('/customer/perkaralama/index', [CustomerPerkaraController::class, 'index'])->name('customer.perkaralama.index');
+Route::post('/customer/perkara/{bookingId}/dokumen', [CustomerPerkaraController::class, 'uploadDocument'])->name('customer.perkaralama.uploadDocument');
+
+// customer account route
+Route::get('/customer/akun/index', [CustomerAkunController::class, 'index'])->name('customer.akun.index');
+Route::put('/customer/pengaturan-akun/profil', [CustomerAkunController::class, 'updateProfile'])->name('customer.akun.updateProfile');
+Route::put('/customer/pengaturan-akun/password', [CustomerAkunController::class, 'updatePassword'])->name('customer.akun.updatePassword');
+Route::post('/customer/pengaturan-akun/foto', [CustomerAkunController::class, 'updateAvatar'])->name('customer.akun.updateAvatar');
 
 // Lawyer Routes
 Route::get('/lawyer/login', function () {

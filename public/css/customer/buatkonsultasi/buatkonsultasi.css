@@ -1,38 +1,58 @@
 /* ==========================================================================
-   FORM & WIZARD STYLES (public/css/form.css)
+   FORM & MULTI-STEP WIZARD STYLES (TAHAP 1 - 4)
    ========================================================================== */
 
-/* Utility Classes Tambahan */
-.p-0 { padding: 0 !important; }
-.text-dark { color: #111827 !important; }
+.sidebar-menu li.active-blue a {
+    background-color: var(--primary-blue, #0d6efd);
+    color: #ffffff;
+    border-radius: 8px;
+}
 
-/* Stepper Progres line */
-.wizard-container {
-    width: 100%;
-    margin-bottom: 50px;
-    background: #ffffff;
+.mb-0 { margin-bottom: 0 !important; }
+.mb-3 { margin-bottom: 16px !important; }
+.mb-4 { margin-bottom: 24px !important; }
+
+.alert-success {
+    background-color: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #065f46;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ==================== WIZARD PROGRESS STEPPER ==================== */
+.wizard-card {
+    background-color: #ffffff;
     border-radius: 12px;
+    padding: 24px 28px 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f5f9;
 }
 
 .wizard-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
 }
 
 .wizard-header h4 {
     margin: 0;
-    color: #183b5b;
-    font-size: 14px;
+    color: #111827;
+    font-size: 15px;
     font-weight: 700;
 }
 
 .wizard-counter {
-    color: #8b9bb0;
-    font-size: 11px;
-    white-space: nowrap;
+    color: #6b7280;
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .wizard-progress {
@@ -41,19 +61,16 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    margin-top: 40px;
-    transition: width 0.4s ease;
 }
 
 .wizard-line {
     position: absolute;
-    top: 11px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: #e1e7ed;
+    top: 13px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 3px;
+    background-color: #e5e7eb;
     z-index: 1;
-    overflow: hidden;
 }
 
 .wizard-line-active {
@@ -68,7 +85,7 @@
 
 .wizard-step {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -77,64 +94,68 @@
 }
 
 .wizard-circle {
-    position: relative;
-    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 24px;
-    height: 24px;
-    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
-    background-color: #e9edf2;
-    color: #9ba8b6;
-    font-size: 10px;
+    background-color: #e5e7eb;
+    color: #6b7280;
+    font-size: 12px;
     font-weight: 600;
+    transition: all 0.25s ease;
 }
 
-.wizard-circle.active-completed {
-    background: #009875;
+.wizard-circle.current {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+.wizard-circle.completed {
+    background-color: #009875;
     color: #ffffff;
 }
 
 .wizard-circle i {
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .wizard-label {
-    margin-top: 12px;
-    color: #8190a4;
-    font-size: 10px;
-    line-height: 1.5;
-    white-space: nowrap;
-    transition: color 0.3s ease;
+    margin-top: 10px;
+    color: #9ca3af;
+    font-size: 11.5px;
+    font-weight: 500;
 }
 
 .wizard-step.active .wizard-label,
 .wizard-step.completed .wizard-label {
-    color: #183b5b;
+    color: #111827;
     font-weight: 600;
 }
 
-/* Form Content Area */
-.form-content-area {
-    padding: 30px 24px;
-    background: #ffffff;
+/* ==================== FORM CARD (TAHAP 1 - 3) ==================== */
+.form-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    border: 1px solid #f1f5f9;
 }
 
 .form-section-title {
-    font-size: 18px;
+    font-size: 17px;
+    font-weight: 700;
     color: #111827;
     margin-bottom: 6px;
 }
 
 .form-section-desc {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 30px;
+    font-size: 13.5px;
+    color: #6b7280;
+    margin-bottom: 26px;
 }
 
-/* Inputs & Labels */
 .form-group {
     margin-bottom: 20px;
 }
@@ -142,19 +163,20 @@
 .form-label {
     display: block;
     font-size: 13px;
-    font-weight: 500;
-    color: #374151;
+    font-weight: 600;
+    color: #1f2937;
     margin-bottom: 8px;
 }
 
 .form-control {
     width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #d1d5db;
+    padding: 11px 14px;
+    border: 1px solid #e5e7eb;
     border-radius: 8px;
-    font-size: 14px;
-    color: #1f2937;
-    transition: border-color 0.2s;
+    font-size: 13.5px;
+    color: #111827;
+    background-color: #ffffff;
+    transition: border-color 0.2s, box-shadow 0.2s;
     outline: none;
 }
 
@@ -163,11 +185,10 @@
 }
 
 .form-control:focus {
-    border-color: var(--primary-blue);
+    border-color: #0d6efd;
     box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
 }
 
-/* Form Row (Grid untuk Input Bersebelahan) */
 .form-row {
     display: flex;
     gap: 20px;
@@ -177,196 +198,103 @@
     flex: 1;
 }
 
-/* Input Group (Untuk Nomor Telepon dengan Bendera) */
-.input-group {
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.input-group-prepend {
-    position: absolute;
-    left: 1px;
-    top: 1px;
-    bottom: 1px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 12px;
-    background-color: #f9fafb;
-    border-right: 1px solid #d1d5db;
-    border-radius: 8px 0 0 8px;
-    font-size: 14px;
-    color: #4b5563;
-}
-
-.input-with-prepend {
-    padding-left: 90px; /* Jarak untuk area +62 */
-}
-
-/* Form Actions Button */
-.form-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #f3f4f6;
-}
-
-.action-right {
-    display: flex;
-    gap: 12px;
-}
-
-.btn-outline-gray {
-    background: white;
-    border: 1px solid #d1d5db;
-    color: #4b5563;
-}
-.btn-outline-gray:hover { background: #f9fafb; }
-
-.btn-light {
-    background: #f3f4f6;
-    border: 1px solid transparent;
-    color: #374151;
-}
-.btn-light:hover { background: #e5e7eb; }
-
-/* Styling untuk list di Right Column (Apa yang terjadi selanjutnya) */
-.info-list-item {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 20px;
-}
-.info-list-item:last-child { margin-bottom: 0; }
-
-.list-icon {
-    font-size: 20px;
-    color: var(--text-muted);
-    padding-top: 2px;
-}
-.info-list-item h5 {
-    font-size: 13px;
-    color: #111827;
-    margin-bottom: 4px;
-}
-.info-list-item p {
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.4;
-}
-
-/* RESPONSIVE PROGRESS LINE*/
-@media (max-width: 576px) {
-    .wizard-container {
-        padding: 18px 10px 20px;
-    }
-
-    .wizard-header {
-        margin-bottom: 24px;
-    }
-
-    .wizard-header h4 {
-        font-size: 12px;
-    }
-
-    .wizard-counter {
-        font-size: 10px;
-    }
-
-    .wizard-line {
-        left: 12.5%;
-        right: 12.5%;
-    }
-
-    .wizard-label {
-        max-width: 80px;
-        white-space: normal;
-        font-size: 9px;
-    }
-}
-
-/* RESPONSIVE KHUSUS FORM */
-@media (max-width: 768px) {
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
-    
-    .form-actions {
-        flex-direction: column-reverse; /* Tombol simpan ke bawah */
-        gap: 16px;
-    }
-    
-    .form-actions .btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    .action-right {
-        width: 100%;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    /* Stepper responsif (Bisa digeser ke samping) */
-    .wizard-stepper {
-        overflow-x: auto;
-        padding-bottom: 15px;
-    }
-    
-    .wizard-step {
-        min-width: 140px;
-    }
-}
-
-/* ==========================================================================
-   STYLE UNTUK TAHAP 2, 3, & 4
-   ========================================================================== */
-
-.mt-1 { margin-top: 4px; }
-.mt-3 { margin-top: 12px; }
-.mt-4 { margin-top: 20px; }
-.pt-0 { padding-top: 0 !important; }
-.pt-4 { padding-top: 20px !important; }
-.border-top { border-top: 1px solid #e5e7eb; }
-.cursor-pointer { cursor: pointer; }
-.d-flex { display: flex; }
-.align-center { align-items: center; }
-.gap-2 { gap: 12px; }
-.bg-light-gray { background-color: #f3f4f6; }
-
 select.form-control {
     appearance: none;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
-    background-position: right 12px center;
+    background-position: right 14px center;
     background-size: 16px;
+    padding-right: 38px;
 }
 
-/* Tahap 3: Drag & Drop Area */
+.char-count {
+    font-size: 11.5px;
+    color: #9ca3af;
+    margin-top: 6px;
+}
+
+/* ==================== FORM ACTIONS ==================== */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 28px;
+    padding-top: 16px;
+}
+
+.action-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-outline-gray {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #4b5563;
+}
+
+.btn-outline-gray:hover {
+    background-color: #f9fafb;
+}
+
+.btn-light-muted {
+    background-color: #f3f4f6;
+    border: 1px solid #e5e7eb;
+    color: #6b7280;
+}
+
+.btn-light-muted:hover {
+    background-color: #e5e7eb;
+    color: #374151;
+}
+
+/* ==================== TAHAP 3: UPLOAD DRAG & DROP ==================== */
 .upload-drag-area {
-    border: 2px dashed #d1d5db;
-    border-radius: 12px;
-    padding: 40px 20px;
+    border: 1.5px dashed #d1d5db;
+    border-radius: 10px;
+    padding: 64px 20px;
     text-align: center;
     background-color: #fafafa;
-    transition: 0.3s;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
 }
-.upload-drag-area:hover {
-    border-color: var(--primary-blue);
-    background-color: var(--light-blue-bg);
+
+.upload-drag-area:hover,
+.upload-drag-area.drag-over {
+    border-color: #0d6efd;
+    background-color: #eff6ff;
 }
+
 .upload-icon {
-    font-size: 40px;
-    color: #9ca3af;
-    margin-bottom: 12px;
+    font-size: 42px;
+    color: #4b5563;
+    margin-bottom: 10px;
 }
+
 .upload-drag-area h5 {
     font-size: 14px;
+    font-weight: 600;
+    color: #111827;
     margin-bottom: 6px;
-    font-weight: 500;
+}
+
+.browse-link {
+    color: #111827;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.upload-hint {
+    font-size: 11.5px;
+    color: #6b7280;
+}
+
+.uploaded-files-list {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .file-item-box {
@@ -374,82 +302,251 @@ select.form-control {
     justify-content: space-between;
     align-items: center;
     padding: 12px 16px;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #f1f5f9;
     border-radius: 8px;
-    background: white;
-    margin-bottom: 10px;
+    background-color: #f8fafc;
 }
+
 .file-item-info {
     display: flex;
     align-items: center;
     gap: 12px;
 }
-.file-type-icon { font-size: 24px; }
-.btn-icon-delete {
-    background: transparent;
-    border: none;
-    color: var(--primary-blue); /* Biru sesuai desain */
+
+.file-badge-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    background-color: #fef2f2;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 18px;
-    cursor: pointer;
-}
-.btn-icon-download {
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    font-size: 20px;
-    cursor: pointer;
 }
 
-/* Tahap 4: Review Cards */
+.file-name {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.file-size {
+    display: block;
+    font-size: 11.5px;
+    color: #6b7280;
+    margin-top: 2px;
+}
+
+.btn-icon-delete {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    color: #2563eb;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.btn-icon-delete:hover {
+    background-color: #fee2e2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.naming-convention-note {
+    font-size: 11.5px;
+    color: #6b7280;
+    margin-top: 14px;
+}
+
+/* ==================== TAHAP 4: REVIEW CARDS ==================== */
 .review-card {
+    background-color: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
-    background-color: white;
     margin-bottom: 20px;
     overflow: hidden;
 }
+
 .review-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 20px;
-    background-color: #f9fafb;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f1f5f9;
 }
-.btn-edit-link {
-    background: transparent;
-    border: none;
-    color: var(--primary-blue);
-    font-size: 12px;
-    font-weight: 600;
+
+.review-title-group {
     display: flex;
     align-items: center;
-    gap: 4px;
-    cursor: pointer;
+    gap: 10px;
 }
-.review-body {
-    padding: 20px;
+
+.status-dot-green {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #009875;
 }
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+
+.review-header h5 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
 }
-.review-label {
+
+.btn-edit-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #ffffff;
+    border: 1px solid #bfdbfe;
+    color: #2563eb;
     font-size: 12px;
-    color: var(--text-muted);
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.btn-edit-pill:hover {
+    background-color: #eff6ff;
+}
+
+.review-body {
+    padding: 20px 24px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 24px;
+}
+
+.review-label {
+    font-size: 11.5px;
+    color: #6b7280;
     margin-bottom: 4px;
 }
-.review-value {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-main);
-}
-.border-none { border: none !important; }
-.border-bottom { border-bottom: 1px solid #e5e7eb !important; }
-.rounded-0 { border-radius: 0 !important; }
 
-/* Responsive grid-3 for mobile */
+.review-value {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.review-badge-green {
+    display: inline-block;
+    background-color: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+.review-summary-box {
+    background-color: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #374151;
+}
+
+.review-doc-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border: 1px solid #f1f5f9;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    margin-bottom: 10px;
+}
+
+.review-doc-row:last-child {
+    margin-bottom: 0;
+}
+
+.review-footer-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+/* ==================== RIGHT COLUMN INFO LIST ==================== */
+.right-info-wrapper {
+    border: 1px solid #e5e7eb;
+    padding: 16px;
+}
+
+.border-green {
+    border: 1px solid #d1fae5;
+}
+
+.info-list-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.info-list-item:last-child {
+    margin-bottom: 0;
+}
+
+.list-icon {
+    font-size: 19px;
+    color: #6b7280;
+    padding-top: 2px;
+}
+
+.info-list-item h5 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.info-list-item p {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.45;
+}
+
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
-    .grid-3 { grid-template-columns: 1fr; gap: 12px; }
+    .form-row,
+    .grid-2 {
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        gap: 14px;
+    }
+
+    .form-actions .btn,
+    .action-right {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .wizard-label {
+        font-size: 10px;
+    }
 }

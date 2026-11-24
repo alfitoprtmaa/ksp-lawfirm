@@ -27,7 +27,7 @@
                     <img src="{{ asset('images/logo.png') }}" alt="KSP Logo" class="logo-img">
                 </div>
                 <div class="brand-info">
-                    <h2 class="brand-name">KETUT SURYA PUTRA<br>& PARTNERS</h2>
+                    <h2 class="brand-name">KETUT SURYA PUTRA<br>&amp; PARTNERS</h2>
                     <p class="brand-sub">Legal Client Portal</p>
                 </div>
             </div>
@@ -36,15 +36,14 @@
                 <p class="menu-label">RUANG KLIEN</p>
                 <ul>
                     <li><a href="{{ route('customer.index') }}"><i class='bx bx-grid-alt'></i> Overview</a></li>
-                    <li><a href="{{ route('customer.perkaralama.index') }}"><i class='bx bx-git-pull-request'></i>  Perkara Lama</a></li>
+                    <li><a href="{{ route('customer.perkaralama.index') }}"><i class='bx bx-git-pull-request'></i> Perkara Saya</a></li>
                     <li><a href="{{ route('customer.buatkonsultasi.index') }}"><i class='bx bx-copy'></i> Perkara Baru</a></li>
                     <li><a href="{{ route('customer.tracking.index') }}"><i class='bx bx-message'></i> Track Your Case</a></li>
                 </ul>
             </div>
 
             <div class="sidebar-footer">
-                <!-- Highlight Pengaturan Akun -->
-                <a href="#" class="settings-link active-link"><i class='bx bx-cog'></i> Pengaturan akun</a>
+                <a href="{{ route('customer.akun.index') }}" class="settings-link active-link"><i class='bx bx-cog'></i> Pengaturan akun</a>
             </div>
         </aside>
 
@@ -68,7 +67,7 @@
                             <i class='bx bx-user'></i>
                         </div>
                         <div class="user-info">
-                            <span class="user-name">Akun Anda</span>
+                            <span class="user-name">{{ $customer['full_name'] ?? 'Akun Anda' }}</span>
                             <span class="user-role">Klien</span>
                         </div>
                         <i class='bx bx-chevron-down'></i>
@@ -85,18 +84,37 @@
                     <p class="page-subtitle text-muted">Pantau status dan timeline perkara Anda.</p>
                 </div>
 
+                @if (session('success_profile'))
+                    <div style="background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; padding:12px 16px; border-radius:8px; font-size:13px; margin-bottom:20px;">
+                        {{ session('success_profile') }}
+                    </div>
+                @endif
+
+                @if (session('success_password'))
+                    <div style="background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; padding:12px 16px; border-radius:8px; font-size:13px; margin-bottom:20px;">
+                        {{ session('success_password') }}
+                    </div>
+                @endif
+
                 <!-- Profile Header Card -->
                 <div class="card profile-header-card mb-4 rounded-lg bg-white border">
                     <div class="d-flex align-center gap-4">
-                        <div class="avatar-lg bg-light-gray text-dark font-semibold">A</div>
+                        <div class="avatar-lg bg-light-gray text-dark font-semibold">
+                            {{ strtoupper(substr($customer['full_name'] ?? 'A', 0, 1)) }}
+                        </div>
                         <div>
-                            <h3 class="text-xl font-bold text-dark m-0 mb-1">Alfito Pratama</h3>
+                            <h3 class="text-xl font-bold text-dark m-0 mb-1">{{ $customer['full_name'] ?? 'Alfito Pratama' }}</h3>
                             <p class="text-sm text-muted m-0">Klien</p>
                         </div>
                     </div>
-                    <button class="btn btn-light-outline d-flex align-center gap-2">
-                        <i class='bx bx-camera text-lg'></i> Ubah Foto
-                    </button>
+
+                    <form action="{{ route('customer.akun.updateAvatar') }}" method="POST" enctype="multipart/form-data" id="avatarUploadForm">
+                        @csrf
+                        <input type="file" name="avatar" id="avatarFileInput" accept="image/*" hidden onchange="document.getElementById('avatarUploadForm').submit()">
+                        <button type="button" class="btn btn-light-outline d-flex align-center gap-2" onclick="document.getElementById('avatarFileInput').click()">
+                            <i class='bx bx-camera text-lg'></i> Ubah Foto
+                        </button>
+                    </form>
                 </div>
 
                 <!-- Settings Grid Layout -->
@@ -112,18 +130,29 @@
                             </div>
                         </div>
 
-                        <form action="#">
+                        <form action="{{ route('customer.akun.updateProfile') }}" method="POST">
+                            @csrf
+                            @method('PUT')
+
                             <div class="form-group mb-3">
                                 <label class="form-label text-dark font-medium">Nama Lengkap</label>
-                                <input type="text" class="form-control" value="Alfito Pratama">
+                                <input type="text" name="full_name" class="form-control" value="{{ old('full_name', $customer['full_name'] ?? '') }}" required>
+                                @error('full_name')
+                                    <span style="color:#dc2626; font-size:12px; margin-top:4px;">{{ $message }}</span>
+                                @enderror
                             </div>
+
                             <div class="form-group mb-3">
                                 <label class="form-label text-dark font-medium">Email</label>
-                                <input type="email" class="form-control" value="alfito.pratama@email.com">
+                                <input type="email" name="email" class="form-control" value="{{ old('email', $customer['email'] ?? '') }}" required>
+                                @error('email')
+                                    <span style="color:#dc2626; font-size:12px; margin-top:4px;">{{ $message }}</span>
+                                @enderror
                             </div>
+
                             <div class="form-group mb-4">
                                 <label class="form-label text-dark font-medium">Nomor Telpon</label>
-                                <input type="text" class="form-control" value="+62 812-3456-7890">
+                                <input type="text" name="phone" class="form-control" value="{{ old('phone', $latestBookingPhone ?? '') }}">
                             </div>
                             
                             <div class="pt-2">
@@ -144,22 +173,33 @@
                             </div>
                         </div>
 
-                        <form action="#">
+                        <form action="{{ route('customer.akun.updatePassword') }}" method="POST" id="passwordForm">
+                            @csrf
+                            @method('PUT')
+
                             <div class="form-group mb-3">
                                 <label class="form-label text-dark font-medium">Kata Sandi Saat Ini</label>
-                                <input type="password" class="form-control" value="••••••••••••">
+                                <input type="password" name="current_password" class="form-control" placeholder="Masukkan kata sandi saat ini" required>
+                                @error('current_password')
+                                    <span style="color:#dc2626; font-size:12px; margin-top:4px;">{{ $message }}</span>
+                                @enderror
                             </div>
+
                             <div class="form-group mb-3">
                                 <label class="form-label text-dark font-medium">Kata Sandi Baru</label>
-                                <input type="password" class="form-control" placeholder="Rubah kata sandi anda">
+                                <input type="password" name="password" id="newPasswordInput" class="form-control" placeholder="Rubah kata sandi anda" required>
+                                @error('password')
+                                    <span style="color:#dc2626; font-size:12px; margin-top:4px;">{{ $message }}</span>
+                                @enderror
                             </div>
+
                             <div class="form-group mb-4">
                                 <label class="form-label text-dark font-medium">Konfirmasi Kata Sandi Baru</label>
-                                <input type="password" class="form-control" placeholder="Ulangi kata sandi baru">
+                                <input type="password" name="password_confirmation" id="confirmPasswordInput" class="form-control" placeholder="Ulangi kata sandi baru" required>
                             </div>
                             
                             <div class="pt-2">
-                                <button type="button" class="btn btn-disabled w-100 justify-center py-3 rounded-md font-semibold">
+                                <button type="submit" id="btnSubmitPassword" class="btn btn-disabled w-100 justify-center py-3 rounded-md font-semibold" disabled>
                                     Ubah Kata Sandi
                                 </button>
                             </div>
@@ -172,7 +212,6 @@
         </main>
     </div>
 
-    <!-- Script Sidebar Mobile -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -189,6 +228,28 @@
                         }
                     }
                 });
+            }
+
+            // Aktifkan tombol "Ubah Kata Sandi" otomatis saat user mulai mengetik password baru
+            const newPass = document.getElementById('newPasswordInput');
+            const confirmPass = document.getElementById('confirmPasswordInput');
+            const submitPassBtn = document.getElementById('btnSubmitPassword');
+
+            function togglePasswordButton() {
+                if (newPass.value.trim().length > 0 && confirmPass.value.trim().length > 0) {
+                    submitPassBtn.disabled = false;
+                    submitPassBtn.classList.remove('btn-disabled');
+                    submitPassBtn.classList.add('btn-primary');
+                } else {
+                    submitPassBtn.disabled = true;
+                    submitPassBtn.classList.add('btn-disabled');
+                    submitPassBtn.classList.remove('btn-primary');
+                }
+            }
+
+            if (newPass && confirmPass && submitPassBtn) {
+                newPass.addEventListener('input', togglePasswordButton);
+                confirmPass.addEventListener('input', togglePasswordButton);
             }
         });
     </script>
