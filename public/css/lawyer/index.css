@@ -1,14 +1,12 @@
 :root {
-    --lawyer-sidebar-bg: #1C2628;
-    --lawyer-primary: #00956B;
-    --lawyer-primary-hover: #007A57;
-    --bg-light: #F4F7F8;
-    --text-dark: #111827;
-    --text-gray: #6B7280;
-    --text-light-gray: #9CA3AF;
-    --text-main: #1f2937;
+    --lawyer-sidebar-bg: #08241b;
+    --lawyer-primary: #008f65;
+    --lawyer-primary-hover: #007754;
+    --bg-light: #f9fafb;
+    --text-dark: #0f172a;
+    --text-gray: #64748b;
     --text-muted: #6b7280;
-    --white: #FFFFFF;
+    --white: #ffffff;
 }
 
 * {
@@ -35,9 +33,13 @@ body {
     color: var(--white);
     display: flex;
     flex-direction: column;
-    padding: 24px 16px;
+    padding: 24px 18px;
     position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
     height: 100vh;
+    z-index: 100;
 }
 
 .sidebar-header {
@@ -47,37 +49,38 @@ body {
 }
 
 .logo-img {
-    background-color: none;
     padding: 4px;
     border-radius: 4px;
     margin-bottom: 12px;
 }
 
 .logo img {
-    display:block;
-    width:60px;
-    height:60px;
-    object-fit:contain
+    display: block;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
 }
 
 .brand-name {
     font-size: 12px;
-    font-weight: 600;
-    line-height: 1.4;
-    letter-spacing: 0.5px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0.4px;
+    color: #ffffff;
 }
 
 .brand-sub {
     font-size: 11px;
-    color: var(--sidebar-text);
+    color: #94a3b8;
     margin-top: 4px;
 }
 
 .menu-label {
-    font-size: 11px;
+    font-size: 10.5px;
+    font-weight: 600;
     text-transform: uppercase;
-    color: #6B7280;
-    letter-spacing: 1px;
+    color: #64748b;
+    letter-spacing: 0.8px;
     margin-bottom: 12px;
     padding: 0 8px;
 }
@@ -85,7 +88,7 @@ body {
 .nav-links {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .nav-item {
@@ -93,31 +96,32 @@ body {
     align-items: center;
     gap: 12px;
     padding: 12px 16px;
-    color: #D1D5DB;
+    color: #cbd5e1;
     text-decoration: none;
     border-radius: 8px;
-    font-size: 14px;
-    transition: all 0.2s;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: all 0.2s ease;
 }
 
 .nav-item i {
-    font-size: 20px;
+    font-size: 19px;
 }
 
 .nav-item:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(255, 255, 255, 0.06);
     color: var(--white);
 }
 
 .nav-item.active {
     background-color: var(--lawyer-primary);
     color: var(--white);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .sidebar-footer {
     margin-top: auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     padding-top: 16px;
 }
 
@@ -136,18 +140,32 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 0 36px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
 .breadcrumbs {
-    font-size: 14px;
-    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13.5px;
+    color: #94a3b8;
+}
+
+.breadcrumb-sep {
+    font-size: 16px;
+    color: #94a3b8;
 }
 
 .breadcrumbs .current {
-    color: var(--text-main);
-    font-weight: 500;
+    color: #0f172a;
+    font-weight: 600;
 }
 
 .topbar-right {
@@ -159,9 +177,24 @@ body {
 .icon-btn {
     background: none;
     border: none;
-    font-size: 22px;
-    color: var(--text-muted);
+    font-size: 21px;
+    color: #64748b;
     cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notif-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 7px;
+    height: 7px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 1.5px solid #ffffff;
 }
 
 .user-profile {
@@ -172,15 +205,20 @@ body {
 }
 
 .avatar {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    background-color: #f3f4f6;
+    background-color: #e2e8f0;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    color: var(--text-muted);
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .user-info {
@@ -189,227 +227,248 @@ body {
 }
 
 .user-name {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
 }
 
 .user-role {
-    font-size: 12px;
-    color: var(--text-muted);
+    font-size: 11.5px;
+    color: #64748b;
+}
+
+.dropdown-arrow {
+    font-size: 16px;
+    color: #64748b;
 }
 
 /* ================== PAGE CONTENT (OVERVIEW) ================== */
 .page-content {
-    padding: 16px 40px 40px 40px;
+    padding: 32px 36px 40px;
 }
 
 /* Welcome Banner */
 .welcome-banner {
+    background-color: #eef7f2;
+    border: 1px solid #d5ebe0;
+    border-radius: 16px;
+    padding: 32px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
-    min-height: 180px;
+    margin-bottom: 28px;
+    min-height: 190px;
     position: relative;
+    overflow: hidden;
 }
 
 .welcome-text {
-    max-width: 500px;
+    max-width: 520px;
     z-index: 2;
 }
 
 .greeting {
-    font-size: 16px;
-    color: #64748B;
-    margin-bottom: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 6px;
 }
 
 .lawyer-name {
     font-size: 32px;
     font-weight: 800;
-    color: #1E293B;
-    margin-bottom: 12px;
-    letter-spacing: -0.5px;
+    color: #0f291e;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
 }
 
 .greeting-sub {
-    font-size: 15px;
-    color: #64748B;
+    font-size: 14px;
+    color: #64748b;
 }
 
 .welcome-illustration {
-    position: absolute;
-    right: 0;
-    bottom: -20px;
-    height: 200px;
+    height: 165px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     z-index: 1;
 }
 
 .welcome-illustration img {
     height: 100%;
+    width: auto;
     object-fit: contain;
 }
 
-/* Stats Grid */
+/* Stats Grid (4 Kartu) */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, minmax(0, 210px));
+    gap: 18px;
 }
 
 .stat-card {
-    background: var(--white);
     border-radius: 16px;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px -4px rgba(15, 23, 42, 0.06);
+}
+
+.card-blue {
+    background-color: #f8fbff;
+    border: 1px solid #dbeafe;
+}
+
+.card-indigo {
+    background-color: #f8faff;
+    border: 1px solid #e0e7ff;
+}
+
+.card-amber {
+    background-color: #fffdf7;
+    border: 1px solid #fde68a;
+}
+
+.card-green {
+    background-color: #f6fdf9;
+    border: 1px solid #bbf7d0;
+}
+
+.stat-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
 }
 
 /* Icon Wrapper */
 .icon-wrapper {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 22px;
-    margin-bottom: 24px;
+    font-size: 20px;
 }
 
-.icon-wrapper.blue { background: #EFF6FF; color: #3B82F6; }
-.icon-wrapper.light-blue { background: #F1F5F9; color: #64748B; }
-.icon-wrapper.yellow { background: #FFFBEB; color: #F59E0B; }
-.icon-wrapper.green { background: #F0FDF4; color: #10B981; }
-.icon-wrapper.red { background: #FEF2F2; color: #EF4444; }
+.icon-wrapper.blue {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
 
-/* Typograpghy */
+.icon-wrapper.indigo {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+}
+
+.icon-wrapper.amber {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.icon-wrapper.green {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+/* Watermark Icon di Kanan Atas Kartu */
+.watermark-icon {
+    font-size: 36px;
+    opacity: 0.14;
+}
+
+.watermark-icon.blue { color: #2563eb; }
+.watermark-icon.indigo { color: #4f46e5; }
+.watermark-icon.amber { color: #d97706; }
+.watermark-icon.green { color: #16a34a; }
+
+/* Typography Kartu */
 .stat-number {
     font-size: 32px;
     font-weight: 800;
-    color: #0F172A;
-    margin-bottom: 8px;
-    line-height: 1;
+    color: #0f172a;
+    margin-bottom: 6px;
+    line-height: 1.1;
 }
 
 .stat-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: #334155;
-    margin-bottom: 12px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 16px;
 }
 
 .stat-desc {
     font-size: 12px;
-    color: #94A3B8;
+    color: #64748b;
     line-height: 1.5;
-    max-width: 140px;
 }
-
-/* Background Watermark Icon */
-.bg-icon {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    font-size: 56px;
-    opacity: 0.1;
-    z-index: 0;
-}
-
-.stat-card:nth-child(1) .bg-icon { color: #3B82F6; }
-.stat-card:nth-child(2) .bg-icon { color: #64748B; }
-.stat-card:nth-child(3) .bg-icon { color: #F59E0B; }
-.stat-card:nth-child(4) .bg-icon { color: #10B981; }
-.stat-card:nth-child(5) .bg-icon { color: #EF4444; }
 
 /* ==========================================================================
-   RESPONSIVE LAYOUT (MEDIA QUERIES) UNTUK DASHBOARD
+   RESPONSIVE LAYOUT
    ========================================================================== */
-
-/* Sembunyikan tombol toggle mobile di desktop */
 .mobile-toggle-btn {
     display: none;
     background: none;
     border: none;
     font-size: 26px;
-    color: var(--text-main);
+    color: var(--text-dark);
     cursor: pointer;
 }
 
-/* -------------------------------------------
-   TABLET (max-width: 1024px)
-   ------------------------------------------- */
-@media (max-width: 1024px) {
-    /* Ubah Grid 2 kolom menjadi 1 kolom (atas-bawah) */
-    .grid-layout {
-        grid-template-columns: 1fr;
+@media (max-width: 1100px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* -------------------------------------------
-   MOBILE (max-width: 768px)
-   ------------------------------------------- */
 @media (max-width: 768px) {
-    /* --- SIDEBAR BEHAVIOR --- */
     .mobile-toggle-btn {
-        display: block; /* Munculkan tombol hamburger */
+        display: block;
     }
 
     .sidebar {
-        position: fixed;
-        left: -260px; /* Sembunyikan sidebar di kiri */
-        top: 0;
-        bottom: 0;
-        z-index: 999;
+        left: -260px;
         transition: left 0.3s ease;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
     }
 
     .sidebar.active {
-        left: 0; /* Munculkan sidebar saat aktif */
+        left: 0;
     }
 
-    /* --- LAYOUT UTAMA --- */
+    .main-content {
+        margin-left: 0;
+    }
+
     .topbar {
         padding: 0 20px;
     }
-    
-    .content-area {
+
+    .page-content {
         padding: 20px;
     }
 
-    .welcome-section h1 {
-        font-size: 24px;
-    }
-
-    /* --- HERO CARD (DASHBOARD) --- */
-    .hero-card {
-        flex-direction: column-reverse; /* Gambar di atas, teks di bawah */
-        text-align: center;
+    .welcome-banner {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 20px;
-        padding: 30px 20px;
+        padding: 24px;
     }
 
-    .hero-content p {
-        max-width: 100%;
-        margin: 0 auto 20px auto;
+    .welcome-illustration {
+        height: 130px;
+        align-self: flex-end;
     }
 
-    .hero-content .btn {
-        margin: 0 auto;
-    }
-
-    /* --- INFO & CONTACT CARDS (DASHBOARD) --- */
-    .info-card {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .contact-header {
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
+    .stats-grid {
+        grid-template-columns: 1fr;
     }
 }

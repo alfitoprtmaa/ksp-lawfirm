@@ -12,6 +12,12 @@ use App\Http\Controllers\CustomerPerkaraController;
 use App\Http\Controllers\CustomerBuatKonsultasiController;
 use App\Http\Controllers\CustomerAkunController;
 use App\Http\Controllers\CustomerTrackingController;
+use App\Http\Controllers\LawyerAuthController;
+use App\Http\Controllers\LawyerDashboardController;
+use App\Http\Controllers\LawyerJadwalController;
+use App\Http\Controllers\Lawyer\AkunController;
+use App\Http\Controllers\Lawyer\PusatReferensiController;
+use App\Http\Controllers\Lawyer\KelolaPerkaraController;
 
 Route::get('/', [LandingController::class, 'index'])->name('welcome');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
@@ -55,29 +61,43 @@ Route::put('/customer/pengaturan-akun/password', [CustomerAkunController::class,
 Route::post('/customer/pengaturan-akun/foto', [CustomerAkunController::class, 'updateAvatar'])->name('customer.akun.updateAvatar');
 
 // Lawyer Routes
-Route::get('/lawyer/login', function () {
-    return view('lawyer.login');
+
+// lawyer login routes
+Route::get('/lawyer/login', [LawyerAuthController::class, 'showLoginForm'])->name('lawyer.login');
+Route::post('/lawyer/login', [LawyerAuthController::class, 'login'])->name('lawyer.login.submit');
+Route::post('/lawyer/logout', [LawyerAuthController::class, 'logout'])->name('lawyer.logout');
+
+// lawyer dashboard route
+Route::get('/lawyer/index', [LawyerDashboardController::class, 'index'])->name('lawyer.index');
+
+// lawyer management case routes
+Route::prefix('lawyer')->name('lawyer.')->group(function () {
+    Route::get('/kelolaperkara/index', [KelolaPerkaraController::class, 'index'])->name('kelolaperkara.index');
+    Route::get('/kelolaperkara/dikerjakan', [KelolaPerkaraController::class, 'dikerjakan'])->name('kelolaperkara.dikerjakan');
+    Route::get('/kelolaperkara/selesai', [KelolaPerkaraController::class, 'selesai'])->name('kelolaperkara.selesai');
+    Route::get('/kelolaperkara/{id}', [KelolaPerkaraController::class, 'show'])->name('kelolaperkara.show');
+    Route::post('/kelolaperkara/{id}/perkembangan', [KelolaPerkaraController::class, 'storeExecution'])->name('kelolaperkara.execution.store');
+    Route::patch('/kelolaperkara/{id}/selesai', [KelolaPerkaraController::class, 'complete'])->name('kelolaperkara.complete');
+    Route::patch('/kelolaperkara/{id}/arsip', [KelolaPerkaraController::class, 'archive'])->name('kelolaperkara.archive');
 });
 
-Route::get('/lawyer/index', function () {
-    return view('lawyer.index');
-})->name('lawyer.index');
+// lawyer schedule routes
+Route::get('/lawyer/jadwal/index', [LawyerJadwalController::class, 'index'])->name('lawyer.jadwal.index');
+Route::post('/lawyer/jadwal', [LawyerJadwalController::class, 'store'])->name('lawyer.jadwal.store');
 
-Route::get('/lawyer/kelolaperkara/index', function () {
-    return view('lawyer.kelolaperkara.index');
-})->name('lawyer.kelolaperkara.index');
+// lawyer reference center routes
+Route::prefix('lawyer')->name('lawyer.')->group(function () {
+    Route::get('/pusat-referensi', [PusatReferensiController::class, 'index'])->name('pusatreferensi.index');
+    Route::post('/pusat-referensi', [PusatReferensiController::class, 'store'])->name('pusatreferensi.store');
+});
 
-Route::get('/lawyer/jadwal/index', function () {
-    return view('lawyer.jadwal.index');
-})->name('lawyer.jadwal.index');
-
-Route::get('/lawyer/pusatreferensi/index', function () {
-    return view('lawyer.pusatreferensi.index');
-})->name('lawyer.pusatreferensi.index');
-
-Route::get('/lawyer/akun/index', function () {
-    return view('lawyer.akun.index');
-})->name('lawyer.akun.index');
+// lawyer account routes
+Route::prefix('lawyer')->name('lawyer.')->group(function () {
+    // Route pengaturan akun
+    Route::get('/akun', [AkunController::class, 'index'])->name('akun.index');
+    Route::put('/akun', [AkunController::class, 'update'])->name('akun.update');
+    Route::delete('/akun/avatar', [AkunController::class, 'deleteAvatar'])->name('akun.avatar.delete');
+});
 
 // Admin Routes
 Route::get('/admin/login', function () {

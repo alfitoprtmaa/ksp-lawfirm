@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Overview - Lawyer Portal</title>
     <!-- Font Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Custom CSS -->
@@ -17,23 +19,24 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
+                    {{-- Tempat asset logo milikmu --}}
                     <img src="{{ asset('images/logo.png') }}" alt="KSP Logo" class="logo-img">
                 </div>
                 <div class="brand-info">
-                    <h2 class="brand-name">KETUT SURYA PUTRA<br>& PARTNERS</h2>
+                    <h2 class="brand-name">KETUT SURYA PUTRA<br>&amp; PARTNERS</h2>
                     <p class="brand-sub">Legal Client Portal</p>
                 </div>
             </div>
 
             <div class="sidebar-menu">
-                <p class="menu-label">RUANG Lawyer</p>
+                <p class="menu-label">RUANG KLIEN</p>
                 <nav class="nav-links">
-                    <a href="#" class="nav-item active">
+                    <a href="{{ route('lawyer.index') }}" class="nav-item active">
                         <i class='bx bx-grid-alt'></i>
                         <span>Overview</span>
                     </a>
                     <a href="{{ route('lawyer.kelolaperkara.index') }}" class="nav-item">
-                        <i class='bx bx-briefcase'></i>
+                        <i class='bx bx-shopping-bag'></i>
                         <span>Kelola Perkara</span>
                     </a>
                     <a href="{{ route('lawyer.jadwal.index') }}" class="nav-item">
@@ -41,8 +44,8 @@
                         <span>Jadwal</span>
                     </a>
                     <a href="{{ route('lawyer.pusatreferensi.index') }}" class="nav-item">
-                        <i class='bx bx-folder-open'></i>
-                        <span>Pusat Refrensi</span>
+                        <i class='bx bx-message-square-detail'></i>
+                        <span>Pusat Referensi</span>
                     </a>
                 </nav>
             </div>
@@ -59,26 +62,32 @@
         <main class="main-content">
             <!-- Header -->
             <header class="topbar">
-                <div class="topbar-left" style="display: flex; align-items: center; gap: 15px;">
+                <div class="topbar-left">
                     <button class="mobile-toggle-btn" id="mobileMenuBtn">
                         <i class='bx bx-menu'></i>
                     </button>
                     <div class="breadcrumbs">
-                        <span>Portal Lawyer</span> / <span class="current">Overview</span>
+                        <span>Dashboard</span>
+                        <i class='bx bx-chevron-right breadcrumb-sep'></i>
+                        <span class="current">Overview</span>
                     </div>
                 </div>
 
                 <div class="topbar-right">
-                    <button class="icon-btn"><i class='bx bx-bell'></i></button>
+                    <button class="icon-btn notif-btn" title="Notifikasi">
+                        <i class='bx bx-bell'></i>
+                        <span class="notif-dot"></span>
+                    </button>
                     <div class="user-profile">
                         <div class="avatar">
-                            <i class='bx bx-user'></i>
+                            {{-- Tempat asset foto profil lawyer milikmu --}}
+                            <img src="{{ asset($lawyer['photo_path'] ?? 'images/lawyer-default.png') }}" alt="{{ $lawyer['full_name'] }}">
                         </div>
                         <div class="user-info">
-                            <span class="user-name">Akun Anda</span>
-                            <span class="user-role">Lawyer</span>
+                            <span class="user-name">{{ $lawyer['full_name'] }}</span>
+                            <span class="user-role">{{ $lawyer['role_name'] ?? 'Lawyer' }}</span>
                         </div>
-                        <i class='bx bx-chevron-down'></i>
+                        <i class='bx bx-chevron-down dropdown-arrow'></i>
                     </div>
                 </div>
             </header>
@@ -90,70 +99,68 @@
                 <div class="welcome-banner">
                     <div class="welcome-text">
                         <p class="greeting">Selamat datang,</p>
-                        <h2 class="lawyer-name">Adv. Adi Pratama</h2>
+                        <h2 class="lawyer-name">{{ $lawyer['full_name'] }}</h2>
                         <p class="greeting-sub">Berikut ringkasan perkara yang Anda tangani.</p>
                     </div>
                     <div class="welcome-illustration">
-                        <img src="{{ asset('images/Ilustrasi_hukum.png') }}" alt="Justice Illustration">
+                        {{-- Tempat asset ilustrasi timbangan & dokumen milikmu --}}
+                        <img src="{{ asset('images/Ilustrasi_hukum.png') }}" alt="Ilustrasi Hukum">
                     </div>
                 </div>
 
-                <!-- Stats Grid -->
+                <!-- Stats Grid (4 Kartu sesuai mockup) -->
                 <div class="stats-grid">
                     
                     <!-- Card 1: Total Perkara -->
-                    <div class="stat-card">
-                        <div class="icon-wrapper blue">
-                            <i class='bx bx-file'></i>
+                    <div class="stat-card card-blue">
+                        <div class="stat-card-top">
+                            <div class="icon-wrapper blue">
+                                <i class='bx bx-file'></i>
+                            </div>
+                            <i class='bx bx-briefcase watermark-icon blue'></i>
                         </div>
-                        <h3 class="stat-number">124</h3>
+                        <h3 class="stat-number">{{ $stats['total_cases'] }}</h3>
                         <p class="stat-title">Total Perkara</p>
                         <p class="stat-desc">Seluruh perkara yang Anda tangani.</p>
-                        <i class='bx bx-briefcase bg-icon'></i>
                     </div>
 
                     <!-- Card 2: Dalam Proses -->
-                    <div class="stat-card">
-                        <div class="icon-wrapper light-blue">
-                            <i class='bx bx-time-five'></i>
+                    <div class="stat-card card-indigo">
+                        <div class="stat-card-top">
+                            <div class="icon-wrapper indigo">
+                                <i class='bx bx-time-five'></i>
+                            </div>
+                            <i class='bx bx-time-five watermark-icon indigo'></i>
                         </div>
-                        <h3 class="stat-number">56</h3>
+                        <h3 class="stat-number">{{ $stats['in_progress'] }}</h3>
                         <p class="stat-title">Dalam Proses</p>
                         <p class="stat-desc">Perkara yang sedang ditangani.</p>
-                        <i class='bx bx-time-five bg-icon'></i>
                     </div>
 
                     <!-- Card 3: Menunggu Dokumen -->
-                    <div class="stat-card">
-                        <div class="icon-wrapper yellow">
-                            <i class='bx bx-file-blank'></i>
+                    <div class="stat-card card-amber">
+                        <div class="stat-card-top">
+                            <div class="icon-wrapper amber">
+                                <i class='bx bx-file-blank'></i>
+                            </div>
+                            <i class='bx bx-file-blank watermark-icon amber'></i>
                         </div>
-                        <h3 class="stat-number">23</h3>
+                        <h3 class="stat-number">{{ $stats['waiting_documents'] }}</h3>
                         <p class="stat-title">Menunggu Dokumen</p>
                         <p class="stat-desc">Perkara yang menunggu kelengkapan dokumen.</p>
-                        <i class='bx bx-file-blank bg-icon'></i>
                     </div>
 
                     <!-- Card 4: Selesai -->
-                    <div class="stat-card">
-                        <div class="icon-wrapper green">
-                            <i class='bx bx-check-circle'></i>
+                    <div class="stat-card card-green">
+                        <div class="stat-card-top">
+                            <div class="icon-wrapper green">
+                                <i class='bx bx-check-circle'></i>
+                            </div>
+                            <i class='bx bx-check-circle watermark-icon green'></i>
                         </div>
-                        <h3 class="stat-number">38</h3>
+                        <h3 class="stat-number">{{ $stats['completed'] }}</h3>
                         <p class="stat-title">Selesai</p>
                         <p class="stat-desc">Perkara yang selesai ditangani.</p>
-                        <i class='bx bx-check-circle bg-icon'></i>
-                    </div>
-
-                    <!-- Card 5: Ditutup -->
-                    <div class="stat-card">
-                        <div class="icon-wrapper red">
-                            <i class='bx bx-x-circle'></i>
-                        </div>
-                        <h3 class="stat-number">7</h3>
-                        <p class="stat-title">Ditutup</p>
-                        <p class="stat-desc">Perkara yang telah ditutup.</p>
-                        <i class='bx bx-x-circle bg-icon'></i>
                     </div>
 
                 </div>
@@ -167,20 +174,20 @@
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const sidebar = document.querySelector('.sidebar');
 
-            // Toggle Sidebar saat tombol hamburger diklik
-            mobileMenuBtn.addEventListener('click', function(e) {
-                e.stopPropagation(); // Mencegah event klik menjalar ke dokumen
-                sidebar.classList.toggle('active');
-            });
+            if (mobileMenuBtn && sidebar) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    sidebar.classList.toggle('active');
+                });
 
-            // Otomatis menutup sidebar jika user mengklik area di luar sidebar
-            document.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-                        sidebar.classList.remove('active');
+                document.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        if (!sidebar.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                            sidebar.classList.remove('active');
+                        }
                     }
-                }
-            });
+                });
+            }
         });
     </script>
 </body>
