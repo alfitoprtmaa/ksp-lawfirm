@@ -1,23 +1,32 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// Controllers Landing
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ArticlesController;
+
+// Controllers Customer
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\CustomerDashboardController;
 use App\Http\Controllers\CustomerPerkaraController;
 use App\Http\Controllers\CustomerBuatKonsultasiController;
 use App\Http\Controllers\CustomerAkunController;
 use App\Http\Controllers\CustomerTrackingController;
+
+// Controllers Lawyer
 use App\Http\Controllers\LawyerAuthController;
 use App\Http\Controllers\LawyerDashboardController;
 use App\Http\Controllers\LawyerJadwalController;
 use App\Http\Controllers\Lawyer\AkunController;
 use App\Http\Controllers\Lawyer\PusatReferensiController;
 use App\Http\Controllers\Lawyer\KelolaPerkaraController;
+
+// Controllers Admin
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\JadwalController;
 
 Route::get('/', [LandingController::class, 'index'])->name('welcome');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
@@ -100,13 +109,16 @@ Route::prefix('lawyer')->name('lawyer.')->group(function () {
 });
 
 // Admin Routes
-Route::get('/admin/login', function () {
-    return view('admin.login');
-});
 
-Route::get('/admin/dashboard/index', function () {
-    return view('admin.dashboard.index');
-})->name('admin.dashboard.index');
+Route::prefix('admin')->name('admin.')->group(function () {
+    // Halaman Utama Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Kelola Jadwal & Tambah Jadwal
+    Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
+    Route::get('/jadwal/tambah', [JadwalController::class, 'create'])->name('jadwal.create');
+    Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
+});
 
 Route::get('/admin/customer/index', function () {
     return view('admin.customer.index');
