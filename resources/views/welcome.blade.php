@@ -383,7 +383,7 @@
 
 {{-- ================= BOOKING MODAL ================= --}}
 <div class="modal" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="bookingTitle" hidden>
-    <div class="modal__box">
+    <div class="modal__box" data-lenis-prevent>
         <button class="modal__close" data-close-booking aria-label="Tutup">×</button>
         <h3 id="bookingTitle">Booking Konsultasi</h3>
         <p class="muted small">Isi data berikut, pesan akan dikirim ke WhatsApp tim kami.</p>
@@ -402,6 +402,10 @@
 </div>
 
 <button class="totop" id="toTop" aria-label="Kembali ke atas">↑</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 
 <script>
     (function () {
@@ -460,7 +464,10 @@
         }
 
         if (toTop) {
-            toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+            toTop.addEventListener('click', function () {
+                if (window.lenis) window.lenis.scrollTo(0);
+                else window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         }
 
         /* ---------- Accordion (Layanan & FAQ) ---------- */
@@ -575,6 +582,221 @@
             }
         }
     })();
+</script>
+
+<script>
+(function () {
+    'use strict';
+    if (!window.gsap || !window.ScrollTrigger) return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hormati preferensi "reduce motion"
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    /* ============ LENIS SMOOTH SCROLL ============ */
+    var lenis = null;
+    if (window.Lenis) {
+        lenis = new Lenis({
+            duration: 1.2,
+            easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+            smoothWheel: true
+        });
+        window.lenis = lenis;
+
+        // Sinkronkan dengan ScrollTrigger & ticker GSAP
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+        gsap.ticker.lagSmoothing(0);
+
+        // Klik anchor (#layanan, #beranda, dst.) scroll dengan Lenis
+        document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+            var id = a.getAttribute('href');
+            if (!id || id.length < 2) return;
+            a.addEventListener('click', function (e) {
+                var target = document.querySelector(id);
+                if (!target) return;
+                e.preventDefault();
+                lenis.scrollTo(target, { offset: -80 });
+            });
+        });
+
+        // Hentikan scroll halaman saat modal booking terbuka
+        var modal = document.getElementById('bookingModal');
+        if (modal) {
+            new MutationObserver(function () {
+                if (modal.hidden) lenis.start(); else lenis.stop();
+            }).observe(modal, { attributes: true, attributeFilter: ['hidden'] });
+        }
+    }
+
+    /* Pecah teks jadi per kata, tetap aman untuk <br> dan elemen anak */
+    function splitWords(el) {
+        var label = el.textContent.replace(/\s+/g, ' ').trim();
+        var words = [];
+
+        (function walk(node) {
+            Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+                if (n.nodeType === 3) { // text node
+                    var frag = document.createDocumentFragment();
+                    n.textContent.split(/(\s+)/).forEach(function (part) {
+                        if (!part) return;
+                        if (/^\s+$/.test(part)) {
+                            frag.appendChild(document.createTextNode(' '));
+                            return;
+                        }
+                        var outer = document.createElement('span');
+                        outer.className = 'w';
+                        outer.setAttribute('aria-hidden', 'true');
+                        var inner = document.createElement('span');
+                        inner.className = 'w__i';
+                        inner.textContent = part;
+                        outer.appendChild(inner);
+                        frag.appendChild(outer);
+                        words.push(inner);
+                    });
+                    n.parentNode.replaceChild(frag, n);
+                } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+                    walk(n);
+                }
+            });
+        })(el);
+
+        el.setAttribute('aria-label', label); // screen reader tetap baca utuh
+        return words;
+    }
+
+    /* Semua judul yang ingin dianimasikan */
+    var titles = document.querySelectorAll(
+        '.hero h1, .about h2, .services h2, .areas h2, .team__head h2, ' +
+        '.help__title, .news h2, .faq h2, .contact h2'
+    );
+
+    titles.forEach(function (el) {
+        var words = splitWords(el);
+        if (!words.length) return;
+
+        gsap.from(words, {
+            yPercent: 115,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            stagger: 0.08,
+            scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+    });
+
+    /* ============ TEKS PENDUKUNG: MUNCUL PER KATA ============ */
+    var bodyTexts = document.querySelectorAll(
+        '.hero__latin, .about__text, .about .muted, .services .muted, ' +
+        '.quote, .help__description, .news .muted, .contact .muted, ' +
+        '.hc p'
+    );
+
+    bodyTexts.forEach(function (el) {
+        var words = splitWords(el);
+        if (!words.length) return;
+
+        // Paragraf panjang: jeda dipersingkat supaya total durasi tetap wajar (maks ~1 detik)
+        var each = Math.min(0.035, 1 / words.length);
+
+        gsap.from(words, {
+            yPercent: 110,
+            opacity: 0,
+            duration: 0.7,
+            ease: 'power3.out',
+            stagger: each,
+            scrollTrigger: {
+                trigger: el,
+                start: 'top 90%',
+                toggleActions: 'play none none reset' // berulang saat scroll naik-turun
+            }
+        });
+    });
+
+    /* (Opsional) Elemen pendukung hero muncul setelah judul */
+    gsap.from('.hero .chip, .hero__actions', {
+        y: 24,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        stagger: 0.15,
+        delay: 0.3
+    });
+
+    /* ============ REVEAL ELEMEN SATU PER SATU ============ */
+    function reveal(selector, o) {
+        o = o || {};
+        var els = gsap.utils.toArray(selector);
+        if (!els.length) return;
+
+        var from = {
+            opacity: 0,
+            y: o.y !== undefined ? o.y : 40,
+            x: o.x || 0
+        };
+        gsap.set(els, from);
+
+        function show(batch) {
+            gsap.to(batch, {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                duration: o.duration || 0.8,
+                ease: 'power3.out',
+                stagger: o.stagger || 0.12,
+                overwrite: true,
+                clearProps: 'transform,opacity'
+            });
+        }
+
+        ScrollTrigger.batch(els, {
+            start: o.start || 'top 90%',
+            interval: 0.1,
+            batchMax: o.batchMax || 6,
+            onEnter: show,       // scroll turun: muncul
+            onEnterBack: show,   // scroll naik dari bawah: muncul lagi
+            onLeaveBack: function (batch) {
+                // scroll naik sampai elemen keluar lewat bawah layar: reset,
+                // supaya animasi main lagi saat scroll turun berikutnya
+                gsap.set(batch, Object.assign({ overwrite: true }, from));
+            }
+        });
+    }
+
+    /* Teks pendukung: chip, paragraf, quote, foto */
+    reveal('.chip--sm', { y: 20, duration: 0.6 });
+    reveal('.help__photo', { y: 50, duration: 1 });
+
+    /* Elemen berurutan */
+    reveal('.acc__item', { x: -50, y: 0, stagger: 0.12 });          // layanan, dari kiri
+    reveal('.areas__grid li', { y: 24, stagger: 0.06, batchMax: 6 }); // practicing area
+    reveal('.hc', { x: 60, y: 0, stagger: 0.15 });                   // kartu bantuan, dari kanan
+    reveal('.ncard', { y: 60, stagger: 0.15 });                      // berita
+    reveal('.faq__item', { y: 30, stagger: 0.1 });                   // FAQ
+    reveal('.contact__links a', { x: 40, y: 0, stagger: 0.15 });     // kontak
+    reveal('.contact .btn', { y: 20 });
+
+    /* Marquee tim: animasikan pembungkusnya saja (bukan tiap kartu),
+       supaya tidak bentrok dengan animasi CSS dan hover kartu */
+    gsap.from('.team__wrap', {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power3.out',
+        clearProps: 'transform,opacity',
+        scrollTrigger: { trigger: '.team__wrap', start: 'top 90%', toggleActions: 'play none none reverse' }
+    });
+
+    /* Hitung ulang posisi trigger setelah font & gambar termuat */
+    window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+    }
+})();
 </script>
 </body>
 </html>
