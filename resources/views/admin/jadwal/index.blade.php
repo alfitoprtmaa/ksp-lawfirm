@@ -80,13 +80,13 @@
                     <i class='bx bx-chevron-down chevron'></i>
                 </button>
                 <ul class="submenu">
-                    <li><a href="#">Data Layanan</a></li>
-                    <li><a href="#">Data Artikel Kegiatan</a></li>
-                    <li><a href="#">Data FAQ</a></li>
+                    <li><a href="{{ route('admin.layanan.index') }}">Data Layanan</a></li>
+                    <li><a href="{{ route('admin.artikel.index') }}">Data Artikel Kegiatan</a></li>
+                    <li><a href="{{ route('admin.faq.index') }}">Data FAQ</a></li>
                 </ul>
             </div>
 
-            <a href="#" class="nav-item">
+            <a href="{{ route('admin.referensi.index') }}" class="nav-item">
                 <i class='bx bx-book-open nav-icon'></i>
                 <span>Kelola Pusat Referensi</span>
             </a>

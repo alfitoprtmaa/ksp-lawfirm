@@ -32,6 +32,10 @@ use App\Http\Controllers\Admin\KonsultasiPerkaraController;
 use App\Http\Controllers\Admin\DataAdvokatController;
 use App\Http\Controllers\Admin\DataRoleController;
 use App\Http\Controllers\Admin\DataKlienController;
+use App\Http\Controllers\Admin\DataLayananController;
+use App\Http\Controllers\Admin\DataArtikelController;
+use App\Http\Controllers\Admin\DataFaqController;
+use App\Http\Controllers\Admin\AdminPusatReferensiController;
 
 Route::get('/', [LandingController::class, 'index'])->name('welcome');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
@@ -152,4 +156,32 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/klien/daftar', [DataKlienController::class, 'create'])->name('klien.create');
     Route::post('/klien', [DataKlienController::class, 'store'])->name('klien.store');
     Route::patch('/klien/{id}/role', [DataKlienController::class, 'updateRole'])->name('klien.updateRole');
+
+    // Manajemen Konten -> Data Layanan (Practicing Area & Legal Service)
+    Route::get('/layanan/index', [DataLayananController::class, 'index'])->name('layanan.index');
+    Route::post('/layanan/practicing-area', [DataLayananController::class, 'storePracticingArea'])->name('layanan.pa.store');
+    Route::put('/layanan/practicing-area/{id}', [DataLayananController::class, 'updatePracticingArea'])->name('layanan.pa.update');
+    Route::delete('/layanan/practicing-area/{id}', [DataLayananController::class, 'destroyPracticingArea'])->name('layanan.pa.destroy');
+
+    Route::post('/layanan/legal-service', [DataLayananController::class, 'storeLegalService'])->name('layanan.ls.store');
+    Route::put('/layanan/legal-service/{id}', [DataLayananController::class, 'updateLegalService'])->name('layanan.ls.update');
+    Route::delete('/layanan/legal-service/{id}', [DataLayananController::class, 'destroyLegalService'])->name('layanan.ls.destroy');
+
+    // Manajemen Konten -> Data Artikel Kegiatan
+    Route::get('/artikel', [DataArtikelController::class, 'index'])->name('artikel.index');
+    Route::get('/artikel/tambah', [DataArtikelController::class, 'create'])->name('artikel.create');
+    Route::post('/artikel', [DataArtikelController::class, 'store'])->name('artikel.store');
+    Route::delete('/artikel/{id}', [DataArtikelController::class, 'destroy'])->name('artikel.destroy');
+
+    // Manajemen Konten -> Data FAQ
+    Route::get('/faq', [DataFaqController::class, 'index'])->name('faq.index');
+    Route::post('/faq', [DataFaqController::class, 'store'])->name('faq.store');
+    Route::put('/faq/{id}', [DataFaqController::class, 'update'])->name('faq.update');
+    Route::delete('/faq/{id}', [DataFaqController::class, 'destroy'])->name('faq.destroy');
+
+    // Kelola Pusat Referensi
+    Route::get('/referensi/index', [AdminPusatReferensiController::class, 'index'])->name('referensi.index');
+    Route::post('/pusat-referensi', [AdminPusatReferensiController::class, 'store'])->name('referensi.store');
+    Route::put('/pusat-referensi/{id}', [AdminPusatReferensiController::class, 'update'])->name('referensi.update');
+    Route::delete('/pusat-referensi/{id}', [AdminPusatReferensiController::class, 'destroy'])->name('referensi.destroy');
 });
