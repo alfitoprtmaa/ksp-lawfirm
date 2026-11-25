@@ -46,7 +46,7 @@
                     <i class='bx bx-chevron-down chevron'></i>
                 </button>
                 <ul class="submenu">
-                    <li><a href="#">Konsultasi Online</a></li>
+                    <li><a href="{{ route('admin.konsultasionline.index') }}">Konsultasi Online</a></li>
                     <li><a href="#">Jadwal Konsultasi</a></li>
                 </ul>
             </div>
@@ -65,9 +65,9 @@
                     <i class='bx bx-chevron-down chevron'></i>
                 </button>
                 <ul class="submenu">
-                    <li><a href="#">Data Advokat</a></li>
-                    <li><a href="#">Data Role</a></li>
-                    <li><a href="#">Data Pengguna</a></li>
+                    <li><a href="{{ route('admin.advokat.index') }}">Data Advokat</a></li>
+                    <li><a href="{{ route('admin.role.index') }}" >Data Role</a></li>
+                    <li><a href="{{ route('admin.klien.index') }}" >Data Klien</a></li>
                 </ul>
             </div>
 

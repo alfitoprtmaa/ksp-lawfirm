@@ -27,6 +27,11 @@ use App\Http\Controllers\Lawyer\KelolaPerkaraController;
 // Controllers Admin
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JadwalController;
+use App\Http\Controllers\Admin\KonsultasiOnlineController;
+use App\Http\Controllers\Admin\KonsultasiPerkaraController;
+use App\Http\Controllers\Admin\DataAdvokatController;
+use App\Http\Controllers\Admin\DataRoleController;
+use App\Http\Controllers\Admin\DataKlienController;
 
 Route::get('/', [LandingController::class, 'index'])->name('welcome');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
@@ -118,16 +123,33 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
     Route::get('/jadwal/tambah', [JadwalController::class, 'create'])->name('jadwal.create');
     Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
+
+    // Kelola Konsultasi Online Gratis
+    Route::get('/konsultasionline/index', [KonsultasiOnlineController::class, 'index'])->name('konsultasionline.index');
+    Route::post('/konsultasionline/ketersediaan', [KonsultasiOnlineController::class, 'saveAvailability'])->name('konsultasi.availability');
+
+    // Konsultasi Perkara (Booking Kasus & Seleksi Advokat)
+    Route::get('/perkara/index', [KonsultasiPerkaraController::class, 'index'])->name('perkara.index');
+    Route::get('/konsultasi-perkara/{caseCode}', [KonsultasiPerkaraController::class, 'show'])->name('perkara.show');
+    Route::post('/konsultasi-perkara/{caseCode}/revisi', [KonsultasiPerkaraController::class, 'requestRevision'])->name('perkara.revisi');
+    Route::get('/konsultasi-perkara/{caseCode}/seleksi', [KonsultasiPerkaraController::class, 'seleksi'])->name('perkara.seleksi');
+    Route::post('/konsultasi-perkara/{caseCode}/tugaskan', [KonsultasiPerkaraController::class, 'assignLawyer'])->name('perkara.tugaskan');
+
+    // Akses Pengguna -> Data Advokat
+    Route::get('/advokat/index', [DataAdvokatController::class, 'index'])->name('advokat.index');
+    Route::post('/advokat', [DataAdvokatController::class, 'store'])->name('advokat.store');
+    Route::put('/advokat/{id}', [DataAdvokatController::class, 'update'])->name('advokat.update');
+    Route::delete('/advokat/{id}', [DataAdvokatController::class, 'destroy'])->name('advokat.destroy');
+
+    // Akses Pengguna -> Data Role
+    Route::get('/role/index', [DataRoleController::class, 'index'])->name('role.index');
+    Route::post('/role', [DataRoleController::class, 'store'])->name('role.store');
+    Route::put('/role/{roleCode}', [DataRoleController::class, 'update'])->name('role.update');
+    Route::delete('/role/{roleCode}', [DataRoleController::class, 'destroy'])->name('role.destroy');
+
+    // Akses Pengguna -> Data Klien
+    Route::get('/klien', [DataKlienController::class, 'index'])->name('klien.index');
+    Route::get('/klien/daftar', [DataKlienController::class, 'create'])->name('klien.create');
+    Route::post('/klien', [DataKlienController::class, 'store'])->name('klien.store');
+    Route::patch('/klien/{id}/role', [DataKlienController::class, 'updateRole'])->name('klien.updateRole');
 });
-
-Route::get('/admin/customer/index', function () {
-    return view('admin.customer.index');
-})->name('admin.customer.index');
-
-Route::get('/admin/lawyer/index', function () {
-    return view('admin.lawyer.index');
-})->name('admin.lawyer.index');
-
-Route::get('/admin/artikel/index', function () {
-    return view('admin.artikel.index');
-})->name('admin.artikel.index');
