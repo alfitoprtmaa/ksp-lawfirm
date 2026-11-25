@@ -48,12 +48,12 @@
                     <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
                 <ul class="submenu">
-                    <li><a href="#">Konsultasi Online</a></li>
+                    <li><a href="{{ route('admin.konsultasionline.index') }}">Konsultasi Online</a></li>
                     <li><a href="#">Jadwal Konsultasi</a></li>
                 </ul>
             </div>
 
-            <a href="#" class="nav-item">
+            <a href="{{ route('admin.perkara.index') }}" class="nav-item">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                 <span>Konsultasi Perkara</span>
             </a>
@@ -68,8 +68,8 @@
                     <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
                 <ul class="submenu">
-                    <li><a href="#">Data Advokat</a></li>
-                    <li><a href="#">Data Role</a></li>
+                    <li><a href="{{ route('admin.advokat.index') }}">Data Advokat</a></li>
+                    <li><a href="{{ route('admin.role.index') }}" class="active-sub">Data Role</a></li>
                     <li><a href="#">Data Pengguna</a></li>
                 </ul>
             </div>
