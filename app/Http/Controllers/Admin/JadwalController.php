@@ -310,19 +310,20 @@ class JadwalController extends Controller
             'initial'   => 'A',
         ];
 
-        $lawyers  = $this->getLawyers();
+        $lawyers          = $this->getLawyers();
         $sessionSchedules = session('admin_custom_schedules', []);
-        $schedules = array_merge($this->getDefaultSchedules(), $sessionSchedules);
+        $schedules        = array_merge($this->getDefaultSchedules(), $sessionSchedules);
 
-        // Default tanggal terpilih = 2026-10-20 agar sesuai tampilan mockup,
-        // atau gunakan Carbon::now('Asia/Jakarta')->format('Y-m-d') untuk realtime
-        $todayDate = '2026-10-20';
+        // Default tanggal hari ini
+        $now          = Carbon::now('Asia/Jakarta')->locale('id');
+        $todayDate    = $now->format('Y-m-d');
+        $currentMonth = $now->format('Y-m');
 
         $stats = [
-            'monthly_count'   => 18,
-            'today_count'     => count(array_filter($schedules, fn($s) => $s['date'] === $todayDate)),
-            'today_label'     => 'Selasa, 20 Oktober 2026',
-            'scheduled_lawyers' => 8,
+            'monthly_count'     => count(array_filter($schedules, fn($s) => str_starts_with($s['date'], $currentMonth))),
+            'today_count'       => count(array_filter($schedules, fn($s) => $s['date'] === $todayDate)),
+            'today_label'       => $now->translatedFormat('l, j F Y'),
+            'scheduled_lawyers' => count($lawyers),
         ];
 
         return view('admin.jadwal.index', compact(

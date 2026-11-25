@@ -34,19 +34,10 @@
                 <span>Kelola Jadwal</span>
             </a>
 
-            <div class="nav-group">
-                <button type="button" class="nav-item has-dropdown">
-                    <div class="nav-label">
-                        <i class='bx bx-video nav-icon'></i>
-                        <span>Kelola Konsultasi</span>
-                    </div>
-                    <i class='bx bx-chevron-down chevron'></i>
-                </button>
-                <ul class="submenu">
-                    <li><a href="{{ route('admin.konsultasionline.index') }}">Konsultasi Online</a></li>
-                    <li><a href="#">Jadwal Konsultasi</a></li>
-                </ul>
-            </div>
+            <a href="{{ route('admin.konsultasionline.index') }}" class="nav-item">
+                <i class='bx bx-video nav-icon'></i>
+                <span>Kelola Konsultasi</span>
+            </a>
 
             <a href="{{ route('admin.perkara.index') }}" class="nav-item">
                 <i class='bx bx-folder nav-icon'></i>
@@ -172,7 +163,7 @@
 
                 <div class="metric-card">
                     <div class="metric-icon icon-maroon">
-                        <i class='bx bx-balance'></i>
+                        <i class='bx bx-book'></i>
                     </div>
                     <div class="metric-info">
                         <span class="metric-label">Peraturan Perundang-undangan</span>

@@ -18,16 +18,16 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 2. HALAMAN KELOLA JADWAL (KALENDER & FILTER)
+    // 2. HALAMAN KELOLA JADWAL (KALENDER & FILTER - DEFAULT HARI INI)
     const calendarGrid = document.getElementById('adminCalendarGrid');
     if (calendarGrid) {
         const schedules = window.ADMIN_SCHEDULES || [];
-        const todayStr = window.ADMIN_TODAY_DATE || '2026-10-20';
+        const todayStr = window.ADMIN_TODAY_DATE || new Date().toISOString().slice(0, 10);
         const [initY, initM] = todayStr.split('-').map(Number);
 
         let currentYear = initY;
         let currentMonth = initM - 1; // 0-indexed
-        let selectedDateStr = todayStr;
+        let selectedDateStr = todayStr; // Default dipilih = hari ini
 
         const monthNames = [
             'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
@@ -43,6 +43,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function formatDateStr(y, mZeroIdx, d) {
             return `${y}-${String(mZeroIdx + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        }
+
+        function syncMonthDropdown() {
+            if (!monthSelect) return;
+            const ym = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`;
+            if ([...monthSelect.options].some(opt => opt.value === ym)) {
+                monthSelect.value = ym;
+            }
         }
 
         function getCategoryPillClass(type) {
@@ -83,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             document.getElementById('modalEvTitle').textContent = ev.event_title;
             document.getElementById('modalEvDate').textContent = dateLabel;
-            document.getElementById('modalEvTime').textContent = `${ev.start_time_label} – ${ev.end_time_label} WITA`;
+            document.getElementById('modalEvTime').textContent = `${ev.start_time_label} – ${ev.end_time_label} WIB`;
             document.getElementById('modalEvLawyer').textContent = ev.lawyer_name;
             document.getElementById('modalEvLocation').textContent = ev.location;
             document.getElementById('modalEvCase').textContent = ev.case_code || '-';
@@ -106,11 +114,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const dateObj = new Date(y, m - 1, d);
             const headingLabel = `${dayNamesFull[dateObj.getDay()]}, ${d} ${monthNames[m - 1]}`;
             const fullDateLabel = `${headingLabel} ${y}`;
+            const isToday = dateStr === todayStr;
 
             document.getElementById('selectedDayTitle').textContent = headingLabel;
 
             const dayEvents = getFilteredSchedules().filter(ev => ev.date === dateStr);
-            document.getElementById('selectedDaySubtitle').textContent = `${dayEvents.length} agenda untuk tim lawyer`;
+            document.getElementById('selectedDaySubtitle').textContent = isToday
+                ? `${dayEvents.length} agenda hari ini untuk tim lawyer`
+                : `${dayEvents.length} agenda untuk tim lawyer`;
 
             const listContainer = document.getElementById('dayAgendaList');
             listContainer.innerHTML = '';
@@ -119,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 listContainer.innerHTML = `
                     <div class="empty-day-box">
                         <i class='bx bx-calendar-x'></i>
-                        <h4>Tidak ada agenda</h4>
+                        <h4>${isToday ? 'Tidak ada agenda hari ini' : 'Tidak ada agenda'}</h4>
                         <p>Belum ada jadwal yang dijadwalkan pada tanggal ini.</p>
                     </div>
                 `;
@@ -153,9 +164,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function renderCalendar() {
             document.getElementById('calendarMonthTitle').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+            syncMonthDropdown();
             calendarGrid.innerHTML = '';
 
-            // Kalender dimulai hari Senin (Sen=0 ... Min=6)
             const rawFirstDay = new Date(currentYear, currentMonth, 1).getDay();
             const startOffset = rawFirstDay === 0 ? 6 : rawFirstDay - 1;
 
@@ -163,12 +174,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
             const filtered = getFilteredSchedules();
 
-            // Hitung total agenda bulan aktif
             const monthPrefix = `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}`;
             const monthEventsCount = filtered.filter(ev => ev.date.startsWith(monthPrefix)).length;
             document.getElementById('calendarAgendaCount').textContent = `${monthEventsCount} agenda`;
 
-            // Hari bulan sebelumnya
             for (let i = startOffset - 1; i >= 0; i--) {
                 const prevDay = daysInPrevMonth - i;
                 const prevM = currentMonth === 0 ? 11 : currentMonth - 1;
@@ -176,12 +185,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 calendarGrid.appendChild(createDayCell(prevDay, formatDateStr(prevY, prevM, prevDay), true, filtered));
             }
 
-            // Hari bulan aktif
             for (let day = 1; day <= daysInMonth; day++) {
                 calendarGrid.appendChild(createDayCell(day, formatDateStr(currentYear, currentMonth, day), false, filtered));
             }
 
-            // Hari bulan berikutnya (lengkapi 35 sel / 5 baris)
             const totalRendered = startOffset + daysInMonth;
             const remaining = totalRendered <= 35 ? 35 - totalRendered : 42 - totalRendered;
             for (let nextDay = 1; nextDay <= remaining; nextDay++) {
@@ -195,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const cell = document.createElement('div');
             cell.className = 'cal-day-cell';
             if (isOtherMonth) cell.classList.add('other-month');
+            if (dateStr === todayStr) cell.classList.add('today-day');
             if (dateStr === selectedDateStr) cell.classList.add('selected-day');
 
             const numSpan = document.createElement('span');
@@ -269,7 +277,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (searchInput) searchInput.value = '';
                 if (lawyerSelect) lawyerSelect.value = 'all';
                 if (categorySelect) categorySelect.value = 'all';
-                if (monthSelect) monthSelect.value = '2026-10';
                 currentYear = initY;
                 currentMonth = initM - 1;
                 selectedDateStr = todayStr;
@@ -278,6 +285,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
 
+        // Inisialisasi awal: langsung tampilkan bulan & tanggal hari ini
         renderCalendar();
         renderRightDayPanel(selectedDateStr);
     }

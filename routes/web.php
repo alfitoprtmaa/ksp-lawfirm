@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 // Controllers Landing
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\AboutController;
@@ -37,151 +38,179 @@ use App\Http\Controllers\Admin\DataArtikelController;
 use App\Http\Controllers\Admin\DataFaqController;
 use App\Http\Controllers\Admin\AdminPusatReferensiController;
 
+// =========================================================================
+// LANDING ROUTES
+// =========================================================================
 Route::get('/', [LandingController::class, 'index'])->name('welcome');
 Route::get('/about-us', [AboutController::class, 'index'])->name('about');
 Route::get('/services', [ServicesController::class, 'index'])->name('services');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/articles', [ArticlesController::class, 'index'])->name('articles');
 
-// Customer Routes
+// =========================================================================
+// CUSTOMER ROUTES
+// =========================================================================
+Route::prefix('customer')->name('customer.')->group(function () {
+    // Auth
+    Route::view('/login/signin', 'customer.login.signin')->name('login.signin');
+    Route::view('/login/signup', 'customer.login.signup')->name('login.signup');
 
-// alternative route for customer login form
-Route::get('/customer/login/signin', function () {
-    return view('customer.login.signin');
-})->name('customer.login.signin');
+    Route::controller(CustomerAuthController::class)->group(function () {
+        Route::get('/login', 'showLoginForm')->name('login');
+        Route::post('/login', 'login')->name('login.submit');
+    });
 
-Route::get('/customer/login/signup', function () {
-    return view('customer.login.signup');
-})->name('customer.login.signup');
+    // Dashboard & Tracking
+    Route::get('/index', [CustomerDashboardController::class, 'index'])->name('index');
+    Route::get('/tracking/index', [CustomerTrackingController::class, 'index'])->name('tracking.index');
 
-// route for customer login form
-Route::get('/customer/login', [CustomerAuthController::class, 'showLoginForm'])->name('customer.login');
-Route::post('/customer/login', [CustomerAuthController::class, 'login'])->name('customer.login.submit');
+    // Buat Konsultasi
+    Route::controller(CustomerBuatKonsultasiController::class)->group(function () {
+        Route::get('/buatkonsultasi/index', 'index')->name('buatkonsultasi.index');
+        Route::post('/perkara-baru', 'store')->name('buatkonsultasi.store');
+    });
 
-// customer index route
-Route::get('/customer/index', [CustomerDashboardController::class, 'index'])->name('customer.index');
+    // Riwayat Perkara
+    Route::controller(CustomerPerkaraController::class)->group(function () {
+        Route::get('/perkaralama/index', 'index')->name('perkaralama.index');
+        Route::post('/perkara/{bookingId}/dokumen', 'uploadDocument')->name('perkaralama.uploadDocument');
+    });
 
-// csutomer tracking route
-Route::get('/customer/tracking/index', [CustomerTrackingController::class, 'index'])->name('customer.tracking.index');
-
-// customer create consultation route
-Route::get('/customer/buatkonsultasi/index', [CustomerBuatKonsultasiController::class, 'index'])->name('customer.buatkonsultasi.index');
-Route::post('/customer/perkara-baru', [CustomerBuatKonsultasiController::class, 'store'])->name('customer.buatkonsultasi.store');
-
-// customer case history route
-Route::get('/customer/perkaralama/index', [CustomerPerkaraController::class, 'index'])->name('customer.perkaralama.index');
-Route::post('/customer/perkara/{bookingId}/dokumen', [CustomerPerkaraController::class, 'uploadDocument'])->name('customer.perkaralama.uploadDocument');
-
-// customer account route
-Route::get('/customer/akun/index', [CustomerAkunController::class, 'index'])->name('customer.akun.index');
-Route::put('/customer/pengaturan-akun/profil', [CustomerAkunController::class, 'updateProfile'])->name('customer.akun.updateProfile');
-Route::put('/customer/pengaturan-akun/password', [CustomerAkunController::class, 'updatePassword'])->name('customer.akun.updatePassword');
-Route::post('/customer/pengaturan-akun/foto', [CustomerAkunController::class, 'updateAvatar'])->name('customer.akun.updateAvatar');
-
-// Lawyer Routes
-
-// lawyer login routes
-Route::get('/lawyer/login', [LawyerAuthController::class, 'showLoginForm'])->name('lawyer.login');
-Route::post('/lawyer/login', [LawyerAuthController::class, 'login'])->name('lawyer.login.submit');
-Route::post('/lawyer/logout', [LawyerAuthController::class, 'logout'])->name('lawyer.logout');
-
-// lawyer dashboard route
-Route::get('/lawyer/index', [LawyerDashboardController::class, 'index'])->name('lawyer.index');
-
-// lawyer management case routes
-Route::prefix('lawyer')->name('lawyer.')->group(function () {
-    Route::get('/kelolaperkara/index', [KelolaPerkaraController::class, 'index'])->name('kelolaperkara.index');
-    Route::get('/kelolaperkara/dikerjakan', [KelolaPerkaraController::class, 'dikerjakan'])->name('kelolaperkara.dikerjakan');
-    Route::get('/kelolaperkara/selesai', [KelolaPerkaraController::class, 'selesai'])->name('kelolaperkara.selesai');
-    Route::get('/kelolaperkara/{id}', [KelolaPerkaraController::class, 'show'])->name('kelolaperkara.show');
-    Route::post('/kelolaperkara/{id}/perkembangan', [KelolaPerkaraController::class, 'storeExecution'])->name('kelolaperkara.execution.store');
-    Route::patch('/kelolaperkara/{id}/selesai', [KelolaPerkaraController::class, 'complete'])->name('kelolaperkara.complete');
-    Route::patch('/kelolaperkara/{id}/arsip', [KelolaPerkaraController::class, 'archive'])->name('kelolaperkara.archive');
+    // Pengaturan Akun
+    Route::controller(CustomerAkunController::class)->group(function () {
+        Route::get('/akun/index', 'index')->name('akun.index');
+        Route::put('/pengaturan-akun/profil', 'updateProfile')->name('akun.updateProfile');
+        Route::put('/pengaturan-akun/password', 'updatePassword')->name('akun.updatePassword');
+        Route::post('/pengaturan-akun/foto', 'updateAvatar')->name('akun.updateAvatar');
+    });
 });
 
-// lawyer schedule routes
-Route::get('/lawyer/jadwal/index', [LawyerJadwalController::class, 'index'])->name('lawyer.jadwal.index');
-Route::post('/lawyer/jadwal', [LawyerJadwalController::class, 'store'])->name('lawyer.jadwal.store');
-
-// lawyer reference center routes
+// =========================================================================
+// LAWYER ROUTES
+// =========================================================================
 Route::prefix('lawyer')->name('lawyer.')->group(function () {
-    Route::get('/pusat-referensi', [PusatReferensiController::class, 'index'])->name('pusatreferensi.index');
-    Route::post('/pusat-referensi', [PusatReferensiController::class, 'store'])->name('pusatreferensi.store');
+    // Auth
+    Route::controller(LawyerAuthController::class)->group(function () {
+        Route::get('/login', 'showLoginForm')->name('login');
+        Route::post('/login', 'login')->name('login.submit');
+        Route::post('/logout', 'logout')->name('logout');
+    });
+
+    // Dashboard
+    Route::get('/index', [LawyerDashboardController::class, 'index'])->name('index');
+
+    // Kelola Perkara
+    Route::prefix('kelolaperkara')->name('kelolaperkara.')->controller(KelolaPerkaraController::class)->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::get('/dikerjakan', 'dikerjakan')->name('dikerjakan');
+        Route::get('/selesai', 'selesai')->name('selesai');
+        Route::get('/{id}', 'show')->name('show');
+        Route::post('/{id}/perkembangan', 'storeExecution')->name('execution.store');
+        Route::patch('/{id}/selesai', 'complete')->name('complete');
+        Route::patch('/{id}/arsip', 'archive')->name('archive');
+    });
+
+    // Jadwal
+    Route::controller(LawyerJadwalController::class)->group(function () {
+        Route::get('/jadwal/index', 'index')->name('jadwal.index');
+        Route::post('/jadwal', 'store')->name('jadwal.store');
+    });
+
+    // Pusat Referensi
+    Route::controller(PusatReferensiController::class)->group(function () {
+        Route::get('/pusat-referensi', 'index')->name('pusatreferensi.index');
+        Route::post('/pusat-referensi', 'store')->name('pusatreferensi.store');
+    });
+
+    // Akun
+    Route::controller(AkunController::class)->group(function () {
+        Route::get('/akun', 'index')->name('akun.index');
+        Route::put('/akun', 'update')->name('akun.update');
+        Route::delete('/akun/avatar', 'deleteAvatar')->name('akun.avatar.delete');
+    });
 });
 
-// lawyer account routes
-Route::prefix('lawyer')->name('lawyer.')->group(function () {
-    // Route pengaturan akun
-    Route::get('/akun', [AkunController::class, 'index'])->name('akun.index');
-    Route::put('/akun', [AkunController::class, 'update'])->name('akun.update');
-    Route::delete('/akun/avatar', [AkunController::class, 'deleteAvatar'])->name('akun.avatar.delete');
-});
-
-// Admin Routes
-
+// =========================================================================
+// ADMIN ROUTES
+// =========================================================================
 Route::prefix('admin')->name('admin.')->group(function () {
-    // Halaman Utama Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Kelola Jadwal & Tambah Jadwal
-    Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal.index');
-    Route::get('/jadwal/tambah', [JadwalController::class, 'create'])->name('jadwal.create');
-    Route::post('/jadwal', [JadwalController::class, 'store'])->name('jadwal.store');
+    // Kelola Jadwal
+    Route::prefix('jadwal')->name('jadwal.')->controller(JadwalController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+    });
 
-    // Kelola Konsultasi Online Gratis
-    Route::get('/konsultasionline/index', [KonsultasiOnlineController::class, 'index'])->name('konsultasionline.index');
-    Route::post('/konsultasionline/ketersediaan', [KonsultasiOnlineController::class, 'saveAvailability'])->name('konsultasi.availability');
+    // Konsultasi Online Gratis
+    Route::prefix('konsultasionline')->controller(KonsultasiOnlineController::class)->group(function () {
+        Route::get('/index', 'index')->name('konsultasionline.index');
+        Route::post('/ketersediaan', 'saveAvailability')->name('konsultasi.availability');
+    });
 
-    // Konsultasi Perkara (Booking Kasus & Seleksi Advokat)
-    Route::get('/perkara/index', [KonsultasiPerkaraController::class, 'index'])->name('perkara.index');
-    Route::get('/konsultasi-perkara/{caseCode}', [KonsultasiPerkaraController::class, 'show'])->name('perkara.show');
-    Route::post('/konsultasi-perkara/{caseCode}/revisi', [KonsultasiPerkaraController::class, 'requestRevision'])->name('perkara.revisi');
-    Route::get('/konsultasi-perkara/{caseCode}/seleksi', [KonsultasiPerkaraController::class, 'seleksi'])->name('perkara.seleksi');
-    Route::post('/konsultasi-perkara/{caseCode}/tugaskan', [KonsultasiPerkaraController::class, 'assignLawyer'])->name('perkara.tugaskan');
+    // Konsultasi Perkara
+    Route::controller(KonsultasiPerkaraController::class)->name('perkara.')->group(function () {
+        Route::get('/perkara/index', 'index')->name('index');
+        Route::get('/konsultasi-perkara/{caseCode}', 'show')->name('show');
+        Route::post('/konsultasi-perkara/{caseCode}/revisi', 'requestRevision')->name('revisi');
+        Route::get('/konsultasi-perkara/{caseCode}/seleksi', 'seleksi')->name('seleksi');
+        Route::post('/konsultasi-perkara/{caseCode}/tugaskan', 'assignLawyer')->name('tugaskan');
+    });
 
-    // Akses Pengguna -> Data Advokat
-    Route::get('/advokat/index', [DataAdvokatController::class, 'index'])->name('advokat.index');
-    Route::post('/advokat', [DataAdvokatController::class, 'store'])->name('advokat.store');
-    Route::put('/advokat/{id}', [DataAdvokatController::class, 'update'])->name('advokat.update');
-    Route::delete('/advokat/{id}', [DataAdvokatController::class, 'destroy'])->name('advokat.destroy');
+    // Data Advokat
+    Route::prefix('advokat')->name('advokat.')->controller(DataAdvokatController::class)->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+    });
 
-    // Akses Pengguna -> Data Role
-    Route::get('/role/index', [DataRoleController::class, 'index'])->name('role.index');
-    Route::post('/role', [DataRoleController::class, 'store'])->name('role.store');
-    Route::put('/role/{roleCode}', [DataRoleController::class, 'update'])->name('role.update');
-    Route::delete('/role/{roleCode}', [DataRoleController::class, 'destroy'])->name('role.destroy');
+    // Data Role
+    Route::prefix('role')->name('role.')->controller(DataRoleController::class)->group(function () {
+        Route::get('/index', 'index')->name('index');
+        Route::post('/', 'store')->name('store');
+        Route::put('/{roleCode}', 'update')->name('update');
+        Route::delete('/{roleCode}', 'destroy')->name('destroy');
+    });
 
-    // Akses Pengguna -> Data Klien
-    Route::get('/klien', [DataKlienController::class, 'index'])->name('klien.index');
-    Route::get('/klien/daftar', [DataKlienController::class, 'create'])->name('klien.create');
-    Route::post('/klien', [DataKlienController::class, 'store'])->name('klien.store');
-    Route::patch('/klien/{id}/role', [DataKlienController::class, 'updateRole'])->name('klien.updateRole');
+    // Data Klien
+    Route::prefix('klien')->name('klien.')->controller(DataKlienController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/daftar', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::patch('/{id}/role', 'updateRole')->name('updateRole');
+    });
 
-    // Manajemen Konten -> Data Layanan (Practicing Area & Legal Service)
-    Route::get('/layanan/index', [DataLayananController::class, 'index'])->name('layanan.index');
-    Route::post('/layanan/practicing-area', [DataLayananController::class, 'storePracticingArea'])->name('layanan.pa.store');
-    Route::put('/layanan/practicing-area/{id}', [DataLayananController::class, 'updatePracticingArea'])->name('layanan.pa.update');
-    Route::delete('/layanan/practicing-area/{id}', [DataLayananController::class, 'destroyPracticingArea'])->name('layanan.pa.destroy');
+    // Data Layanan
+    Route::prefix('layanan')->name('layanan.')->controller(DataLayananController::class)->group(function () {
+        Route::get('/index', 'index')->name('index');
 
-    Route::post('/layanan/legal-service', [DataLayananController::class, 'storeLegalService'])->name('layanan.ls.store');
-    Route::put('/layanan/legal-service/{id}', [DataLayananController::class, 'updateLegalService'])->name('layanan.ls.update');
-    Route::delete('/layanan/legal-service/{id}', [DataLayananController::class, 'destroyLegalService'])->name('layanan.ls.destroy');
+        Route::post('/practicing-area', 'storePracticingArea')->name('pa.store');
+        Route::put('/practicing-area/{id}', 'updatePracticingArea')->name('pa.update');
+        Route::delete('/practicing-area/{id}', 'destroyPracticingArea')->name('pa.destroy');
 
-    // Manajemen Konten -> Data Artikel Kegiatan
-    Route::get('/artikel', [DataArtikelController::class, 'index'])->name('artikel.index');
-    Route::get('/artikel/tambah', [DataArtikelController::class, 'create'])->name('artikel.create');
-    Route::post('/artikel', [DataArtikelController::class, 'store'])->name('artikel.store');
-    Route::delete('/artikel/{id}', [DataArtikelController::class, 'destroy'])->name('artikel.destroy');
+        Route::post('/legal-service', 'storeLegalService')->name('ls.store');
+        Route::put('/legal-service/{id}', 'updateLegalService')->name('ls.update');
+        Route::delete('/legal-service/{id}', 'destroyLegalService')->name('ls.destroy');
+    });
 
-    // Manajemen Konten -> Data FAQ
-    Route::get('/faq', [DataFaqController::class, 'index'])->name('faq.index');
-    Route::post('/faq', [DataFaqController::class, 'store'])->name('faq.store');
-    Route::put('/faq/{id}', [DataFaqController::class, 'update'])->name('faq.update');
-    Route::delete('/faq/{id}', [DataFaqController::class, 'destroy'])->name('faq.destroy');
+    // Data Artikel
+    Route::prefix('artikel')->name('artikel.')->controller(DataArtikelController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/tambah', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::delete('/{id}', 'destroy')->name('destroy');
+    });
 
-    // Kelola Pusat Referensi
-    Route::get('/referensi/index', [AdminPusatReferensiController::class, 'index'])->name('referensi.index');
-    Route::post('/pusat-referensi', [AdminPusatReferensiController::class, 'store'])->name('referensi.store');
-    Route::put('/pusat-referensi/{id}', [AdminPusatReferensiController::class, 'update'])->name('referensi.update');
-    Route::delete('/pusat-referensi/{id}', [AdminPusatReferensiController::class, 'destroy'])->name('referensi.destroy');
+    // Data FAQ (RESTful murni -> cukup 1 baris)
+    Route::resource('faq', DataFaqController::class)->only(['index', 'store', 'update', 'destroy']);
+
+    // Pusat Referensi
+    Route::controller(AdminPusatReferensiController::class)->name('referensi.')->group(function () {
+        Route::get('/referensi/index', 'index')->name('index');
+        Route::post('/pusat-referensi', 'store')->name('store');
+        Route::put('/pusat-referensi/{id}', 'update')->name('update');
+        Route::delete('/pusat-referensi/{id}', 'destroy')->name('destroy');
+    });
 });

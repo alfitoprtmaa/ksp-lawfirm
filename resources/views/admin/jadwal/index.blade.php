@@ -37,21 +37,12 @@
                 <span>Kelola Jadwal</span>
             </a>
 
-            <div class="nav-group">
-                <button type="button" class="nav-item has-dropdown">
-                    <div class="nav-label">
-                        <i class='bx bx-video nav-icon'></i>
-                        <span>Kelola Konsultasi</span>
-                    </div>
-                    <i class='bx bx-chevron-down chevron'></i>
-                </button>
-                <ul class="submenu">
-                    <li><a href="{{ route('admin.konsultasionline.index') }}">Konsultasi Online</a></li>
-                    <li><a href="#">Jadwal Konsultasi</a></li>
-                </ul>
-            </div>
+            <a href="{{ route('admin.konsultasionline.index') }}" class="nav-item">
+                <i class='bx bx-video nav-icon'></i>
+                <span>Kelola Konsultasi</span>
+            </a>
 
-            <a href="#" class="nav-item">
+            <a href="{{ route('admin.perkara.index') }}" class="nav-item">
                 <i class='bx bx-folder nav-icon'></i>
                 <span>Konsultasi Perkara</span>
             </a>
@@ -265,7 +256,7 @@
                     </div>
 
                     <div class="day-detail-footer">
-                        Semua waktu dalam WITA (UTC+8)
+                        Semua waktu dalam WIB (UTC+7)
                     </div>
                 </aside>
             </section>

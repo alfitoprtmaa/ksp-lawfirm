@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
     
     <link rel="stylesheet" href="{{ asset('css/admin/dashboard.css') }}">
 </head>
@@ -29,69 +28,58 @@
 
         <nav class="sidebar-nav">
             <a href="{{ route('admin.dashboard') }}" class="nav-item active">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <i class='bx bx-home-alt nav-icon'></i>
                 <span>Dashboard</span>
             </a>
 
             <a href="{{ route('admin.jadwal.index') }}" class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <i class='bx bx-calendar nav-icon'></i>
                 <span>Kelola Jadwal</span>
             </a>
 
-            <!-- Dropdown 1: Kelola Konsultasi -->
-            <div class="nav-group">
-                <button type="button" class="nav-item has-dropdown">
-                    <div class="nav-label">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-                        <span>Kelola Konsultasi</span>
-                    </div>
-                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </button>
-                <ul class="submenu">
-                    <li><a href="{{ route('admin.konsultasionline.index') }}">Konsultasi Online</a></li>
-                    <li><a href="#">Jadwal Konsultasi</a></li>
-                </ul>
-            </div>
+            <a href="{{ route('admin.konsultasionline.index') }}" class="nav-item">
+                <i class='bx bx-video nav-icon'></i>
+                <span>Kelola Konsultasi</span>
+            </a>
 
-            <a href="{{ route('admin.perkara.index') }}" class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <!-- MENU AKTIF: KONSULTASI PERKARA -->
+            <a href="{{ route('admin.perkara.index') }}" class="nav-item ">
+                <i class='bx bx-folder nav-icon'></i>
                 <span>Konsultasi Perkara</span>
             </a>
 
-            <!-- Dropdown 2: Akses Pengguna (default terbuka sesuai desain) -->
             <div class="nav-group open">
                 <button type="button" class="nav-item has-dropdown">
                     <div class="nav-label">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <i class='bx bx-group nav-icon'></i>
                         <span>Akses Pengguna</span>
                     </div>
-                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <i class='bx bx-chevron-down chevron'></i>
                 </button>
                 <ul class="submenu">
                     <li><a href="{{ route('admin.advokat.index') }}">Data Advokat</a></li>
-                    <li><a href="{{ route('admin.role.index') }}" class="active-sub">Data Role</a></li>
-                    <li><a href="{{ route('admin.klien.index') }}">Data Pengguna</a></li>
+                    <li><a href="{{ route('admin.role.index') }}" >Data Role</a></li>
+                    <li><a href="{{ route('admin.klien.index') }}" >Data Klien</a></li>
                 </ul>
             </div>
 
-            <!-- Dropdown 3: Manajemen Konten (default terbuka sesuai desain) -->
             <div class="nav-group open">
                 <button type="button" class="nav-item has-dropdown">
                     <div class="nav-label">
-                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        <i class='bx bx-briefcase nav-icon'></i>
                         <span>Manajemen Konten</span>
                     </div>
-                    <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    <i class='bx bx-chevron-down chevron'></i>
                 </button>
                 <ul class="submenu">
-                    <li><a href="{{ route('admin.layanan.index') }}" >Data Layanan</a></li>
+                    <li><a href="{{ route('admin.layanan.index') }}">Data Layanan</a></li>
                     <li><a href="{{ route('admin.artikel.index') }}">Data Artikel Kegiatan</a></li>
                     <li><a href="{{ route('admin.faq.index') }}">Data FAQ</a></li>
                 </ul>
             </div>
 
             <a href="{{ route('admin.referensi.index') }}" class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                <i class='bx bx-book-open nav-icon'></i>
                 <span>Kelola Pusat Referensi</span>
             </a>
         </nav>
