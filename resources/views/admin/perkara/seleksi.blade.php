@@ -16,7 +16,7 @@
     <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-brand">
-            <img src="{{ asset('images/logo-ksp.png') }}" alt="Logo Kantor Hukum" class="brand-logo">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo Kantor Hukum" class="brand-logo">
             <div class="brand-text">
                 <h1>Lawyer Admin</h1>
                 <span>Sistem Manajemen Advokat</span>

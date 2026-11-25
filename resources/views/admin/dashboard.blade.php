@@ -70,7 +70,7 @@
                 <ul class="submenu">
                     <li><a href="{{ route('admin.advokat.index') }}">Data Advokat</a></li>
                     <li><a href="{{ route('admin.role.index') }}" class="active-sub">Data Role</a></li>
-                    <li><a href="#">Data Pengguna</a></li>
+                    <li><a href="{{ route('admin.klien.index') }}">Data Pengguna</a></li>
                 </ul>
             </div>
 
@@ -84,13 +84,13 @@
                     <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
                 <ul class="submenu">
-                    <li><a href="#">Data Layanan</a></li>
-                    <li><a href="#">Data Artikel Kegiatan</a></li>
-                    <li><a href="#">Data FAQ</a></li>
+                    <li><a href="{{ route('admin.layanan.index') }}" >Data Layanan</a></li>
+                    <li><a href="{{ route('admin.artikel.index') }}">Data Artikel Kegiatan</a></li>
+                    <li><a href="{{ route('admin.faq.index') }}">Data FAQ</a></li>
                 </ul>
             </div>
 
-            <a href="#" class="nav-item">
+            <a href="{{ route('admin.referensi.index') }}" class="nav-item">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
                 <span>Kelola Pusat Referensi</span>
             </a>
